@@ -1,0 +1,71 @@
+{
+  "$schema": "https://aka.ms/json-schemas/copilot/plugin/v2.4/schema.json",
+  "schema_version": "v2.4",
+  "name_for_human": "Third Bridge",
+  "namespace": "ThirdBridge",
+  "description_for_human": "Search Third Bridge Library for expert interview transcripts and company intelligence.",
+  "description_for_model": "Provides access to Third Bridge's expert network intelligence products (Library, Forum) via enterprise data feed integration. Access is via Third Bridge enterprise data feed integration. No direct REST API is available; the MCP server wraps data feed delivery into callable tools. Use this plugin to search expert interview transcripts, retrieve specific interview content, and get company coverage summaries. Ideal for primary research, due diligence, and building differentiated investment views from expert perspectives.",
+  "functions": [
+    {
+      "name": "search_library",
+      "description": "Search Third Bridge Library for expert interview transcripts and company intelligence content. Results delivered via Third Bridge enterprise data feed integration.",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "query": { "type": "string", "description": "Search query for expert interviews and intelligence content (e.g., 'pricing strategy', 'competitive landscape')" },
+          "company": { "type": "string", "description": "Company name or ticker to filter results" },
+          "content_type": { "type": "string", "description": "Type of content to search: 'interview', 'forum', or 'all'" }
+        },
+        "required": ["query"]
+      },
+      "capabilities": {
+        "security_info": {
+          "data_handling": ["GetPrivateData"]
+        }
+      }
+    },
+    {
+      "name": "get_interview_transcript",
+      "description": "Retrieve a specific expert interview transcript from Third Bridge Library including speaker profiles, topics discussed, and key insights.",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "interview_id": { "type": "string", "description": "Third Bridge interview ID for the specific expert interview" }
+        },
+        "required": ["interview_id"]
+      },
+      "capabilities": {
+        "security_info": {
+          "data_handling": ["GetPrivateData"]
+        }
+      }
+    },
+    {
+      "name": "get_company_coverage",
+      "description": "Retrieve available Third Bridge coverage and intelligence summaries for a specific company, including interview counts, key themes, and recent activity.",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "company": { "type": "string", "description": "Company name or ticker to retrieve coverage for" }
+        },
+        "required": ["company"]
+      },
+      "capabilities": {
+        "security_info": {
+          "data_handling": ["GetPrivateData"]
+        }
+      }
+    }
+  ],
+  "runtimes": [
+    {
+      "type": "RemoteMCPServer",
+      "spec": {
+        "url": "https://{{MCP_HOST}}/mcp/third-bridge"
+      },
+      "auth": {
+        "type": "ApiKeyPluginVault"
+      }
+    }
+  ]
+}

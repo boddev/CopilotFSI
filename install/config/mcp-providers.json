@@ -1,0 +1,308 @@
+{
+  "providers": [
+    {
+      "id": "factset",
+      "name": "FactSet",
+      "category": "Market Data & Fundamentals",
+      "description": "Comprehensive financial data including fundamentals, estimates, pricing, and ratios",
+      "authType": "OAuthPluginVault",
+      "publicUrl": null,
+      "officialMcp": false,
+      "officialMcpRepo": null,
+      "urlPattern": "/mcp/factset",
+      "pluginFiles": [
+        "agents/mcp/mcp-factset/appPackage/ai-plugin-factset.json",
+        "agents/comparable-analysis-agent/appPackage/ai-plugin-factset.json",
+        "agents/coverage-report-agent/appPackage/ai-plugin-factset.json",
+        "agents/dcf-model-agent/appPackage/ai-plugin-factset.json",
+        "agents/due-diligence-agent/appPackage/ai-plugin-factset.json",
+        "agents/earnings-analysis-agent/appPackage/ai-plugin-factset.json",
+        "agents/company-profile-agent/appPackage/ai-plugin-factset.json",
+        "agents/precedent-transactions-agent/appPackage/ai-plugin-factset.json"
+      ]
+    },
+    {
+      "id": "sp-global",
+      "name": "S&P Global",
+      "category": "Market Data & Fundamentals",
+      "description": "Market intelligence, credit ratings, and financial analytics",
+      "authType": "ApiKey",
+      "publicUrl": null,
+      "officialMcp": false,
+      "officialMcpRepo": null,
+      "urlPattern": "/mcp/sp-global",
+      "pluginFiles": [
+        "agents/mcp/mcp-sp-global/appPackage/ai-plugin-sp-global.json",
+        "agents/company-profile-agent/appPackage/ai-plugin-sp-global.json",
+        "agents/coverage-report-agent/appPackage/ai-plugin-sp-global.json",
+        "agents/dcf-model-agent/appPackage/ai-plugin-sp-global.json",
+        "agents/precedent-transactions-agent/appPackage/ai-plugin-sp-global.json"
+      ]
+    },
+    {
+      "id": "bloomberg",
+      "name": "Bloomberg",
+      "category": "Market Data & Fundamentals",
+      "description": "Real-time and historical market data, news, and analytics",
+      "authType": "OAuthPluginVault",
+      "publicUrl": null,
+      "officialMcp": false,
+      "officialMcpRepo": null,
+      "urlPattern": "/mcp/bloomberg",
+      "pluginFiles": [
+        "agents/mcp/mcp-bloomberg/appPackage/ai-plugin-bloomberg.json"
+      ]
+    },
+    {
+      "id": "alpha-vantage",
+      "name": "Alpha Vantage",
+      "category": "Market Data & Fundamentals",
+      "description": "Free and premium APIs for real-time and historical financial data",
+      "authType": "ApiKey",
+      "publicUrl": "https://mcp.alphavantage.co/mcp",
+      "officialMcp": true,
+      "officialMcpRepo": null,
+      "urlPattern": "/mcp/alpha-vantage",
+      "pluginFiles": [
+        "agents/mcp/mcp-market-data/appPackage/ai-plugin-alpha-vantage.json",
+        "agents/comparable-analysis-agent/appPackage/ai-plugin-alpha-vantage.json",
+        "agents/dcf-model-agent/appPackage/ai-plugin-alpha-vantage.json"
+      ]
+    },
+    {
+      "id": "lseg",
+      "name": "LSEG",
+      "category": "Market Data & Fundamentals",
+      "description": "London Stock Exchange Group data and analytics services",
+      "authType": "OAuthPluginVault",
+      "publicUrl": null,
+      "officialMcp": false,
+      "officialMcpRepo": null,
+      "urlPattern": "/mcp/lseg",
+      "pluginFiles": [
+        "agents/mcp/mcp-market-data/appPackage/ai-plugin-lseg.json",
+        "agents/coverage-report-agent/appPackage/ai-plugin-lseg.json"
+      ]
+    },
+    {
+      "id": "morningstar",
+      "name": "Morningstar",
+      "category": "Research & Ratings",
+      "description": "Investment research, ratings, and fund analytics",
+      "authType": "OAuthPluginVault",
+      "publicUrl": null,
+      "officialMcp": false,
+      "officialMcpRepo": null,
+      "urlPattern": "/mcp/morningstar",
+      "pluginFiles": [
+        "agents/mcp/mcp-research-ratings/appPackage/ai-plugin-morningstar.json",
+        "agents/company-profile-agent/appPackage/ai-plugin-morningstar.json"
+      ]
+    },
+    {
+      "id": "moodys",
+      "name": "Moody's",
+      "category": "Research & Ratings",
+      "description": "Credit ratings, research, and risk analysis",
+      "authType": "ApiKey",
+      "publicUrl": null,
+      "officialMcp": false,
+      "officialMcpRepo": null,
+      "urlPattern": "/mcp/moodys",
+      "pluginFiles": [
+        "agents/mcp/mcp-research-ratings/appPackage/ai-plugin-moodys.json"
+      ]
+    },
+    {
+      "id": "pitchbook",
+      "name": "PitchBook",
+      "category": "Private Capital",
+      "description": "Private equity, venture capital, and M&A data",
+      "authType": "ApiKey",
+      "publicUrl": null,
+      "officialMcp": false,
+      "officialMcpRepo": null,
+      "urlPattern": "/mcp/pitchbook",
+      "pluginFiles": [
+        "agents/mcp/mcp-private-capital/appPackage/ai-plugin-pitchbook.json",
+        "agents/company-profile-agent/appPackage/ai-plugin-pitchbook.json",
+        "agents/precedent-transactions-agent/appPackage/ai-plugin-pitchbook.json"
+      ]
+    },
+    {
+      "id": "chronograph",
+      "name": "Chronograph",
+      "category": "Private Capital",
+      "description": "Private market portfolio monitoring and analytics",
+      "authType": "ApiKey",
+      "publicUrl": null,
+      "officialMcp": false,
+      "officialMcpRepo": null,
+      "urlPattern": "/mcp/chronograph",
+      "pluginFiles": [
+        "agents/mcp/mcp-private-capital/appPackage/ai-plugin-chronograph.json"
+      ]
+    },
+    {
+      "id": "aiera",
+      "name": "Aiera",
+      "category": "Transcripts & Intelligence",
+      "description": "AI-powered earnings call transcripts and event monitoring",
+      "authType": "ApiKey",
+      "publicUrl": "https://mcp-pub.aiera.com",
+      "officialMcp": true,
+      "officialMcpRepo": "https://github.com/aiera-inc/aiera-mcp",
+      "urlPattern": "/mcp/aiera",
+      "pluginFiles": [
+        "agents/mcp/mcp-transcripts-intel/appPackage/ai-plugin-aiera.json",
+        "agents/earnings-analysis-agent/appPackage/ai-plugin-aiera.json"
+      ]
+    },
+    {
+      "id": "third-bridge",
+      "name": "Third Bridge",
+      "category": "Transcripts & Intelligence",
+      "description": "Expert network research and interview transcripts",
+      "authType": "ApiKey",
+      "publicUrl": null,
+      "officialMcp": false,
+      "officialMcpRepo": null,
+      "urlPattern": "/mcp/third-bridge",
+      "note": "Enterprise data feed integration only",
+      "pluginFiles": [
+        "agents/mcp/mcp-transcripts-intel/appPackage/ai-plugin-third-bridge.json"
+      ]
+    },
+    {
+      "id": "mt-newswires",
+      "name": "MT Newswires",
+      "category": "Transcripts & Intelligence",
+      "description": "Real-time financial news and market commentary",
+      "authType": "ApiKey",
+      "publicUrl": null,
+      "officialMcp": false,
+      "officialMcpRepo": null,
+      "urlPattern": "/mcp/mt-newswires",
+      "pluginFiles": [
+        "agents/mcp/mcp-transcripts-intel/appPackage/ai-plugin-mt-newswires.json"
+      ]
+    },
+    {
+      "id": "sec-edgar",
+      "name": "SEC EDGAR",
+      "category": "Public Filings & Data",
+      "description": "SEC filings, company disclosures, and regulatory data",
+      "authType": "None",
+      "publicUrl": "https://data.sec.gov",
+      "officialMcp": false,
+      "officialMcpRepo": null,
+      "urlPattern": "/mcp/sec-edgar",
+      "pluginFiles": [
+        "agents/mcp/mcp-public-filings/appPackage/ai-plugin-sec-edgar.json",
+        "agents/coverage-report-agent/appPackage/ai-plugin-sec-edgar.json",
+        "agents/due-diligence-agent/appPackage/ai-plugin-sec-edgar.json",
+        "agents/earnings-analysis-agent/appPackage/ai-plugin-sec-edgar.json"
+      ]
+    },
+    {
+      "id": "fmp",
+      "name": "Financial Modeling Prep",
+      "category": "Public Filings & Data",
+      "description": "Financial statements, stock prices, and company valuations",
+      "authType": "ApiKey",
+      "publicUrl": "https://financialmodelingprep.com/mcp",
+      "officialMcp": true,
+      "officialMcpRepo": null,
+      "urlPattern": "/mcp/fmp",
+      "pluginFiles": [
+        "agents/mcp/mcp-public-filings/appPackage/ai-plugin-fmp.json"
+      ]
+    },
+    {
+      "id": "daloopa",
+      "name": "Daloopa",
+      "category": "Public Filings & Data",
+      "description": "AI-extracted financial data from SEC filings and reports",
+      "authType": "ApiKey",
+      "publicUrl": "https://mcp.daloopa.com/server/mcp",
+      "officialMcp": true,
+      "officialMcpRepo": "https://docs.daloopa.com/docs/mcp-integrations",
+      "urlPattern": "/mcp/daloopa",
+      "pluginFiles": [
+        "agents/mcp/mcp-public-filings/appPackage/ai-plugin-daloopa.json"
+      ]
+    },
+    {
+      "id": "financial-datasets",
+      "name": "Financial Datasets",
+      "category": "Public Filings & Data",
+      "description": "Curated financial datasets for analysis and modeling",
+      "authType": "ApiKey",
+      "publicUrl": "https://mcp.financialdatasets.ai/mcp",
+      "officialMcp": true,
+      "officialMcpRepo": null,
+      "urlPattern": "/mcp/financial-datasets",
+      "pluginFiles": [
+        "agents/comparable-analysis-agent/appPackage/ai-plugin-financial-datasets.json",
+        "agents/earnings-analysis-agent/appPackage/ai-plugin-financial-datasets.json"
+      ]
+    },
+    {
+      "id": "box",
+      "name": "Box",
+      "category": "Document Platforms",
+      "description": "Cloud content management and file sharing platform",
+      "authType": "OAuthPluginVault",
+      "publicUrl": null,
+      "officialMcp": false,
+      "officialMcpRepo": null,
+      "urlPattern": "/mcp/box",
+      "pluginFiles": [
+        "agents/mcp/mcp-document-platforms/appPackage/ai-plugin-box.json",
+        "agents/due-diligence-agent/appPackage/ai-plugin-box.json"
+      ]
+    },
+    {
+      "id": "egnyte",
+      "name": "Egnyte",
+      "category": "Document Platforms",
+      "description": "Enterprise content collaboration and governance platform",
+      "authType": "OAuthPluginVault",
+      "publicUrl": null,
+      "officialMcp": false,
+      "officialMcpRepo": null,
+      "urlPattern": "/mcp/egnyte",
+      "pluginFiles": [
+        "agents/mcp/mcp-document-platforms/appPackage/ai-plugin-egnyte.json"
+      ]
+    },
+    {
+      "id": "snowflake",
+      "name": "Snowflake",
+      "category": "Data Warehouses",
+      "description": "Cloud data platform for structured and semi-structured data",
+      "authType": "OAuthPluginVault",
+      "publicUrl": null,
+      "officialMcp": false,
+      "officialMcpRepo": null,
+      "urlPattern": "/mcp/snowflake",
+      "pluginFiles": [
+        "agents/mcp/mcp-data-warehouses/appPackage/ai-plugin-snowflake.json"
+      ]
+    },
+    {
+      "id": "databricks",
+      "name": "Databricks",
+      "category": "Data Warehouses",
+      "description": "Unified analytics platform for data engineering and science",
+      "authType": "OAuthPluginVault",
+      "publicUrl": null,
+      "officialMcp": false,
+      "officialMcpRepo": null,
+      "urlPattern": "/mcp/databricks",
+      "pluginFiles": [
+        "agents/mcp/mcp-data-warehouses/appPackage/ai-plugin-databricks.json"
+      ]
+    }
+  ]
+}

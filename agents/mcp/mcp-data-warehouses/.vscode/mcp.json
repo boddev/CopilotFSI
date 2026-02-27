@@ -1,0 +1,19 @@
+{
+  "inputs": [],
+  "servers": {
+    "snowflake": {
+      "type": "sse",
+      "url": "https://{{MCP_HOST}}/mcp/snowflake",
+      "headers": {
+        "Authorization": "Bearer {{API_KEY}}"
+      }
+    },
+    "databricks": {
+      "type": "sse",
+      "url": "https://{{MCP_HOST}}/mcp/databricks",
+      "headers": {
+        "Authorization": "Bearer {{API_KEY}}"
+      }
+    }
+  }
+}

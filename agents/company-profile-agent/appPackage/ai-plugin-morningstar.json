@@ -1,0 +1,123 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/copilot/plugin/v2.2/schema.json",
+  "schema_version": "v2.2",
+  "name_for_human": "Morningstar Financial Data",
+  "description_for_human": "Access Morningstar investment details, financial statements, key ratios, and analyst research.",
+  "description_for_model": "Use this plugin to retrieve Morningstar data including comprehensive investment details (analyst ratings, fair value, economic moat, stewardship, star rating), standardized financial statements, key financial ratios, analyst research, and security search. Best for fundamental equity research and long-term investment analysis.",
+  "namespace": "morningstar",
+  "functions": [
+    {
+      "name": "get_investment_details",
+      "description": "Retrieve comprehensive investment details from Morningstar including analyst ratings, fair value estimate, economic moat, stewardship rating, star rating, and risk measures for a single security.",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "security_id": {
+            "type": "string",
+            "description": "Security identifier (e.g., ticker symbol, ISIN, or CUSIP)"
+          },
+          "id_type": {
+            "type": "string",
+            "description": "Type of identifier: ticker, isin, or cusip (default: ticker)"
+          }
+        },
+        "required": [
+          "security_id"
+        ]
+      }
+    },
+    {
+      "name": "get_financial_statements",
+      "description": "Retrieve standardized financial statements (income statement, balance sheet, cash flow) from Morningstar for a company.",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "security_id": {
+            "type": "string",
+            "description": "Security identifier (e.g., ticker symbol)"
+          },
+          "statement_type": {
+            "type": "string",
+            "description": "Type of financial statement: income, balance_sheet, or cash_flow"
+          },
+          "period": {
+            "type": "string",
+            "description": "Reporting period: annual or quarterly"
+          }
+        },
+        "required": [
+          "security_id",
+          "statement_type",
+          "period"
+        ]
+      }
+    },
+    {
+      "name": "get_key_ratios",
+      "description": "Retrieve Morningstar key financial ratios including profitability, growth, financial health, and efficiency metrics.",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "security_id": {
+            "type": "string",
+            "description": "Security identifier (e.g., ticker symbol)"
+          },
+          "period": {
+            "type": "string",
+            "description": "Reporting period: annual or quarterly (default: annual)"
+          }
+        },
+        "required": [
+          "security_id"
+        ]
+      }
+    },
+    {
+      "name": "get_analyst_research",
+      "description": "Retrieve Morningstar analyst research including quantitative comparables, consensus estimates, and analyst reports.",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "security_id": {
+            "type": "string",
+            "description": "Security identifier (e.g., ticker symbol)"
+          }
+        },
+        "required": [
+          "security_id"
+        ]
+      }
+    },
+    {
+      "name": "search_securities",
+      "description": "Search for securities by name, ticker, or identifier using Morningstar's security search and auto-complete.",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "query": {
+            "type": "string",
+            "description": "Search query (e.g., company name, ticker symbol, or partial identifier)"
+          },
+          "exchange": {
+            "type": "string",
+            "description": "Optional exchange filter (e.g., NYSE, NASDAQ)"
+          }
+        },
+        "required": [
+          "query"
+        ]
+      }
+    }
+  ],
+  "runtimes": [
+    {
+      "type": "MCP",
+      "spec": {
+        "url": "https://{{MCP_HOST}}/mcp/morningstar"
+      },
+      "auth": {
+        "type": "OAuthPluginVault"
+      }
+    }
+  ]
+}

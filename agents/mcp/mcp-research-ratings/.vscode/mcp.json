@@ -1,0 +1,19 @@
+{
+  "inputs": [],
+  "servers": {
+    "morningstar": {
+      "type": "sse",
+      "url": "https://{{MCP_HOST}}/mcp/morningstar",
+      "headers": {
+        "Authorization": "Bearer {{API_KEY}}"
+      }
+    },
+    "moodys": {
+      "type": "sse",
+      "url": "https://{{MCP_HOST}}/mcp/moodys",
+      "headers": {
+        "Authorization": "Bearer {{API_KEY}}"
+      }
+    }
+  }
+}

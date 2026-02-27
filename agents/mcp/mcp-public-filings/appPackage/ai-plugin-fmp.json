@@ -1,0 +1,104 @@
+{
+  "$schema": "https://aka.ms/json-schemas/copilot/plugin/v2.4/schema.json",
+  "schema_version": "v2.4",
+  "name_for_human": "Financial Modeling Prep",
+  "namespace": "FMP",
+  "description_for_human": "Access FMP financial statements, ratios, DCF models, and stock screening.",
+  "description_for_model": "Provides access to Financial Modeling Prep's financial data API. Use this plugin to retrieve company financial statements (income, balance sheet, cash flow), financial ratios, discounted cash flow valuations, key metrics, and stock screening capabilities. Useful for financial modeling, company comparisons, valuation analysis, and quantitative screening.",
+  "functions": [
+    {
+      "name": "get_financial_statements",
+      "description": "Retrieve financial statements including income statement, balance sheet, or cash flow statement.",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "ticker": { "type": "string", "description": "Stock ticker symbol (e.g., AAPL, MSFT)" },
+          "statement_type": { "type": "string", "description": "Type of financial statement: 'income', 'balance_sheet', or 'cash_flow'" },
+          "period": { "type": "string", "description": "Reporting period: 'annual' or 'quarterly'" }
+        },
+        "required": ["ticker", "statement_type", "period"]
+      },
+      "capabilities": {
+        "security_info": {
+          "data_handling": ["GetPrivateData"]
+        }
+      }
+    },
+    {
+      "name": "get_ratios",
+      "description": "Retrieve financial ratios including profitability, liquidity, leverage, and efficiency ratios.",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "ticker": { "type": "string", "description": "Stock ticker symbol (e.g., AAPL, MSFT)" },
+          "period": { "type": "string", "description": "Reporting period: 'annual' or 'quarterly'" }
+        },
+        "required": ["ticker", "period"]
+      },
+      "capabilities": {
+        "security_info": {
+          "data_handling": ["GetPrivateData"]
+        }
+      }
+    },
+    {
+      "name": "get_dcf",
+      "description": "Retrieve the discounted cash flow (DCF) valuation estimate for a company.",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "ticker": { "type": "string", "description": "Stock ticker symbol (e.g., AAPL, MSFT)" }
+        },
+        "required": ["ticker"]
+      },
+      "capabilities": {
+        "security_info": {
+          "data_handling": ["GetPrivateData"]
+        }
+      }
+    },
+    {
+      "name": "get_key_metrics",
+      "description": "Retrieve key financial metrics including revenue per share, net income per share, and enterprise value ratios.",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "ticker": { "type": "string", "description": "Stock ticker symbol (e.g., AAPL, MSFT)" }
+        },
+        "required": ["ticker"]
+      },
+      "capabilities": {
+        "security_info": {
+          "data_handling": ["GetPrivateData"]
+        }
+      }
+    },
+    {
+      "name": "get_stock_screener",
+      "description": "Screen stocks based on financial criteria such as market cap, P/E ratio, dividend yield, and sector.",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "criteria": { "type": "string", "description": "JSON-encoded screening criteria (e.g., '{\"market_cap_min\": 1000000000, \"pe_max\": 20, \"sector\": \"Technology\", \"dividend_yield_min\": 0.02}')" }
+        },
+        "required": ["criteria"]
+      },
+      "capabilities": {
+        "security_info": {
+          "data_handling": ["GetPrivateData"]
+        }
+      }
+    }
+  ],
+  "runtimes": [
+    {
+      "type": "RemoteMCPServer",
+      "spec": {
+        "url": "https://financialmodelingprep.com/mcp"
+      },
+      "auth": {
+        "type": "ApiKeyPluginVault"
+      }
+    }
+  ]
+}

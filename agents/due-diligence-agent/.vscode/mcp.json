@@ -1,0 +1,26 @@
+{
+  "inputs": [],
+  "servers": {
+    "box": {
+      "type": "sse",
+      "url": "https://{{MCP_HOST}}/mcp/box",
+      "headers": {
+        "Authorization": "Bearer {{API_KEY}}"
+      }
+    },
+    "sec-edgar": {
+      "type": "sse",
+      "url": "https://{{MCP_HOST}}/mcp/sec-edgar",
+      "headers": {
+        "Authorization": "Bearer {{API_KEY}}"
+      }
+    },
+    "factset": {
+      "type": "sse",
+      "url": "https://{{MCP_HOST}}/mcp/factset",
+      "headers": {
+        "Authorization": "Bearer {{API_KEY}}"
+      }
+    }
+  }
+}

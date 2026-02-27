@@ -1,0 +1,25 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/teams/vDevPreview/MicrosoftTeams.schema.json",
+  "manifestVersion": "devPreview",
+  "id": "${{TEAMS_APP_ID}}",
+  "version": "1.0.0",
+  "developer": {
+    "name": "Financial Services",
+    "websiteUrl": "https://example.com",
+    "privacyUrl": "https://example.com/privacy",
+    "termsOfUseUrl": "https://example.com/terms"
+  },
+  "name": {
+    "short": "Research & Ratings Connector",
+    "full": "Research & Ratings Connector (Morningstar & Moody's)"
+  },
+  "description": {
+    "short": "Provides equity research from Morningstar and credit research from Moody's.",
+    "full": "Provides equity research from Morningstar (moat ratings, fair value, stewardship) and credit research from Moody's (credit ratings, default probability, research reports)."
+  },
+  "icons": { "outline": "outline.png", "color": "color.png" },
+  "accentColor": "#0078D4",
+  "copilotAgents": {
+    "declarativeAgents": [{ "id": "declarativeAgent", "file": "declarativeAgent.json" }]
+  }
+}

@@ -1,0 +1,91 @@
+{
+  "$schema": "https://aka.ms/json-schemas/copilot/plugin/v2.4/schema.json",
+  "schema_version": "v2.4",
+  "name_for_human": "Moody's",
+  "namespace": "Moodys",
+  "description_for_human": "Access Moody's credit ratings, rating history, and default probability data.",
+  "description_for_model": "Provides access to Moody's credit ratings APIs. Use this plugin to retrieve issuer-level and issue-level credit ratings, rating history, and probability of default estimates. Essential for credit risk assessment, fixed income analysis, and counterparty due diligence.",
+  "functions": [
+    {
+      "name": "get_issuer_rating",
+      "description": "Retrieve Moody's credit rating for an issuer (company/organization) including current rating, outlook, and rating history.",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "identifier": { "type": "string", "description": "Issuer identifier value (e.g., ticker symbol, CUSIP, ISIN, or LEI)" },
+          "identifier_type": { "type": "string", "description": "Type of identifier: ticker, cusip, isin, or lei" },
+          "as_of_date": { "type": "string", "description": "Optional ISO 8601 date to retrieve rating as of a specific date (e.g., 2024-01-15)" }
+        },
+        "required": ["identifier", "identifier_type"]
+      },
+      "capabilities": {
+        "security_info": {
+          "data_handling": ["GetPrivateData"]
+        }
+      }
+    },
+    {
+      "name": "get_issue_rating",
+      "description": "Retrieve Moody's credit rating for a specific financial instrument (bond, note, structured product) including rating and watch status.",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "identifier": { "type": "string", "description": "Security identifier value (e.g., CUSIP or ISIN)" },
+          "identifier_type": { "type": "string", "description": "Type of identifier: cusip or isin" },
+          "as_of_date": { "type": "string", "description": "Optional ISO 8601 date to retrieve rating as of a specific date (e.g., 2024-01-15)" }
+        },
+        "required": ["identifier", "identifier_type"]
+      },
+      "capabilities": {
+        "security_info": {
+          "data_handling": ["GetPrivateData"]
+        }
+      }
+    },
+    {
+      "name": "get_rating_history",
+      "description": "Retrieve the complete history of Moody's rating changes for an issuer or issue, including upgrade/downgrade dates and reasons.",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "identifier": { "type": "string", "description": "Issuer or security identifier value (e.g., ticker symbol, CUSIP, ISIN, or LEI)" },
+          "identifier_type": { "type": "string", "description": "Type of identifier: ticker, cusip, isin, or lei" }
+        },
+        "required": ["identifier", "identifier_type"]
+      },
+      "capabilities": {
+        "security_info": {
+          "data_handling": ["GetPrivateData"]
+        }
+      }
+    },
+    {
+      "name": "get_default_probability",
+      "description": "Retrieve Moody's probability of default estimate and expected loss rate for an issuer based on Moody's credit models.",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "identifier": { "type": "string", "description": "Issuer identifier value (e.g., ticker symbol, CUSIP, or ISIN)" },
+          "identifier_type": { "type": "string", "description": "Type of identifier: ticker, cusip, or isin" }
+        },
+        "required": ["identifier", "identifier_type"]
+      },
+      "capabilities": {
+        "security_info": {
+          "data_handling": ["GetPrivateData"]
+        }
+      }
+    }
+  ],
+  "runtimes": [
+    {
+      "type": "RemoteMCPServer",
+      "spec": {
+        "url": "https://{{MCP_HOST}}/mcp/moodys"
+      },
+      "auth": {
+        "type": "ApiKeyPluginVault"
+      }
+    }
+  ]
+}

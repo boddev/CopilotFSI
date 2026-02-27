@@ -1,0 +1,19 @@
+{
+  "inputs": [],
+  "servers": {
+    "pitchbook": {
+      "type": "sse",
+      "url": "https://{{MCP_HOST}}/mcp/pitchbook",
+      "headers": {
+        "Authorization": "Bearer {{API_KEY}}"
+      }
+    },
+    "chronograph": {
+      "type": "sse",
+      "url": "https://{{MCP_HOST}}/mcp/chronograph",
+      "headers": {
+        "Authorization": "Bearer {{API_KEY}}"
+      }
+    }
+  }
+}

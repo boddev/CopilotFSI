@@ -1,0 +1,137 @@
+{
+  "$schema": "https://aka.ms/json-schemas/copilot/plugin/v2.4/schema.json",
+  "schema_version": "v2.4",
+  "name_for_human": "S&P Global",
+  "namespace": "SPGlobal",
+  "description_for_human": "Access S&P Global financial data, credit ratings, and ESG scores.",
+  "description_for_model": "Provides access to S&P Global's financial intelligence platform. Use this plugin to retrieve standardized financial statements, credit ratings from S&P, corporate debt schedules, industry analysis reports, ESG scores and sustainability data, company profiles, and earnings call transcripts. Essential for credit analysis, fixed income research, and ESG-integrated investment workflows.",
+  "functions": [
+    {
+      "name": "get_financials",
+      "description": "Retrieve standardized financial statements from S&P Capital IQ for a company.",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "ticker": { "type": "string", "description": "Stock ticker symbol (e.g., AAPL, MSFT)" },
+          "period": { "type": "string", "description": "Reporting period: 'annual', 'quarterly', or 'ltm' (last twelve months)" },
+          "standard": { "type": "string", "description": "Accounting standard: 'gaap', 'ifrs', or 'standardized'" }
+        },
+        "required": ["ticker", "period", "standard"]
+      },
+      "capabilities": {
+        "security_info": {
+          "data_handling": ["GetPrivateData"]
+        }
+      }
+    },
+    {
+      "name": "get_credit_rating",
+      "description": "Retrieve S&P credit ratings for a company or debt instrument, including outlook and rating history.",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "entity": { "type": "string", "description": "Company name or ticker symbol of the rated entity" },
+          "type": { "type": "string", "description": "Rating type: 'issuer', 'issue', 'long_term', or 'short_term'" }
+        },
+        "required": ["entity", "type"]
+      },
+      "capabilities": {
+        "security_info": {
+          "data_handling": ["GetPrivateData"]
+        }
+      }
+    },
+    {
+      "name": "get_debt_schedule",
+      "description": "Retrieve the detailed debt maturity schedule for a company including outstanding bonds and credit facilities.",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "ticker": { "type": "string", "description": "Stock ticker symbol (e.g., AAPL, MSFT)" }
+        },
+        "required": ["ticker"]
+      },
+      "capabilities": {
+        "security_info": {
+          "data_handling": ["GetPrivateData"]
+        }
+      }
+    },
+    {
+      "name": "get_industry_analysis",
+      "description": "Retrieve S&P Global industry research and analysis for a given industry sector.",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "industry_code": { "type": "string", "description": "GICS industry code or industry name (e.g., '45102010' or 'Software')" }
+        },
+        "required": ["industry_code"]
+      },
+      "capabilities": {
+        "security_info": {
+          "data_handling": ["GetPrivateData"]
+        }
+      }
+    },
+    {
+      "name": "get_esg_scores",
+      "description": "Retrieve S&P Global ESG scores including environmental, social, and governance sub-scores.",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "ticker": { "type": "string", "description": "Stock ticker symbol (e.g., AAPL, MSFT)" }
+        },
+        "required": ["ticker"]
+      },
+      "capabilities": {
+        "security_info": {
+          "data_handling": ["GetPrivateData"]
+        }
+      }
+    },
+    {
+      "name": "get_company_profile",
+      "description": "Retrieve a comprehensive company profile from S&P Capital IQ including business description and key statistics.",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "ticker": { "type": "string", "description": "Stock ticker symbol (e.g., AAPL, MSFT)" }
+        },
+        "required": ["ticker"]
+      },
+      "capabilities": {
+        "security_info": {
+          "data_handling": ["GetPrivateData"]
+        }
+      }
+    },
+    {
+      "name": "get_earnings_transcripts",
+      "description": "Retrieve earnings call transcripts for a company from S&P Capital IQ.",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "ticker": { "type": "string", "description": "Stock ticker symbol (e.g., AAPL, MSFT)" },
+          "quarter": { "type": "string", "description": "Fiscal quarter in 'Q1 2024' format or 'latest' for the most recent transcript" }
+        },
+        "required": ["ticker", "quarter"]
+      },
+      "capabilities": {
+        "security_info": {
+          "data_handling": ["GetPrivateData"]
+        }
+      }
+    }
+  ],
+  "runtimes": [
+    {
+      "type": "RemoteMCPServer",
+      "spec": {
+        "url": "https://{{MCP_HOST}}/mcp/sp-global"
+      },
+      "auth": {
+        "type": "ApiKeyPluginVault"
+      }
+    }
+  ]
+}

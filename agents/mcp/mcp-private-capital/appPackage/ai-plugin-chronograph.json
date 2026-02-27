@@ -1,0 +1,70 @@
+{
+  "$schema": "https://aka.ms/json-schemas/copilot/plugin/v2.4/schema.json",
+  "schema_version": "v2.4",
+  "name_for_human": "Chronograph",
+  "namespace": "Chronograph",
+  "description_for_human": "Access Chronograph private equity portfolio and fund performance data.",
+  "description_for_model": "Provides access to Chronograph's private equity and venture capital portfolio monitoring platform (acquired by S&P Global in 2023). Chronograph does not offer a public developer API; integration is via a private MCP-based client API at https://ai.chronograph.pe/mcp requiring a Chronograph subscription. Use this plugin to retrieve portfolio company data, fund performance metrics including IRR and multiples, and operational KPIs for portfolio companies. Essential for LP portfolio monitoring, GP reporting, and private capital performance analysis.",
+  "functions": [
+    {
+      "name": "get_portfolio_data",
+      "description": "Retrieve portfolio company data and holdings for a specified fund.",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "fund_name": { "type": "string", "description": "Name of the private equity or venture capital fund" }
+        },
+        "required": ["fund_name"]
+      },
+      "capabilities": {
+        "security_info": {
+          "data_handling": ["GetPrivateData"]
+        }
+      }
+    },
+    {
+      "name": "get_fund_performance",
+      "description": "Retrieve fund performance metrics including IRR, TVPI, DPI, and RVPI.",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "fund_name": { "type": "string", "description": "Name of the private equity or venture capital fund" },
+          "metric": { "type": "string", "description": "Performance metric: 'irr', 'tvpi', 'dpi', 'rvpi', 'pme', or 'all'" }
+        },
+        "required": ["fund_name", "metric"]
+      },
+      "capabilities": {
+        "security_info": {
+          "data_handling": ["GetPrivateData"]
+        }
+      }
+    },
+    {
+      "name": "get_operational_metrics",
+      "description": "Retrieve operational KPIs and financial metrics for a portfolio company tracked in Chronograph.",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "company_name": { "type": "string", "description": "Name of the portfolio company" }
+        },
+        "required": ["company_name"]
+      },
+      "capabilities": {
+        "security_info": {
+          "data_handling": ["GetPrivateData"]
+        }
+      }
+    }
+  ],
+  "runtimes": [
+    {
+      "type": "RemoteMCPServer",
+      "spec": {
+        "url": "https://{{MCP_HOST}}/mcp/chronograph"
+      },
+      "auth": {
+        "type": "ApiKeyPluginVault"
+      }
+    }
+  ]
+}

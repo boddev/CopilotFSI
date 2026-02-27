@@ -1,0 +1,25 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/teams/vDevPreview/MicrosoftTeams.schema.json",
+  "manifestVersion": "devPreview",
+  "id": "${{TEAMS_APP_ID}}",
+  "version": "1.0.0",
+  "developer": {
+    "name": "Financial Services",
+    "websiteUrl": "https://example.com",
+    "privacyUrl": "https://example.com/privacy",
+    "termsOfUseUrl": "https://example.com/terms"
+  },
+  "name": {
+    "short": "S&P Global Data Connector",
+    "full": "S&P Global / Capital IQ Data Connector"
+  },
+  "description": {
+    "short": "Provides access to S&P Global / Capital IQ data including company financials, credit ratings, and ESG scores.",
+    "full": "Provides access to S&P Global / Capital IQ data including company financials, credit ratings, debt schedules, industry analysis, ESG scores, and earnings transcripts."
+  },
+  "icons": { "outline": "outline.png", "color": "color.png" },
+  "accentColor": "#0078D4",
+  "copilotAgents": {
+    "declarativeAgents": [{ "id": "declarativeAgent", "file": "declarativeAgent.json" }]
+  }
+}

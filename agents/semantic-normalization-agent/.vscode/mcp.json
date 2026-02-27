@@ -1,0 +1,12 @@
+{
+  "inputs": [],
+  "servers": {
+    "semantic-normalization": {
+      "type": "sse",
+      "url": "https://{{MCP_HOST}}/mcp/semantic-normalization",
+      "headers": {
+        "Authorization": "Bearer {{API_KEY}}"
+      }
+    }
+  }
+}

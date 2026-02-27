@@ -1,0 +1,77 @@
+{
+  "$schema": "https://aka.ms/json-schemas/copilot/plugin/v2.4/schema.json",
+  "schema_version": "v2.4",
+  "name_for_human": "MT Newswires",
+  "namespace": "MTNewswires",
+  "description_for_human": "Search MT Newswires for real-time financial news, market commentary, and breaking alerts.",
+  "description_for_model": "Provides access to MT Newswires' real-time financial news and market intelligence via data feed integration. MT Newswires delivers news via API (JSON/XML), FTP, or RSS feeds covering equities, FX, fixed income, commodities, and macroeconomics. The MCP server wraps the news feed into callable tools for searching articles, retrieving market commentary, and accessing breaking alerts.",
+  "functions": [
+    {
+      "name": "search_news",
+      "description": "Search MT Newswires for real-time financial news articles by keyword, ticker symbol, category, or date range.",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "query": { "type": "string", "description": "Search query for news articles (e.g., company name, topic, or keyword)" },
+          "ticker": { "type": "string", "description": "Stock ticker symbol to filter news (e.g., AAPL, MSFT)" },
+          "category": { "type": "string", "description": "News category filter: 'earnings', 'ma', 'macro', 'regulatory', 'commodities', 'fx', or 'fixed_income'" },
+          "start_date": { "type": "string", "description": "Start date filter in ISO 8601 format (e.g., 2024-01-01)" },
+          "end_date": { "type": "string", "description": "End date filter in ISO 8601 format (e.g., 2024-12-31)" },
+          "limit": { "type": "number", "description": "Maximum number of articles to return" }
+        },
+        "required": []
+      },
+      "capabilities": {
+        "security_info": {
+          "data_handling": ["GetPrivateData"]
+        }
+      }
+    },
+    {
+      "name": "get_market_commentary",
+      "description": "Retrieve MT Newswires market commentary and analysis on a specific market topic, asset class, or region.",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "topic": { "type": "string", "description": "Market topic or theme (e.g., 'fed rate decision', 'tech earnings', 'oil prices')" },
+          "asset_class": { "type": "string", "description": "Asset class filter: 'equities', 'fx', 'fixed_income', or 'commodities'" }
+        },
+        "required": ["topic"]
+      },
+      "capabilities": {
+        "security_info": {
+          "data_handling": ["GetPrivateData"]
+        }
+      }
+    },
+    {
+      "name": "get_breaking_alerts",
+      "description": "Retrieve the latest breaking news alerts from MT Newswires, filtered by category or ticker.",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "category": { "type": "string", "description": "Alert category: 'earnings', 'ma', 'macro', 'regulatory', 'markets', or 'all'" },
+          "ticker": { "type": "string", "description": "Stock ticker symbol to filter alerts (e.g., AAPL, MSFT)" },
+          "limit": { "type": "number", "description": "Maximum number of alerts to return" }
+        },
+        "required": []
+      },
+      "capabilities": {
+        "security_info": {
+          "data_handling": ["GetPrivateData"]
+        }
+      }
+    }
+  ],
+  "runtimes": [
+    {
+      "type": "RemoteMCPServer",
+      "spec": {
+        "url": "https://{{MCP_HOST}}/mcp/mt-newswires"
+      },
+      "auth": {
+        "type": "ApiKeyPluginVault"
+      }
+    }
+  ]
+}

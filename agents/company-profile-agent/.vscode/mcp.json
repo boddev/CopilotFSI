@@ -1,0 +1,33 @@
+{
+  "inputs": [],
+  "servers": {
+    "factset": {
+      "type": "sse",
+      "url": "https://{{MCP_HOST}}/mcp/factset",
+      "headers": {
+        "Authorization": "Bearer {{API_KEY}}"
+      }
+    },
+    "sp-global": {
+      "type": "sse",
+      "url": "https://{{MCP_HOST}}/mcp/sp-global",
+      "headers": {
+        "Authorization": "Bearer {{API_KEY}}"
+      }
+    },
+    "pitchbook": {
+      "type": "sse",
+      "url": "https://{{MCP_HOST}}/mcp/pitchbook",
+      "headers": {
+        "Authorization": "Bearer {{API_KEY}}"
+      }
+    },
+    "morningstar": {
+      "type": "sse",
+      "url": "https://{{MCP_HOST}}/mcp/morningstar",
+      "headers": {
+        "Authorization": "Bearer {{API_KEY}}"
+      }
+    }
+  }
+}

@@ -1,0 +1,89 @@
+{
+  "$schema": "https://aka.ms/json-schemas/copilot/plugin/v2.4/schema.json",
+  "schema_version": "v2.4",
+  "name_for_human": "Databricks",
+  "namespace": "Databricks",
+  "description_for_human": "Query data, explore catalogs, and run ML inference on Databricks.",
+  "description_for_model": "Provides access to Databricks' unified data and AI platform. Use this plugin to execute SQL queries against Databricks Unity Catalog, list available tables in a catalog and schema, inspect table schemas, and run ML model inference. Essential for querying lakehouse data, exploring data assets, running predictive models, and building AI-powered analytics workflows.",
+  "functions": [
+    {
+      "name": "query_data",
+      "description": "Execute a SQL query against a Databricks catalog and return the results.",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "sql_query": { "type": "string", "description": "SQL query to execute against the Databricks SQL warehouse" },
+          "catalog": { "type": "string", "description": "Databricks Unity Catalog name" },
+          "schema": { "type": "string", "description": "Schema name within the Unity Catalog" }
+        },
+        "required": ["sql_query", "catalog", "schema"]
+      },
+      "capabilities": {
+        "security_info": {
+          "data_handling": ["GetPrivateData"]
+        }
+      }
+    },
+    {
+      "name": "list_tables",
+      "description": "List all tables available in a specified Databricks catalog and schema.",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "catalog": { "type": "string", "description": "Databricks Unity Catalog name" },
+          "schema": { "type": "string", "description": "Schema name within the Unity Catalog" }
+        },
+        "required": ["catalog", "schema"]
+      },
+      "capabilities": {
+        "security_info": {
+          "data_handling": ["GetPrivateData"]
+        }
+      }
+    },
+    {
+      "name": "get_table_schema",
+      "description": "Retrieve the column definitions, data types, and metadata for a Databricks table.",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "table_name": { "type": "string", "description": "Fully qualified table name (e.g., 'catalog.schema.table_name')" }
+        },
+        "required": ["table_name"]
+      },
+      "capabilities": {
+        "security_info": {
+          "data_handling": ["GetPrivateData"]
+        }
+      }
+    },
+    {
+      "name": "run_inference",
+      "description": "Run inference against a deployed ML model on Databricks Model Serving.",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "model_name": { "type": "string", "description": "Name of the registered model in Databricks Model Registry" },
+          "input_data": { "type": "string", "description": "JSON-encoded input data for model inference (e.g., '{\"features\": [1.0, 2.0, 3.0]}')" }
+        },
+        "required": ["model_name", "input_data"]
+      },
+      "capabilities": {
+        "security_info": {
+          "data_handling": ["GetPrivateData"]
+        }
+      }
+    }
+  ],
+  "runtimes": [
+    {
+      "type": "RemoteMCPServer",
+      "spec": {
+        "url": "https://{{MCP_HOST}}/mcp/databricks"
+      },
+      "auth": {
+        "type": "OAuthPluginVault"
+      }
+    }
+  ]
+}

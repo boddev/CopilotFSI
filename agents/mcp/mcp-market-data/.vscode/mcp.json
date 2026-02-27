@@ -1,0 +1,19 @@
+{
+  "inputs": [],
+  "servers": {
+    "alpha-vantage": {
+      "type": "sse",
+      "url": "https://{{MCP_HOST}}/mcp/alpha-vantage",
+      "headers": {
+        "Authorization": "Bearer {{API_KEY}}"
+      }
+    },
+    "lseg": {
+      "type": "sse",
+      "url": "https://{{MCP_HOST}}/mcp/lseg",
+      "headers": {
+        "Authorization": "Bearer {{API_KEY}}"
+      }
+    }
+  }
+}

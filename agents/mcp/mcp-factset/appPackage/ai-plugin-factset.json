@@ -1,0 +1,159 @@
+{
+  "$schema": "https://aka.ms/json-schemas/copilot/plugin/v2.4/schema.json",
+  "schema_version": "v2.4",
+  "name_for_human": "FactSet",
+  "namespace": "FactSet",
+  "description_for_human": "Access FactSet financial data, market analytics, and company fundamentals.",
+  "description_for_model": "Provides access to FactSet's comprehensive financial data platform. Use this plugin to retrieve company financial statements, real-time and historical market data, consensus analyst estimates, company profiles, peer comparisons, price history, fundamental metrics, and financial ratios. Ideal for equity research, financial analysis, and investment decision support.",
+  "functions": [
+    {
+      "name": "get_financials",
+      "description": "Retrieve standardized financial statements (income statement, balance sheet, cash flow) for a company.",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "ticker": { "type": "string", "description": "Stock ticker symbol (e.g., AAPL, MSFT)" },
+          "period": { "type": "string", "description": "Reporting period: 'annual', 'quarterly', or 'ltm' (last twelve months)" },
+          "statement_type": { "type": "string", "description": "Type of financial statement: 'income', 'balance_sheet', or 'cash_flow'" }
+        },
+        "required": ["ticker", "period", "statement_type"]
+      },
+      "capabilities": {
+        "security_info": {
+          "data_handling": ["GetPrivateData"]
+        }
+      }
+    },
+    {
+      "name": "get_market_data",
+      "description": "Retrieve real-time market data including price, volume, bid/ask, and market cap for a security.",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "ticker": { "type": "string", "description": "Stock ticker symbol (e.g., AAPL, MSFT)" }
+        },
+        "required": ["ticker"]
+      },
+      "capabilities": {
+        "security_info": {
+          "data_handling": ["GetPrivateData"]
+        }
+      }
+    },
+    {
+      "name": "get_consensus_estimates",
+      "description": "Retrieve sell-side analyst consensus estimates for key financial metrics.",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "ticker": { "type": "string", "description": "Stock ticker symbol (e.g., AAPL, MSFT)" },
+          "metric": { "type": "string", "description": "Financial metric to retrieve estimates for (e.g., 'eps', 'revenue', 'ebitda')" },
+          "period": { "type": "string", "description": "Estimate period: 'fy1', 'fy2', 'fy3' for fiscal years, or 'q1', 'q2', 'q3', 'q4' for quarters" }
+        },
+        "required": ["ticker", "metric", "period"]
+      },
+      "capabilities": {
+        "security_info": {
+          "data_handling": ["GetPrivateData"]
+        }
+      }
+    },
+    {
+      "name": "get_company_profile",
+      "description": "Retrieve detailed company profile including description, sector, industry, headquarters, and key executives.",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "ticker": { "type": "string", "description": "Stock ticker symbol (e.g., AAPL, MSFT)" }
+        },
+        "required": ["ticker"]
+      },
+      "capabilities": {
+        "security_info": {
+          "data_handling": ["GetPrivateData"]
+        }
+      }
+    },
+    {
+      "name": "get_peers",
+      "description": "Retrieve a list of peer companies based on industry classification or FactSet's proprietary peer groupings.",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "ticker": { "type": "string", "description": "Stock ticker symbol (e.g., AAPL, MSFT)" },
+          "classification": { "type": "string", "description": "Peer classification system: 'factset', 'gics', 'sic', or 'naics'" }
+        },
+        "required": ["ticker", "classification"]
+      },
+      "capabilities": {
+        "security_info": {
+          "data_handling": ["GetPrivateData"]
+        }
+      }
+    },
+    {
+      "name": "get_price_history",
+      "description": "Retrieve historical price data for a security over a specified date range and frequency.",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "ticker": { "type": "string", "description": "Stock ticker symbol (e.g., AAPL, MSFT)" },
+          "start_date": { "type": "string", "description": "Start date in ISO 8601 format (e.g., 2024-01-01)" },
+          "end_date": { "type": "string", "description": "End date in ISO 8601 format (e.g., 2024-12-31)" },
+          "frequency": { "type": "string", "description": "Data frequency: 'daily', 'weekly', or 'monthly'" }
+        },
+        "required": ["ticker", "start_date", "end_date", "frequency"]
+      },
+      "capabilities": {
+        "security_info": {
+          "data_handling": ["GetPrivateData"]
+        }
+      }
+    },
+    {
+      "name": "get_fundamentals",
+      "description": "Retrieve specific fundamental data points for a company such as market cap, enterprise value, or dividend yield.",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "ticker": { "type": "string", "description": "Stock ticker symbol (e.g., AAPL, MSFT)" },
+          "metrics": { "type": "string", "description": "Comma-separated list of fundamental metrics to retrieve (e.g., 'market_cap,ev,dividend_yield,pe_ratio')" }
+        },
+        "required": ["ticker", "metrics"]
+      },
+      "capabilities": {
+        "security_info": {
+          "data_handling": ["GetPrivateData"]
+        }
+      }
+    },
+    {
+      "name": "get_ratios",
+      "description": "Retrieve financial ratios including profitability, leverage, liquidity, and efficiency metrics.",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "ticker": { "type": "string", "description": "Stock ticker symbol (e.g., AAPL, MSFT)" },
+          "period": { "type": "string", "description": "Reporting period: 'annual', 'quarterly', or 'ltm' (last twelve months)" }
+        },
+        "required": ["ticker", "period"]
+      },
+      "capabilities": {
+        "security_info": {
+          "data_handling": ["GetPrivateData"]
+        }
+      }
+    }
+  ],
+  "runtimes": [
+    {
+      "type": "RemoteMCPServer",
+      "spec": {
+        "url": "https://{{MCP_HOST}}/mcp/factset"
+      },
+      "auth": {
+        "type": "OAuthPluginVault"
+      }
+    }
+  ]
+}

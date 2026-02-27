@@ -1,0 +1,104 @@
+{
+  "$schema": "https://aka.ms/json-schemas/copilot/plugin/v2.4/schema.json",
+  "schema_version": "v2.4",
+  "name_for_human": "Alpha Vantage",
+  "namespace": "AlphaVantage",
+  "description_for_human": "Access Alpha Vantage market data, stock quotes, and economic indicators.",
+  "description_for_model": "Provides access to Alpha Vantage's market data APIs. Use this plugin to retrieve real-time stock quotes, daily and intraday historical price data, foreign exchange rates, and U.S. Treasury yield data. Useful for market monitoring, technical analysis, currency conversion, and macroeconomic research.",
+  "functions": [
+    {
+      "name": "get_quote",
+      "description": "Retrieve a real-time stock quote including price, change, volume, and key statistics.",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "ticker": { "type": "string", "description": "Stock ticker symbol (e.g., AAPL, MSFT)" }
+        },
+        "required": ["ticker"]
+      },
+      "capabilities": {
+        "security_info": {
+          "data_handling": ["GetPrivateData"]
+        }
+      }
+    },
+    {
+      "name": "get_daily_prices",
+      "description": "Retrieve daily OHLCV (open, high, low, close, volume) price history for a stock.",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "ticker": { "type": "string", "description": "Stock ticker symbol (e.g., AAPL, MSFT)" },
+          "outputsize": { "type": "string", "description": "Data size: 'compact' for last 100 data points or 'full' for 20+ years of history" }
+        },
+        "required": ["ticker", "outputsize"]
+      },
+      "capabilities": {
+        "security_info": {
+          "data_handling": ["GetPrivateData"]
+        }
+      }
+    },
+    {
+      "name": "get_intraday_prices",
+      "description": "Retrieve intraday OHLCV price data for a stock at the specified time interval.",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "ticker": { "type": "string", "description": "Stock ticker symbol (e.g., AAPL, MSFT)" },
+          "interval": { "type": "string", "description": "Time interval between data points: '1min', '5min', '15min', '30min', or '60min'" }
+        },
+        "required": ["ticker", "interval"]
+      },
+      "capabilities": {
+        "security_info": {
+          "data_handling": ["GetPrivateData"]
+        }
+      }
+    },
+    {
+      "name": "get_forex_rate",
+      "description": "Retrieve the real-time exchange rate between two currencies.",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "from_currency": { "type": "string", "description": "Source currency code (e.g., USD, EUR, GBP)" },
+          "to_currency": { "type": "string", "description": "Target currency code (e.g., USD, EUR, GBP)" }
+        },
+        "required": ["from_currency", "to_currency"]
+      },
+      "capabilities": {
+        "security_info": {
+          "data_handling": ["GetPrivateData"]
+        }
+      }
+    },
+    {
+      "name": "get_treasury_yield",
+      "description": "Retrieve current and historical U.S. Treasury yield data for a given maturity.",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "maturity": { "type": "string", "description": "Treasury maturity: '3month', '2year', '5year', '7year', '10year', or '30year'" }
+        },
+        "required": ["maturity"]
+      },
+      "capabilities": {
+        "security_info": {
+          "data_handling": ["GetPrivateData"]
+        }
+      }
+    }
+  ],
+  "runtimes": [
+    {
+      "type": "RemoteMCPServer",
+      "spec": {
+        "url": "https://mcp.alphavantage.co/mcp"
+      },
+      "auth": {
+        "type": "ApiKeyPluginVault"
+      }
+    }
+  ]
+}

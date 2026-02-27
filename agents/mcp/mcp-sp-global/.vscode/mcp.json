@@ -1,0 +1,12 @@
+{
+  "inputs": [],
+  "servers": {
+    "sp-global": {
+      "type": "sse",
+      "url": "https://{{MCP_HOST}}/mcp/sp-global",
+      "headers": {
+        "Authorization": "Bearer {{API_KEY}}"
+      }
+    }
+  }
+}

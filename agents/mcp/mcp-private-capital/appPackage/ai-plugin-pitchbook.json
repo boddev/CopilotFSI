@@ -1,0 +1,119 @@
+{
+  "$schema": "https://aka.ms/json-schemas/copilot/plugin/v2.4/schema.json",
+  "schema_version": "v2.4",
+  "name_for_human": "PitchBook",
+  "namespace": "PitchBook",
+  "description_for_human": "Access PitchBook private capital, deal, and investor data.",
+  "description_for_model": "Provides access to PitchBook's private capital markets intelligence platform. Use this plugin to retrieve company profiles for private and public companies, deal and transaction history, investor information, funding round details, board member data, and ownership structures. Essential for venture capital research, private equity deal sourcing, and M&A analysis.",
+  "functions": [
+    {
+      "name": "get_company_profile",
+      "description": "Retrieve a detailed company profile from PitchBook including valuation, employees, founding date, and description.",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "company_name": { "type": "string", "description": "Name of the company to look up (e.g., Stripe, SpaceX)" }
+        },
+        "required": ["company_name"]
+      },
+      "capabilities": {
+        "security_info": {
+          "data_handling": ["GetPrivateData"]
+        }
+      }
+    },
+    {
+      "name": "get_deals",
+      "description": "Retrieve deal and transaction history for a company including M&A, IPOs, and private placements.",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "company_name": { "type": "string", "description": "Name of the company to look up" },
+          "deal_type": { "type": "string", "description": "Type of deal to filter: 'ma', 'ipo', 'pe', 'vc', or 'all'" },
+          "date_range": { "type": "string", "description": "Date range filter: 'last_year', 'last_3_years', 'last_5_years', or 'all'" }
+        },
+        "required": ["company_name", "deal_type", "date_range"]
+      },
+      "capabilities": {
+        "security_info": {
+          "data_handling": ["GetPrivateData"]
+        }
+      }
+    },
+    {
+      "name": "get_investors",
+      "description": "Retrieve the list of investors in a company including VCs, PE firms, and strategic investors.",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "company_name": { "type": "string", "description": "Name of the company to look up" }
+        },
+        "required": ["company_name"]
+      },
+      "capabilities": {
+        "security_info": {
+          "data_handling": ["GetPrivateData"]
+        }
+      }
+    },
+    {
+      "name": "get_funding_rounds",
+      "description": "Retrieve the funding history for a company including round type, amount raised, valuation, and lead investors.",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "company_name": { "type": "string", "description": "Name of the company to look up" }
+        },
+        "required": ["company_name"]
+      },
+      "capabilities": {
+        "security_info": {
+          "data_handling": ["GetPrivateData"]
+        }
+      }
+    },
+    {
+      "name": "get_board_members",
+      "description": "Retrieve the board of directors and key executives for a company from PitchBook.",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "company_name": { "type": "string", "description": "Name of the company to look up" }
+        },
+        "required": ["company_name"]
+      },
+      "capabilities": {
+        "security_info": {
+          "data_handling": ["GetPrivateData"]
+        }
+      }
+    },
+    {
+      "name": "get_ownership",
+      "description": "Retrieve the ownership structure and cap table summary for a company.",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "company_name": { "type": "string", "description": "Name of the company to look up" }
+        },
+        "required": ["company_name"]
+      },
+      "capabilities": {
+        "security_info": {
+          "data_handling": ["GetPrivateData"]
+        }
+      }
+    }
+  ],
+  "runtimes": [
+    {
+      "type": "RemoteMCPServer",
+      "spec": {
+        "url": "https://{{MCP_HOST}}/mcp/pitchbook"
+      },
+      "auth": {
+        "type": "ApiKeyPluginVault"
+      }
+    }
+  ]
+}

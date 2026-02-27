@@ -1,0 +1,25 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/teams/vDevPreview/MicrosoftTeams.schema.json",
+  "manifestVersion": "devPreview",
+  "id": "${{TEAMS_APP_ID}}",
+  "version": "1.0.0",
+  "developer": {
+    "name": "Financial Services",
+    "websiteUrl": "https://example.com",
+    "privacyUrl": "https://example.com/privacy",
+    "termsOfUseUrl": "https://example.com/terms"
+  },
+  "name": {
+    "short": "Market Data Connector",
+    "full": "Market Data Connector (Alpha Vantage & LSEG)"
+  },
+  "description": {
+    "short": "Provides real-time and historical market data from Alpha Vantage and LSEG/Refinitiv.",
+    "full": "Provides real-time and historical market data from Alpha Vantage (open) and LSEG/Refinitiv (premium) including stock prices, forex, treasury yields, institutional ownership, and macro indicators."
+  },
+  "icons": { "outline": "outline.png", "color": "color.png" },
+  "accentColor": "#0078D4",
+  "copilotAgents": {
+    "declarativeAgents": [{ "id": "declarativeAgent", "file": "declarativeAgent.json" }]
+  }
+}

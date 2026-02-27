@@ -1,0 +1,23 @@
+{
+  "inputs": [],
+  "servers": {
+    "sec-edgar": {
+      "type": "sse",
+      "url": "https://{{MCP_HOST}}/mcp/sec-edgar"
+    },
+    "fmp": {
+      "type": "sse",
+      "url": "https://{{MCP_HOST}}/mcp/fmp",
+      "headers": {
+        "Authorization": "Bearer {{API_KEY}}"
+      }
+    },
+    "daloopa": {
+      "type": "sse",
+      "url": "https://{{MCP_HOST}}/mcp/daloopa",
+      "headers": {
+        "Authorization": "Bearer {{API_KEY}}"
+      }
+    }
+  }
+}

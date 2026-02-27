@@ -1,0 +1,33 @@
+{
+  "inputs": [],
+  "servers": {
+    "aiera": {
+      "type": "sse",
+      "url": "https://{{MCP_HOST}}/mcp/aiera",
+      "headers": {
+        "Authorization": "Bearer {{API_KEY}}"
+      }
+    },
+    "sec-edgar": {
+      "type": "sse",
+      "url": "https://{{MCP_HOST}}/mcp/sec-edgar",
+      "headers": {
+        "Authorization": "Bearer {{API_KEY}}"
+      }
+    },
+    "factset": {
+      "type": "sse",
+      "url": "https://{{MCP_HOST}}/mcp/factset",
+      "headers": {
+        "Authorization": "Bearer {{API_KEY}}"
+      }
+    },
+    "financial-datasets": {
+      "type": "sse",
+      "url": "https://{{MCP_HOST}}/mcp/financial-datasets",
+      "headers": {
+        "Authorization": "Bearer {{API_KEY}}"
+      }
+    }
+  }
+}

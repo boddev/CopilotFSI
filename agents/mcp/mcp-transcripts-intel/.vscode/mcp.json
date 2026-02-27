@@ -1,0 +1,26 @@
+{
+  "inputs": [],
+  "servers": {
+    "aiera": {
+      "type": "sse",
+      "url": "https://{{MCP_HOST}}/mcp/aiera",
+      "headers": {
+        "Authorization": "Bearer {{API_KEY}}"
+      }
+    },
+    "third-bridge": {
+      "type": "sse",
+      "url": "https://{{MCP_HOST}}/mcp/third-bridge",
+      "headers": {
+        "Authorization": "Bearer {{API_KEY}}"
+      }
+    },
+    "mt-newswires": {
+      "type": "sse",
+      "url": "https://{{MCP_HOST}}/mcp/mt-newswires",
+      "headers": {
+        "Authorization": "Bearer {{API_KEY}}"
+      }
+    }
+  }
+}

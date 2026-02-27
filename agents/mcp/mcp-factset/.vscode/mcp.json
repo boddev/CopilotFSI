@@ -1,0 +1,12 @@
+{
+  "inputs": [],
+  "servers": {
+    "factset": {
+      "type": "sse",
+      "url": "https://{{MCP_HOST}}/mcp/factset",
+      "headers": {
+        "Authorization": "Bearer {{API_KEY}}"
+      }
+    }
+  }
+}

@@ -1,0 +1,19 @@
+{
+  "inputs": [],
+  "servers": {
+    "box": {
+      "type": "sse",
+      "url": "https://{{MCP_HOST}}/mcp/box",
+      "headers": {
+        "Authorization": "Bearer {{API_KEY}}"
+      }
+    },
+    "egnyte": {
+      "type": "sse",
+      "url": "https://{{MCP_HOST}}/mcp/egnyte",
+      "headers": {
+        "Authorization": "Bearer {{API_KEY}}"
+      }
+    }
+  }
+}

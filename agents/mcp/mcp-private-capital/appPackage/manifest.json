@@ -1,0 +1,25 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/teams/vDevPreview/MicrosoftTeams.schema.json",
+  "manifestVersion": "devPreview",
+  "id": "${{TEAMS_APP_ID}}",
+  "version": "1.0.0",
+  "developer": {
+    "name": "Financial Services",
+    "websiteUrl": "https://example.com",
+    "privacyUrl": "https://example.com/privacy",
+    "termsOfUseUrl": "https://example.com/terms"
+  },
+  "name": {
+    "short": "Private Capital Connector",
+    "full": "Private Capital Connector (PitchBook & Chronograph)"
+  },
+  "description": {
+    "short": "Provides private market data from PitchBook and PE portfolio analytics from Chronograph.",
+    "full": "Provides private market data from PitchBook (deals, investors, funding) and PE portfolio analytics from Chronograph (fund performance, operational metrics)."
+  },
+  "icons": { "outline": "outline.png", "color": "color.png" },
+  "accentColor": "#0078D4",
+  "copilotAgents": {
+    "declarativeAgents": [{ "id": "declarativeAgent", "file": "declarativeAgent.json" }]
+  }
+}

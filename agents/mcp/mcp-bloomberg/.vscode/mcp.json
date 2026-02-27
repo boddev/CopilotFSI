@@ -1,0 +1,12 @@
+{
+  "inputs": [],
+  "servers": {
+    "bloomberg": {
+      "type": "sse",
+      "url": "https://{{MCP_HOST}}/mcp/bloomberg",
+      "headers": {
+        "Authorization": "Bearer {{API_KEY}}"
+      }
+    }
+  }
+}

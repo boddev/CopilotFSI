@@ -1,0 +1,25 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/teams/vDevPreview/MicrosoftTeams.schema.json",
+  "manifestVersion": "devPreview",
+  "id": "${{TEAMS_APP_ID}}",
+  "version": "1.0.0",
+  "developer": {
+    "name": "Financial Services",
+    "websiteUrl": "https://example.com",
+    "privacyUrl": "https://example.com/privacy",
+    "termsOfUseUrl": "https://example.com/terms"
+  },
+  "name": {
+    "short": "Data Warehouse Connector",
+    "full": "Data Warehouse Connector (Snowflake & Databricks)"
+  },
+  "description": {
+    "short": "Provides access to internal enterprise financial data in Snowflake and Databricks.",
+    "full": "Provides access to internal enterprise financial data stored in Snowflake (via Cortex managed MCP) and Databricks (via Unity Catalog managed MCP)."
+  },
+  "icons": { "outline": "outline.png", "color": "color.png" },
+  "accentColor": "#0078D4",
+  "copilotAgents": {
+    "declarativeAgents": [{ "id": "declarativeAgent", "file": "declarativeAgent.json" }]
+  }
+}

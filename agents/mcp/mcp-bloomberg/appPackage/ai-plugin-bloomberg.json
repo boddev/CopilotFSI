@@ -1,0 +1,126 @@
+{
+  "$schema": "https://aka.ms/json-schemas/copilot/plugin/v2.4/schema.json",
+  "schema_version": "v2.4",
+  "name_for_human": "Bloomberg",
+  "namespace": "Bloomberg",
+  "description_for_human": "Access Bloomberg market data, reference data, and security lookup.",
+  "description_for_model": "Provides access to Bloomberg's enterprise financial data services. Use this plugin to retrieve real-time market data, reference data for securities, historical time series, intraday tick data, search for Bloomberg data fields, and look up security identifiers. Essential for institutional-grade market data, portfolio analytics, risk management, and comprehensive security analysis across all asset classes.",
+  "functions": [
+    {
+      "name": "get_market_data",
+      "description": "Retrieve real-time market data for a security including price, yield, spread, and other live fields.",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "security": { "type": "string", "description": "Bloomberg security identifier (e.g., 'AAPL US Equity', 'SPX Index', 'US0378331005 ISIN')" },
+          "fields": { "type": "string", "description": "Comma-separated Bloomberg field mnemonics (e.g., 'PX_LAST,PX_BID,PX_ASK,VOLUME')" }
+        },
+        "required": ["security", "fields"]
+      },
+      "capabilities": {
+        "security_info": {
+          "data_handling": ["GetPrivateData"]
+        }
+      }
+    },
+    {
+      "name": "get_reference_data",
+      "description": "Retrieve static reference data for a security such as issuer details, ratings, sector classification, and corporate actions.",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "security": { "type": "string", "description": "Bloomberg security identifier (e.g., 'AAPL US Equity', 'T 4.5 03/15/28 Corp')" },
+          "fields": { "type": "string", "description": "Comma-separated Bloomberg field mnemonics (e.g., 'NAME,INDUSTRY_SECTOR,CRNCY,COUNTRY')" }
+        },
+        "required": ["security", "fields"]
+      },
+      "capabilities": {
+        "security_info": {
+          "data_handling": ["GetPrivateData"]
+        }
+      }
+    },
+    {
+      "name": "get_historical_data",
+      "description": "Retrieve historical time series data for a security over a specified date range.",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "security": { "type": "string", "description": "Bloomberg security identifier (e.g., 'AAPL US Equity')" },
+          "fields": { "type": "string", "description": "Comma-separated Bloomberg field mnemonics for historical data (e.g., 'PX_LAST,VOLUME')" },
+          "start_date": { "type": "string", "description": "Start date in YYYYMMDD format (e.g., 20240101)" },
+          "end_date": { "type": "string", "description": "End date in YYYYMMDD format (e.g., 20241231)" }
+        },
+        "required": ["security", "fields", "start_date", "end_date"]
+      },
+      "capabilities": {
+        "security_info": {
+          "data_handling": ["GetPrivateData"]
+        }
+      }
+    },
+    {
+      "name": "get_intraday_data",
+      "description": "Retrieve intraday tick or bar data for a security within a specific datetime range.",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "security": { "type": "string", "description": "Bloomberg security identifier (e.g., 'AAPL US Equity')" },
+          "event_type": { "type": "string", "description": "Intraday event type: 'TRADE', 'BID', 'ASK', 'BID_BEST', or 'ASK_BEST'" },
+          "start_datetime": { "type": "string", "description": "Start datetime in ISO 8601 format (e.g., 2024-01-15T09:30:00)" },
+          "end_datetime": { "type": "string", "description": "End datetime in ISO 8601 format (e.g., 2024-01-15T16:00:00)" }
+        },
+        "required": ["security", "event_type", "start_datetime", "end_datetime"]
+      },
+      "capabilities": {
+        "security_info": {
+          "data_handling": ["GetPrivateData"]
+        }
+      }
+    },
+    {
+      "name": "get_field_search",
+      "description": "Search for Bloomberg data field mnemonics by keyword to discover available data points.",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "query": { "type": "string", "description": "Search keyword to find Bloomberg field mnemonics (e.g., 'dividend yield', 'earnings per share')" }
+        },
+        "required": ["query"]
+      },
+      "capabilities": {
+        "security_info": {
+          "data_handling": ["GetPrivateData"]
+        }
+      }
+    },
+    {
+      "name": "get_security_lookup",
+      "description": "Look up and resolve Bloomberg security identifiers from partial names, tickers, or other identifiers.",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "query": { "type": "string", "description": "Security search query (e.g., company name, partial ticker, CUSIP, or ISIN)" },
+          "identifier_type": { "type": "string", "description": "Type of identifier to search: 'ticker', 'name', 'cusip', 'isin', 'sedol', or 'any'" }
+        },
+        "required": ["query", "identifier_type"]
+      },
+      "capabilities": {
+        "security_info": {
+          "data_handling": ["GetPrivateData"]
+        }
+      }
+    }
+  ],
+  "runtimes": [
+    {
+      "type": "RemoteMCPServer",
+      "spec": {
+        "url": "https://{{MCP_HOST}}/mcp/bloomberg"
+      },
+      "auth": {
+        "type": "OAuthPluginVault"
+      }
+    }
+  ]
+}

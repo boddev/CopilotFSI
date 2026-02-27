@@ -1,0 +1,26 @@
+{
+  "inputs": [],
+  "servers": {
+    "factset": {
+      "type": "sse",
+      "url": "https://{{MCP_HOST}}/mcp/factset",
+      "headers": {
+        "Authorization": "Bearer {{API_KEY}}"
+      }
+    },
+    "financial-datasets": {
+      "type": "sse",
+      "url": "https://{{MCP_HOST}}/mcp/financial-datasets",
+      "headers": {
+        "Authorization": "Bearer {{API_KEY}}"
+      }
+    },
+    "alpha-vantage": {
+      "type": "sse",
+      "url": "https://{{MCP_HOST}}/mcp/alpha-vantage",
+      "headers": {
+        "Authorization": "Bearer {{API_KEY}}"
+      }
+    }
+  }
+}

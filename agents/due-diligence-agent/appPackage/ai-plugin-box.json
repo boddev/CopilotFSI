@@ -1,0 +1,137 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/copilot/plugin/v2.2/schema.json",
+  "schema_version": "v2.2",
+  "name_for_human": "Box Document Platform",
+  "description_for_human": "Access and search documents stored in Box for due diligence and document review workflows.",
+  "description_for_model": "Use this plugin to search, retrieve, and read documents stored in Box. Ideal for due diligence workflows where you need to find and analyze documents in virtual data rooms, including contracts, financial statements, legal documents, and other deal materials.",
+  "namespace": "box",
+  "functions": [
+    {
+      "name": "search_documents",
+      "description": "Search for documents in Box by keyword, metadata, or content.",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "query": {
+            "type": "string",
+            "description": "Search query string to find documents"
+          },
+          "folder_id": {
+            "type": "string",
+            "description": "Restrict search to a specific Box folder ID"
+          },
+          "file_type": {
+            "type": "string",
+            "description": "Filter by file type: pdf, docx, xlsx, pptx, or all"
+          },
+          "date_range": {
+            "type": "string",
+            "description": "Filter by date modified (e.g., 2024-01-01:2024-12-31)"
+          },
+          "limit": {
+            "type": "integer",
+            "description": "Maximum number of results to return (default: 20)"
+          }
+        },
+        "required": [
+          "query"
+        ]
+      }
+    },
+    {
+      "name": "get_document",
+      "description": "Retrieve a specific document from Box by its file ID.",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "file_id": {
+            "type": "string",
+            "description": "Box file ID of the document to retrieve"
+          },
+          "version": {
+            "type": "string",
+            "description": "Specific version number to retrieve (default: latest)"
+          }
+        },
+        "required": [
+          "file_id"
+        ]
+      }
+    },
+    {
+      "name": "list_folder",
+      "description": "List the contents of a Box folder including subfolders and files.",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "folder_id": {
+            "type": "string",
+            "description": "Box folder ID to list contents of"
+          },
+          "sort_by": {
+            "type": "string",
+            "description": "Sort order: name, date_modified, or size"
+          },
+          "limit": {
+            "type": "integer",
+            "description": "Maximum number of items to return (default: 50)"
+          }
+        },
+        "required": [
+          "folder_id"
+        ]
+      }
+    },
+    {
+      "name": "get_document_text",
+      "description": "Extract text content from a document in Box for analysis.",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "file_id": {
+            "type": "string",
+            "description": "Box file ID of the document"
+          },
+          "page_range": {
+            "type": "string",
+            "description": "Page range to extract text from (e.g., 1-5, 10-15)"
+          }
+        },
+        "required": [
+          "file_id"
+        ]
+      }
+    },
+    {
+      "name": "get_document_metadata",
+      "description": "Retrieve metadata and properties of a document in Box.",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "file_id": {
+            "type": "string",
+            "description": "Box file ID of the document"
+          },
+          "include_classifications": {
+            "type": "boolean",
+            "description": "Whether to include document classification labels (default: true)"
+          }
+        },
+        "required": [
+          "file_id"
+        ]
+      }
+    }
+  ],
+  "runtimes": [
+    {
+      "type": "MCP",
+      "spec": {
+        "url": "https://{{MCP_HOST}}/mcp/box"
+      },
+      "auth": {
+        "type": "OAuthPluginVault"
+      }
+    }
+  ]
+}

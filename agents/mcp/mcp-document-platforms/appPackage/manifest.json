@@ -1,0 +1,25 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/teams/vDevPreview/MicrosoftTeams.schema.json",
+  "manifestVersion": "devPreview",
+  "id": "${{TEAMS_APP_ID}}",
+  "version": "1.0.0",
+  "developer": {
+    "name": "Financial Services",
+    "websiteUrl": "https://example.com",
+    "privacyUrl": "https://example.com/privacy",
+    "termsOfUseUrl": "https://example.com/terms"
+  },
+  "name": {
+    "short": "Document Platforms Connector",
+    "full": "Document Platforms Connector (Box & Egnyte)"
+  },
+  "description": {
+    "short": "Provides access to documents in Box and Egnyte data rooms with AI-powered extraction.",
+    "full": "Provides access to documents in Box and Egnyte data rooms with text extraction powered by Azure AI Document Intelligence for PDF parsing, OCR, and table extraction."
+  },
+  "icons": { "outline": "outline.png", "color": "color.png" },
+  "accentColor": "#0078D4",
+  "copilotAgents": {
+    "declarativeAgents": [{ "id": "declarativeAgent", "file": "declarativeAgent.json" }]
+  }
+}

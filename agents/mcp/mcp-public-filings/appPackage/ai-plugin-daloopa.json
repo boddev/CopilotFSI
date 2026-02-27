@@ -1,0 +1,89 @@
+{
+  "$schema": "https://aka.ms/json-schemas/copilot/plugin/v2.4/schema.json",
+  "schema_version": "v2.4",
+  "name_for_human": "Daloopa",
+  "namespace": "Daloopa",
+  "description_for_human": "Access Daloopa financial data, metrics, and source documents via the Daloopa API.",
+  "description_for_model": "Provides access to Daloopa's financial data platform via its REST API. Use this plugin to search for companies by ticker or name, list available financial metrics and KPI series for a company, retrieve specific financial data points with source-filing hyperlinks for auditability, and search source SEC filings and documents by keyword. Covers 1200+ standardized metrics with every data point linked to its original source filing.",
+  "functions": [
+    {
+      "name": "search_companies",
+      "description": "Search for companies by ticker symbol or name to get company metadata, IDs, and available reporting periods via Daloopa API.",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "keyword": { "type": "string", "description": "Company name or ticker symbol to search for (e.g., 'AAPL' or 'Apple')" }
+        },
+        "required": ["keyword"]
+      },
+      "capabilities": {
+        "security_info": {
+          "data_handling": ["GetPrivateData"]
+        }
+      }
+    },
+    {
+      "name": "get_series",
+      "description": "List available financial metrics and KPI series for a company. Returns standardized and company-specific metrics that can be queried for historical data.",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "company_id": { "type": "string", "description": "Daloopa company ID (obtained from search_companies)" },
+          "keywords": { "type": "string", "description": "Optional filter for metrics (e.g., 'revenue', 'ebitda', 'margin')" }
+        },
+        "required": ["company_id"]
+      },
+      "capabilities": {
+        "security_info": {
+          "data_handling": ["GetPrivateData"]
+        }
+      }
+    },
+    {
+      "name": "get_fundamentals",
+      "description": "Retrieve specific financial data points for a company, with every value hyperlinked to its source filing for full auditability.",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "company_id": { "type": "string", "description": "Daloopa company ID (obtained from search_companies)" },
+          "series_id": { "type": "string", "description": "Daloopa series ID for the specific metric (obtained from get_series)" },
+          "period": { "type": "string", "description": "Reporting period: 'annual' or 'quarterly'" }
+        },
+        "required": ["company_id", "series_id"]
+      },
+      "capabilities": {
+        "security_info": {
+          "data_handling": ["GetPrivateData"]
+        }
+      }
+    },
+    {
+      "name": "search_documents",
+      "description": "Search source SEC filings and documents for a company by keyword. Returns matched snippets with references to original filings.",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "company_id": { "type": "string", "description": "Daloopa company ID (obtained from search_companies)" },
+          "keywords": { "type": "string", "description": "Keyword to search within source filings and documents" }
+        },
+        "required": ["company_id", "keywords"]
+      },
+      "capabilities": {
+        "security_info": {
+          "data_handling": ["GetPrivateData"]
+        }
+      }
+    }
+  ],
+  "runtimes": [
+    {
+      "type": "RemoteMCPServer",
+      "spec": {
+        "url": "https://mcp.daloopa.com/server/mcp"
+      },
+      "auth": {
+        "type": "ApiKeyPluginVault"
+      }
+    }
+  ]
+}
