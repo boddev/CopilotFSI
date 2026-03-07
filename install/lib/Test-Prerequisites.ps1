@@ -58,10 +58,24 @@ function Test-FSIPrerequisites {
         $results += [PSCustomObject]@{ Name = 'M365 Agents Toolkit CLI'; Status = 'Pass'; Version = $atkVersion; Message = "M365 Agents Toolkit CLI $atkVersion" }
     } catch {
         if ($AutoInstall) {
-            Write-Host 'Installing M365 Agents Toolkit CLI...' -ForegroundColor Yellow
+            Write-Host '  Installing M365 Agents Toolkit CLI (atk)...' -ForegroundColor Yellow
             try {
-                & npm install -g @microsoft/m365agentstoolkit-cli 2>&1 | Out-Null
+                # Use Start-Process to avoid PowerShell treating npm stderr warnings as errors
+                $npmPrefix = (& npm config get prefix 2>$null | Out-String).Trim()
+                $proc = Start-Process -FilePath 'npm' `
+                    -ArgumentList 'install', '-g', '@microsoft/m365agentstoolkit-cli' `
+                    -NoNewWindow -Wait -PassThru
+                if ($proc.ExitCode -ne 0) {
+                    throw "npm install exited with code $($proc.ExitCode)"
+                }
+
+                # Ensure npm global bin directory is on PATH for this session
+                if ($npmPrefix -and ($env:PATH -notlike "*$npmPrefix*")) {
+                    $env:PATH = "$npmPrefix;$env:PATH"
+                }
+
                 $atkOut2 = & atk --version 2>&1
+                if ($LASTEXITCODE -ne 0) { throw "atk installed but not found on PATH: $($atkOut2 | Out-String)" }
                 $atkVersion = ($atkOut2 | Out-String).Trim()
                 $results += [PSCustomObject]@{ Name = 'M365 Agents Toolkit CLI'; Status = 'Pass'; Version = $atkVersion; Message = "M365 Agents Toolkit CLI $atkVersion (auto-installed)" }
             } catch {

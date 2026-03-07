@@ -1,0 +1,40 @@
+{
+  "generatedAt": "2026-03-06T14:28:20.5026017-06:00",
+  "projectRoot": "C:\\Users\\bodonnell\\src\\CopilotFSI",
+  "requireResolvedTitleIds": false,
+  "suites": [
+    {
+      "name": "validate-manifests",
+      "success": true,
+      "failed": 0,
+      "passed": 100,
+      "report": "C:\\Users\\bodonnell\\src\\CopilotFSI\\tests\\reports\\validate-manifests.json",
+      "exitCode": 0
+    },
+    {
+      "name": "validate-routing",
+      "success": true,
+      "failed": 0,
+      "passed": 30,
+      "report": "C:\\Users\\bodonnell\\src\\CopilotFSI\\tests\\reports\\validate-routing.json",
+      "exitCode": 0
+    },
+    {
+      "name": "validate-agent-contracts",
+      "success": true,
+      "failed": 0,
+      "passed": 35,
+      "report": "C:\\Users\\bodonnell\\src\\CopilotFSI\\tests\\reports\\validate-agent-contracts.json",
+      "exitCode": 0
+    },
+    {
+      "name": "validate-worker-wiring",
+      "success": true,
+      "failed": 0,
+      "passed": 48,
+      "report": "C:\\Users\\bodonnell\\src\\CopilotFSI\\tests\\reports\\validate-worker-wiring.json",
+      "exitCode": 0
+    }
+  ],
+  "success": true
+}

@@ -37,8 +37,8 @@ function Show-McpSelector {
         'None'             = 'Free'
     }
 
-    # Providers pre-selected by default (free / public-tier access)
-    $defaultSelectedIds = @('sec-edgar', 'alpha-vantage')
+    # Providers pre-selected by default (built-in M365)
+    $defaultSelectedIds = @('sharepoint-onedrive')
 
     # Build a flat ordered list grouped by category
     $providers = [System.Collections.ArrayList]::new()
@@ -55,8 +55,12 @@ function Show-McpSelector {
             $displayAuth = if ($authTypeLabels.ContainsKey($p.authType)) { $authTypeLabels[$p.authType] } else { $p.authType }
             $displayName = if ($displayNameMap.ContainsKey($p.id)) { $displayNameMap[$p.id] } else { $p.name }
 
+            $isBuiltIn = ($p.PSObject.Properties['builtIn'] -and $p.builtIn)
+
             # Derive auth note from provider metadata
-            $authNote = if ($p.authType -eq 'None') {
+            $authNote = if ($isBuiltIn) {
+                'built-in to Microsoft 365'
+            } elseif ($p.authType -eq 'None') {
                 'no auth required'
             } elseif ($p.PSObject.Properties['note'] -and $p.note) {
                 $p.note
@@ -80,6 +84,7 @@ function Show-McpSelector {
                 UrlPattern  = $p.urlPattern
                 Category    = $p.category.ToUpper()
                 Selected    = $defaultSelectedIds -contains $p.id
+                BuiltIn     = [bool]$isBuiltIn
             })
         }
     }
@@ -178,6 +183,14 @@ function Show-McpSelector {
     Write-Host ''
 
     foreach ($p in $selectedProviders) {
+        # Built-in providers (e.g., SharePoint & OneDrive) need no URL configuration
+        if ($p.BuiltIn) {
+            Write-Host "  $($p.DisplayName)" -ForegroundColor White
+            Write-Host "  (Built-in to Microsoft 365 — no URL needed)" -ForegroundColor Green
+            Write-Host ''
+            continue
+        }
+
         Write-Host "  $($p.DisplayName) MCP Server URL" -ForegroundColor White
 
         if ($p.PublicUrl) {

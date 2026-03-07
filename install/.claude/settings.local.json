@@ -1,0 +1,23 @@
+{
+  "permissions": {
+    "allow": [
+      "WebSearch",
+      "Bash(npm:*)",
+      "Bash(atk:*)",
+      "Bash(powershell:*)",
+      "Bash(pwsh:*)",
+      "WebFetch(domain:raw.githubusercontent.com)",
+      "WebFetch(domain:www.developerscantina.com)",
+      "WebFetch(domain:aka.ms)",
+      "WebFetch(domain:developer.microsoft.com)",
+      "WebFetch(domain:www.npmjs.com)",
+      "Bash(python3:*)",
+      "Bash(grep:*)",
+      "Bash(find:*)",
+      "Bash(xxd:*)",
+      "Bash(xargs cat:*)",
+      "Bash(rm:*)",
+      "Bash(PYTHONIOENCODING=utf-8 python3:*)"
+    ]
+  }
+}

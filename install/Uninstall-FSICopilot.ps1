@@ -3,8 +3,12 @@
 .SYNOPSIS
     Removes all FSI Copilot agents from a Microsoft 365 tenant.
 .DESCRIPTION
-    Reads provisioned agent IDs from .env files and removes them from the
-    M365 tenant. Restores placeholder URLs and title IDs in agent manifests.
+    Uses atk uninstall --mode env to remove agents from the M365 tenant,
+    mirroring how Install-FSICopilot.ps1 provisions them with atk provision.
+    Restores placeholder URLs and title IDs in agent manifests.
+    Note: agents published into Microsoft 365 through teamsApp/extendToM365 can
+    remain visible in the Microsoft 365 Agent Store / Agent Registry until an
+    admin removes or deletes them from the Microsoft 365 admin center.
 .PARAMETER Environment
     The atk environment to uninstall from (default: "prod").
 .PARAMETER DryRun
@@ -62,67 +66,92 @@ if (-not $DryRun) {
 $removedCount = 0
 $failedCount  = 0
 $envFilesDeleted = 0
+$successfulPaths = @()
 
+# Collect ALL agent directories (manifest + any with m365agents.yml)
+$allAgentDirs = @()
+
+# Add manifest agents in reverse tier order
 $tiers = @(3, 2, 1, 0)
-
 foreach ($tierIndex in $tiers) {
     $tierAgents = $manifest.agents | Where-Object { [int]$_.tier -eq $tierIndex }
-    if (-not $tierAgents -or $tierAgents.Count -eq 0) { continue }
-
-    $tierName = $manifest.tiers."$tierIndex".name
-    Write-Host "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━" -ForegroundColor Cyan
-    Write-Host "  Tier $tierIndex : $tierName" -ForegroundColor Cyan
-    Write-Host "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━" -ForegroundColor Cyan
-
+    if (-not $tierAgents) { continue }
     foreach ($agent in $tierAgents) {
-        $agentPath  = Join-Path $ProjectRoot $agent.path
-        $envFile    = Join-Path $agentPath ".env.$Environment"
-        $agentName  = $agent.name
+        $allAgentDirs += @{
+            Name = $agent.name
+            Path = Join-Path $ProjectRoot $agent.path
+            Tier = $tierIndex
+            TierName = $manifest.tiers."$tierIndex".name
+            Source = "manifest"
+        }
+    }
+}
 
-        # Read TEAMS_APP_ID from the env file
-        $appId = $null
-        if (Test-Path $envFile) {
-            $lines = Get-Content -Path $envFile
-            foreach ($line in $lines) {
-                $trimmed = $line.Trim()
-                if ($trimmed -eq '' -or $trimmed.StartsWith('#')) { continue }
-                if ($trimmed -match '^TEAMS_APP_ID\s*=\s*(.+)$') {
-                    $appId = $Matches[1].Trim()
-                    break
-                }
+# Scan for orphaned agents (have m365agents.yml but not in manifest)
+$manifestPaths = $manifest.agents | ForEach-Object { (Join-Path $ProjectRoot $_.path) }
+$allYmlFiles = Get-ChildItem -Path (Join-Path $ProjectRoot "agents") -Filter "m365agents.yml" -Recurse -File -ErrorAction SilentlyContinue
+foreach ($yml in $allYmlFiles) {
+    $agentDir = $yml.Directory.FullName
+    if ($agentDir -notin $manifestPaths) {
+        $allAgentDirs += @{
+            Name = "$(Split-Path $agentDir -Leaf) (orphan)"
+            Path = $agentDir
+            Tier = -1
+            TierName = "Orphaned Agents"
+            Source = "orphan"
+        }
+    }
+}
+
+# Remove agents using atk uninstall --mode env (mirrors how install provisions)
+$currentTierLabel = ""
+foreach ($agent in $allAgentDirs) {
+    $tierLabel = "Tier $($agent.Tier) : $($agent.TierName)"
+    if ($agent.Tier -eq -1) { $tierLabel = "Orphaned Agents (not in manifest)" }
+
+    if ($tierLabel -ne $currentTierLabel) {
+        $currentTierLabel = $tierLabel
+        Write-Host "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━" -ForegroundColor Cyan
+        Write-Host "  $tierLabel" -ForegroundColor Cyan
+        Write-Host "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━" -ForegroundColor Cyan
+    }
+
+    $agentPath = $agent.Path
+    $agentName = $agent.Name
+
+    if (-not (Test-Path $agentPath)) {
+        Write-Host "  ⏭️  $agentName — directory not found, skipping" -ForegroundColor DarkGray
+        continue
+    }
+
+    # Check if this agent was ever provisioned (has env folder or m365agents.yml)
+    $hasProject = (Test-Path (Join-Path $agentPath "m365agents.yml"))
+    if (-not $hasProject) {
+        Write-Host "  ⏭️  $agentName — no m365agents.yml found, skipping" -ForegroundColor DarkGray
+        continue
+    }
+
+    if ($DryRun) {
+        Write-Host "  [DRY RUN] Would remove: $agentName" -ForegroundColor Yellow
+        $removedCount++
+    }
+    else {
+        try {
+            # Use --mode env which mirrors how atk provision works
+            $result = & atk uninstall --mode env --env $Environment --folder $agentPath --options 'm365-app,app-registration' --interactive false 2>&1
+            $output = ($result | Out-String).Trim()
+
+            if ($LASTEXITCODE -ne 0) {
+                throw "atk uninstall failed (exit code $LASTEXITCODE):`n$output"
             }
-        }
 
-        if (-not $appId) {
-            Write-Host "  ⏭️  $agentName — no TEAMS_APP_ID found, skipping removal" -ForegroundColor DarkGray
-            continue
-        }
-
-        if ($DryRun) {
-            Write-Host "  [DRY RUN] Would remove: $agentName (TEAMS_APP_ID=$appId)" -ForegroundColor Yellow
+            Write-Host "  ✅ Removed: $agentName" -ForegroundColor Green
             $removedCount++
+            $successfulPaths += $agentPath
         }
-        else {
-            try {
-                $originalLocation = Get-Location
-                Set-Location $agentPath
-
-                $result = & atk teamsapp remove --teams-app-id $appId 2>&1
-
-                if ($LASTEXITCODE -ne 0) {
-                    throw "atk teamsapp remove failed: $result"
-                }
-
-                Write-Host "  ✅ Removed: $agentName" -ForegroundColor Green
-                $removedCount++
-            }
-            catch {
-                Write-Host "  ❌ Failed to remove: $agentName — $_" -ForegroundColor Red
-                $failedCount++
-            }
-            finally {
-                Set-Location $originalLocation
-            }
+        catch {
+            Write-Host "  ❌ Failed to remove: $agentName — $_" -ForegroundColor Red
+            $failedCount++
         }
     }
 }
@@ -195,18 +224,35 @@ else {
     Write-Host "  ⏭️  Skipping URL placeholder restoration (--KeepConfig)" -ForegroundColor DarkGray
 }
 
-# Delete .env files from agent directories
-foreach ($agent in $manifest.agents) {
-    $envFile = Join-Path $ProjectRoot (Join-Path $agent.path ".env.$Environment")
-    if (Test-Path $envFile) {
-        if ($DryRun) {
-            Write-Host "  [DRY RUN] Would delete: $envFile" -ForegroundColor Yellow
-        }
-        else {
+# Delete .env files ONLY for successfully removed agents (preserve others for retry)
+if ($DryRun) {
+    $allEnvFilesCleanup = Get-ChildItem -Path (Join-Path $ProjectRoot "agents") -Filter ".env.$Environment" -Recurse -File -ErrorAction SilentlyContinue
+    foreach ($ef in $allEnvFilesCleanup) {
+        Write-Host "  [DRY RUN] Would delete: $($ef.FullName)" -ForegroundColor Yellow
+        $envFilesDeleted++
+    }
+}
+else {
+    foreach ($agentDir in $successfulPaths) {
+        $envFile = Join-Path $agentDir "env" ".env.$Environment"
+        if (Test-Path $envFile) {
             Remove-Item -Path $envFile -Force
             Write-Verbose "Deleted $envFile"
+            $envFilesDeleted++
         }
-        $envFilesDeleted++
+    }
+}
+
+# Delete build directories from agent appPackage folders
+$buildDirs = Get-ChildItem -Path (Join-Path $ProjectRoot "agents") -Filter "build" -Recurse -Directory -ErrorAction SilentlyContinue |
+    Where-Object { $_.Parent.Name -eq 'appPackage' }
+foreach ($bd in $buildDirs) {
+    if ($DryRun) {
+        Write-Host "  [DRY RUN] Would delete: $($bd.FullName)" -ForegroundColor Yellow
+    }
+    else {
+        Remove-Item -Path $bd.FullName -Recurse -Force
+        Write-Verbose "Deleted $($bd.FullName)"
     }
 }
 
@@ -237,6 +283,7 @@ if ($DryRun) {
     Write-Host "  [DRY RUN] No changes were made." -ForegroundColor Yellow
     Write-Host "  Would remove: $removedCount agent(s)" -ForegroundColor Yellow
     Write-Host "  Would delete: $envFilesDeleted .env file(s)" -ForegroundColor Yellow
+    Write-Host "  Note: published agents can still appear in Agent Store until removed from Microsoft 365 admin center > Agents > All agents." -ForegroundColor Yellow
 }
 else {
     Write-Host "  ✅ Removed:  $removedCount agent(s)" -ForegroundColor Green
@@ -248,6 +295,7 @@ else {
         Write-Host "  🔗 Restored: MCP server URL placeholders" -ForegroundColor Green
     }
     Write-Host "  📋 Restored: Title ID placeholders" -ForegroundColor Green
+    Write-Host "  ℹ️  If agents still appear in Agent Store / Built for your org, remove or delete them in Microsoft 365 admin center > Agents > All agents." -ForegroundColor Yellow
 }
 
 Write-Host ""

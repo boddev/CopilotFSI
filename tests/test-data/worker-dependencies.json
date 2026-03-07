@@ -1,0 +1,84 @@
+[
+  {
+    "agentId": "comparable-analysis-agent",
+    "expectedManifestDeps": [
+      "MCP_FACTSET_TITLE_ID",
+      "MCP_PUBLIC_FILINGS_TITLE_ID",
+      "MCP_MARKET_DATA_TITLE_ID"
+    ],
+    "expectedWorkerCount": 3
+  },
+  {
+    "agentId": "dcf-model-agent",
+    "expectedManifestDeps": [
+      "MCP_FACTSET_TITLE_ID",
+      "MCP_SP_GLOBAL_TITLE_ID",
+      "MCP_MARKET_DATA_TITLE_ID",
+      "MCP_RESEARCH_RATINGS_TITLE_ID"
+    ],
+    "expectedWorkerCount": 4
+  },
+  {
+    "agentId": "due-diligence-agent",
+    "expectedManifestDeps": [
+      "MCP_FACTSET_TITLE_ID",
+      "MCP_PUBLIC_FILINGS_TITLE_ID",
+      "MCP_RESEARCH_RATINGS_TITLE_ID"
+    ],
+    "expectedWorkerCount": 3
+  },
+  {
+    "agentId": "company-profile-agent",
+    "expectedManifestDeps": [
+      "MCP_FACTSET_TITLE_ID",
+      "MCP_SP_GLOBAL_TITLE_ID",
+      "MCP_RESEARCH_RATINGS_TITLE_ID"
+    ],
+    "expectedWorkerCount": 3
+  },
+  {
+    "agentId": "earnings-analysis-agent",
+    "expectedManifestDeps": [
+      "MCP_FACTSET_TITLE_ID",
+      "MCP_PUBLIC_FILINGS_TITLE_ID",
+      "MCP_TRANSCRIPTS_INTEL_TITLE_ID"
+    ],
+    "expectedWorkerCount": 3
+  },
+  {
+    "agentId": "precedent-transactions-agent",
+    "expectedManifestDeps": [
+      "MCP_FACTSET_TITLE_ID",
+      "MCP_SP_GLOBAL_TITLE_ID"
+    ],
+    "expectedWorkerCount": 2
+  },
+  {
+    "agentId": "coverage-report-agent",
+    "expectedManifestDeps": [
+      "COMPARABLE_ANALYSIS_AGENT_TITLE_ID",
+      "DCF_MODEL_AGENT_TITLE_ID",
+      "EARNINGS_ANALYSIS_AGENT_TITLE_ID",
+      "PRECEDENT_TRANSACTIONS_AGENT_TITLE_ID",
+      "MCP_FACTSET_TITLE_ID",
+      "MCP_SP_GLOBAL_TITLE_ID",
+      "MCP_PUBLIC_FILINGS_TITLE_ID",
+      "MCP_RESEARCH_RATINGS_TITLE_ID"
+    ],
+    "expectedWorkerCount": 8
+  },
+  {
+    "agentId": "fsi-primary-agent",
+    "expectedManifestDeps": [
+      "COMPLIANCE_GUARDRAIL_AGENT_TITLE_ID",
+      "COMPARABLE_ANALYSIS_AGENT_TITLE_ID",
+      "DCF_MODEL_AGENT_TITLE_ID",
+      "DUE_DILIGENCE_AGENT_TITLE_ID",
+      "COMPANY_PROFILE_AGENT_TITLE_ID",
+      "EARNINGS_ANALYSIS_AGENT_TITLE_ID",
+      "PRECEDENT_TRANSACTIONS_AGENT_TITLE_ID",
+      "COVERAGE_REPORT_AGENT_TITLE_ID"
+    ],
+    "expectedWorkerCount": 8
+  }
+]

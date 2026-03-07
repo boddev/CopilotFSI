@@ -1,0 +1,115 @@
+[
+  {
+    "agentId": "fsi-primary-agent",
+    "requiredPhrases": [
+      "Ask at most one clarification question",
+      "continue with approved WebSearch sources directly or instruct the skill agent to do so",
+      "Company Profile Agent handles concise public-company overviews and credit-rating comparisons such as Moody's vs. S&P for Intel.",
+      "After one failed or unavailable MCP attempt for public data, use approved WebSearch immediately rather than stopping."
+    ],
+    "forbiddenPhrases": [
+      "Simple data lookups (single metric, single company)"
+    ],
+    "requiredCapabilities": [
+      "WebSearch"
+    ]
+  },
+  {
+    "agentId": "company-profile-agent",
+    "requiredPhrases": [
+      "answer that slice directly instead of expanding into a full teaser unless requested",
+      "produce a concise comparison table with provider, rating, outlook/watch status, effective date, and explanatory notes",
+      "Clearly label fallback-sourced facts as `[WebSearch fallback]` with source and date."
+    ],
+    "forbiddenPhrases": [
+      "Ask user for format:"
+    ],
+    "requiredCapabilities": [
+      "WebSearch"
+    ]
+  },
+  {
+    "agentId": "comparable-analysis-agent",
+    "requiredPhrases": [
+      "select 8-12 liquid public comps",
+      "proceed without asking the user to approve the peer set",
+      "Present a chat-ready comp table first."
+    ],
+    "forbiddenPhrases": [
+      "Confirm the peer set with the user before proceeding."
+    ],
+    "requiredCapabilities": [
+      "WebSearch"
+    ]
+  },
+  {
+    "agentId": "dcf-model-agent",
+    "requiredPhrases": [
+      "Use standard assumptions unless the user explicitly provides overrides.",
+      "use approved WebSearch plus SEC filings to source current Treasury yields, public ratings or outlooks, and debt details where publicly available",
+      "Default to a concise chat summary first"
+    ],
+    "forbiddenPhrases": [],
+    "requiredCapabilities": [
+      "WebSearch"
+    ]
+  },
+  {
+    "agentId": "due-diligence-agent",
+    "requiredPhrases": [
+      "Default to all DD categories",
+      "use direct SEC pages and other approved public web sources for the missing public fields",
+      "Default to a concise chat summary first"
+    ],
+    "forbiddenPhrases": [],
+    "requiredCapabilities": [
+      "WebSearch"
+    ]
+  },
+  {
+    "agentId": "earnings-analysis-agent",
+    "requiredPhrases": [
+      "Default to the most recent reported quarter unless the user specifies another period.",
+      "use direct SEC pages and other approved public web sources for the missing public fields instead of stopping",
+      "Default to a formatted summary in chat"
+    ],
+    "forbiddenPhrases": [],
+    "requiredCapabilities": [
+      "WebSearch"
+    ]
+  },
+  {
+    "agentId": "precedent-transactions-agent",
+    "requiredPhrases": [
+      "Use standard screening defaults unless the user explicitly specifies overrides.",
+      "use SEC merger documents, proxy statements, and approved public web sources for the missing public fields",
+      "Default to a chat summary first"
+    ],
+    "forbiddenPhrases": [],
+    "requiredCapabilities": [
+      "WebSearch"
+    ]
+  },
+  {
+    "agentId": "coverage-report-agent",
+    "requiredPhrases": [
+      "request a reduced-scope answer that uses public web fallback rather than abandoning the valuation section",
+      "If the user only wants the analysis in chat, summarize first and avoid unnecessary file-generation questions.",
+      "Continue generating the report with mixed sources instead of aborting the whole workflow."
+    ],
+    "forbiddenPhrases": [],
+    "requiredCapabilities": [
+      "WebSearch"
+    ]
+  },
+  {
+    "agentId": "compliance-guardrail-agent",
+    "requiredPhrases": [
+      "You do NOT modify the analysis",
+      "This analysis is for informational purposes only and does not constitute investment advice.",
+      "If detected, BLOCK output"
+    ],
+    "forbiddenPhrases": [],
+    "requiredCapabilities": []
+  }
+]

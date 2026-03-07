@@ -1,0 +1,34 @@
+{
+    "$schema": "https://developer.microsoft.com/json-schemas/teams/vDevPreview/MicrosoftTeams.schema.json",
+    "manifestVersion": "devPreview",
+    "version": "1.0.0",
+    "id": "f0c0e316-622f-4e4f-8608-fd267e6faaf9",
+    "developer": {
+        "name": "Financial Services",
+        "websiteUrl": "https://example.com",
+        "privacyUrl": "https://example.com/privacy",
+        "termsOfUseUrl": "https://example.com/terms"
+    },
+    "name": {
+        "short": "Earnings Analysis Agent",
+        "full": "Earnings Analysis and Guidance Tracking Agent"
+    },
+    "description": {
+        "short": "Analyzes earnings transcripts and SEC filings for beat/miss signals.",
+        "full": "Processes quarterly earnings transcripts, SEC filings, and consensus data to deliver beat/miss analysis, guidance tracking, and management commentary extraction."
+    },
+    "icons": {
+        "outline": "outline.png",
+        "color": "color.png"
+    },
+    "accentColor": "#0078D4",
+    "defaultBlockUntilAdminAction": true,
+    "copilotAgents": {
+        "declarativeAgents": [
+            {
+                "id": "declarativeAgent",
+                "file": "declarativeAgent.json"
+            }
+        ]
+    }
+}

@@ -3,6 +3,7 @@
   "manifestVersion": "devPreview",
   "id": "${{TEAMS_APP_ID}}",
   "version": "1.0.0",
+  "defaultBlockUntilAdminAction": true,
   "developer": {
     "name": "Financial Services",
     "websiteUrl": "https://example.com",

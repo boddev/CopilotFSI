@@ -1,0 +1,325 @@
+{
+  "suite": "validate-agent-contracts",
+  "generatedAt": "2026-03-06T14:28:19.1167493-06:00",
+  "total": 35,
+  "failed": 0,
+  "passed": 35,
+  "success": true,
+  "results": [
+    {
+      "suite": "validate-agent-contracts",
+      "name": "fsi-primary-agent-exists",
+      "passed": true,
+      "message": "Agent exists for contract validation.",
+      "details": {
+        "agentId": "fsi-primary-agent"
+      }
+    },
+    {
+      "suite": "validate-agent-contracts",
+      "name": "fsi-primary-agent-required-phrases",
+      "passed": true,
+      "message": "All required behavior phrases are present.",
+      "details": {
+        "missing": []
+      }
+    },
+    {
+      "suite": "validate-agent-contracts",
+      "name": "fsi-primary-agent-forbidden-phrases",
+      "passed": true,
+      "message": "No forbidden phrases were found.",
+      "details": {
+        "present": []
+      }
+    },
+    {
+      "suite": "validate-agent-contracts",
+      "name": "fsi-primary-agent-capability-WebSearch",
+      "passed": true,
+      "message": "Required capability 'WebSearch' is present.",
+      "details": {
+        "capability": "WebSearch"
+      }
+    },
+    {
+      "suite": "validate-agent-contracts",
+      "name": "company-profile-agent-exists",
+      "passed": true,
+      "message": "Agent exists for contract validation.",
+      "details": {
+        "agentId": "company-profile-agent"
+      }
+    },
+    {
+      "suite": "validate-agent-contracts",
+      "name": "company-profile-agent-required-phrases",
+      "passed": true,
+      "message": "All required behavior phrases are present.",
+      "details": {
+        "missing": []
+      }
+    },
+    {
+      "suite": "validate-agent-contracts",
+      "name": "company-profile-agent-forbidden-phrases",
+      "passed": true,
+      "message": "No forbidden phrases were found.",
+      "details": {
+        "present": []
+      }
+    },
+    {
+      "suite": "validate-agent-contracts",
+      "name": "company-profile-agent-capability-WebSearch",
+      "passed": true,
+      "message": "Required capability 'WebSearch' is present.",
+      "details": {
+        "capability": "WebSearch"
+      }
+    },
+    {
+      "suite": "validate-agent-contracts",
+      "name": "comparable-analysis-agent-exists",
+      "passed": true,
+      "message": "Agent exists for contract validation.",
+      "details": {
+        "agentId": "comparable-analysis-agent"
+      }
+    },
+    {
+      "suite": "validate-agent-contracts",
+      "name": "comparable-analysis-agent-required-phrases",
+      "passed": true,
+      "message": "All required behavior phrases are present.",
+      "details": {
+        "missing": []
+      }
+    },
+    {
+      "suite": "validate-agent-contracts",
+      "name": "comparable-analysis-agent-forbidden-phrases",
+      "passed": true,
+      "message": "No forbidden phrases were found.",
+      "details": {
+        "present": []
+      }
+    },
+    {
+      "suite": "validate-agent-contracts",
+      "name": "comparable-analysis-agent-capability-WebSearch",
+      "passed": true,
+      "message": "Required capability 'WebSearch' is present.",
+      "details": {
+        "capability": "WebSearch"
+      }
+    },
+    {
+      "suite": "validate-agent-contracts",
+      "name": "dcf-model-agent-exists",
+      "passed": true,
+      "message": "Agent exists for contract validation.",
+      "details": {
+        "agentId": "dcf-model-agent"
+      }
+    },
+    {
+      "suite": "validate-agent-contracts",
+      "name": "dcf-model-agent-required-phrases",
+      "passed": true,
+      "message": "All required behavior phrases are present.",
+      "details": {
+        "missing": []
+      }
+    },
+    {
+      "suite": "validate-agent-contracts",
+      "name": "dcf-model-agent-forbidden-phrases",
+      "passed": true,
+      "message": "No forbidden phrases were found.",
+      "details": {
+        "present": []
+      }
+    },
+    {
+      "suite": "validate-agent-contracts",
+      "name": "dcf-model-agent-capability-WebSearch",
+      "passed": true,
+      "message": "Required capability 'WebSearch' is present.",
+      "details": {
+        "capability": "WebSearch"
+      }
+    },
+    {
+      "suite": "validate-agent-contracts",
+      "name": "due-diligence-agent-exists",
+      "passed": true,
+      "message": "Agent exists for contract validation.",
+      "details": {
+        "agentId": "due-diligence-agent"
+      }
+    },
+    {
+      "suite": "validate-agent-contracts",
+      "name": "due-diligence-agent-required-phrases",
+      "passed": true,
+      "message": "All required behavior phrases are present.",
+      "details": {
+        "missing": []
+      }
+    },
+    {
+      "suite": "validate-agent-contracts",
+      "name": "due-diligence-agent-forbidden-phrases",
+      "passed": true,
+      "message": "No forbidden phrases were found.",
+      "details": {
+        "present": []
+      }
+    },
+    {
+      "suite": "validate-agent-contracts",
+      "name": "due-diligence-agent-capability-WebSearch",
+      "passed": true,
+      "message": "Required capability 'WebSearch' is present.",
+      "details": {
+        "capability": "WebSearch"
+      }
+    },
+    {
+      "suite": "validate-agent-contracts",
+      "name": "earnings-analysis-agent-exists",
+      "passed": true,
+      "message": "Agent exists for contract validation.",
+      "details": {
+        "agentId": "earnings-analysis-agent"
+      }
+    },
+    {
+      "suite": "validate-agent-contracts",
+      "name": "earnings-analysis-agent-required-phrases",
+      "passed": true,
+      "message": "All required behavior phrases are present.",
+      "details": {
+        "missing": []
+      }
+    },
+    {
+      "suite": "validate-agent-contracts",
+      "name": "earnings-analysis-agent-forbidden-phrases",
+      "passed": true,
+      "message": "No forbidden phrases were found.",
+      "details": {
+        "present": []
+      }
+    },
+    {
+      "suite": "validate-agent-contracts",
+      "name": "earnings-analysis-agent-capability-WebSearch",
+      "passed": true,
+      "message": "Required capability 'WebSearch' is present.",
+      "details": {
+        "capability": "WebSearch"
+      }
+    },
+    {
+      "suite": "validate-agent-contracts",
+      "name": "precedent-transactions-agent-exists",
+      "passed": true,
+      "message": "Agent exists for contract validation.",
+      "details": {
+        "agentId": "precedent-transactions-agent"
+      }
+    },
+    {
+      "suite": "validate-agent-contracts",
+      "name": "precedent-transactions-agent-required-phrases",
+      "passed": true,
+      "message": "All required behavior phrases are present.",
+      "details": {
+        "missing": []
+      }
+    },
+    {
+      "suite": "validate-agent-contracts",
+      "name": "precedent-transactions-agent-forbidden-phrases",
+      "passed": true,
+      "message": "No forbidden phrases were found.",
+      "details": {
+        "present": []
+      }
+    },
+    {
+      "suite": "validate-agent-contracts",
+      "name": "precedent-transactions-agent-capability-WebSearch",
+      "passed": true,
+      "message": "Required capability 'WebSearch' is present.",
+      "details": {
+        "capability": "WebSearch"
+      }
+    },
+    {
+      "suite": "validate-agent-contracts",
+      "name": "coverage-report-agent-exists",
+      "passed": true,
+      "message": "Agent exists for contract validation.",
+      "details": {
+        "agentId": "coverage-report-agent"
+      }
+    },
+    {
+      "suite": "validate-agent-contracts",
+      "name": "coverage-report-agent-required-phrases",
+      "passed": true,
+      "message": "All required behavior phrases are present.",
+      "details": {
+        "missing": []
+      }
+    },
+    {
+      "suite": "validate-agent-contracts",
+      "name": "coverage-report-agent-forbidden-phrases",
+      "passed": true,
+      "message": "No forbidden phrases were found.",
+      "details": {
+        "present": []
+      }
+    },
+    {
+      "suite": "validate-agent-contracts",
+      "name": "coverage-report-agent-capability-WebSearch",
+      "passed": true,
+      "message": "Required capability 'WebSearch' is present.",
+      "details": {
+        "capability": "WebSearch"
+      }
+    },
+    {
+      "suite": "validate-agent-contracts",
+      "name": "compliance-guardrail-agent-exists",
+      "passed": true,
+      "message": "Agent exists for contract validation.",
+      "details": {
+        "agentId": "compliance-guardrail-agent"
+      }
+    },
+    {
+      "suite": "validate-agent-contracts",
+      "name": "compliance-guardrail-agent-required-phrases",
+      "passed": true,
+      "message": "All required behavior phrases are present.",
+      "details": {
+        "missing": []
+      }
+    },
+    {
+      "suite": "validate-agent-contracts",
+      "name": "compliance-guardrail-agent-forbidden-phrases",
+      "passed": true,
+      "message": "No forbidden phrases were found.",
+      "details": {
+        "present": []
+      }
+    }
+  ]
+}

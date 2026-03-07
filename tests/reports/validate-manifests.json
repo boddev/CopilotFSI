@@ -1,0 +1,964 @@
+{
+  "suite": "validate-manifests",
+  "generatedAt": "2026-03-06T14:28:16.7047434-06:00",
+  "total": 100,
+  "failed": 0,
+  "passed": 100,
+  "success": true,
+  "results": [
+    {
+      "suite": "validate-manifests",
+      "name": "mcp-factset-required-properties",
+      "passed": true,
+      "message": "Required manifest properties are present.",
+      "details": {
+        "missing": [],
+        "path": "C:\\Users\\bodonnell\\src\\CopilotFSI\\agents\\mcp\\mcp-factset\\appPackage\\declarativeAgent.json"
+      }
+    },
+    {
+      "suite": "validate-manifests",
+      "name": "mcp-factset-instructions-length",
+      "passed": true,
+      "message": "Instruction length is within schema limits.",
+      "details": {
+        "length": 1591,
+        "path": "C:\\Users\\bodonnell\\src\\CopilotFSI\\agents\\mcp\\mcp-factset\\appPackage\\declarativeAgent.json"
+      }
+    },
+    {
+      "suite": "validate-manifests",
+      "name": "mcp-factset-empty-actions",
+      "passed": true,
+      "message": "No empty actions array is present.",
+      "details": {
+        "path": "C:\\Users\\bodonnell\\src\\CopilotFSI\\agents\\mcp\\mcp-factset\\appPackage\\declarativeAgent.json"
+      }
+    },
+    {
+      "suite": "validate-manifests",
+      "name": "mcp-factset-conversation-starters",
+      "passed": true,
+      "message": "Conversation starters are present.",
+      "details": {
+        "path": "C:\\Users\\bodonnell\\src\\CopilotFSI\\agents\\mcp\\mcp-factset\\appPackage\\declarativeAgent.json"
+      }
+    },
+    {
+      "suite": "validate-manifests",
+      "name": "mcp-sp-global-required-properties",
+      "passed": true,
+      "message": "Required manifest properties are present.",
+      "details": {
+        "missing": [],
+        "path": "C:\\Users\\bodonnell\\src\\CopilotFSI\\agents\\mcp\\mcp-sp-global\\appPackage\\declarativeAgent.json"
+      }
+    },
+    {
+      "suite": "validate-manifests",
+      "name": "mcp-sp-global-instructions-length",
+      "passed": true,
+      "message": "Instruction length is within schema limits.",
+      "details": {
+        "length": 1251,
+        "path": "C:\\Users\\bodonnell\\src\\CopilotFSI\\agents\\mcp\\mcp-sp-global\\appPackage\\declarativeAgent.json"
+      }
+    },
+    {
+      "suite": "validate-manifests",
+      "name": "mcp-sp-global-empty-actions",
+      "passed": true,
+      "message": "No empty actions array is present.",
+      "details": {
+        "path": "C:\\Users\\bodonnell\\src\\CopilotFSI\\agents\\mcp\\mcp-sp-global\\appPackage\\declarativeAgent.json"
+      }
+    },
+    {
+      "suite": "validate-manifests",
+      "name": "mcp-sp-global-conversation-starters",
+      "passed": true,
+      "message": "Conversation starters are present.",
+      "details": {
+        "path": "C:\\Users\\bodonnell\\src\\CopilotFSI\\agents\\mcp\\mcp-sp-global\\appPackage\\declarativeAgent.json"
+      }
+    },
+    {
+      "suite": "validate-manifests",
+      "name": "mcp-market-data-required-properties",
+      "passed": true,
+      "message": "Required manifest properties are present.",
+      "details": {
+        "missing": [],
+        "path": "C:\\Users\\bodonnell\\src\\CopilotFSI\\agents\\mcp\\mcp-market-data\\appPackage\\declarativeAgent.json"
+      }
+    },
+    {
+      "suite": "validate-manifests",
+      "name": "mcp-market-data-instructions-length",
+      "passed": true,
+      "message": "Instruction length is within schema limits.",
+      "details": {
+        "length": 1624,
+        "path": "C:\\Users\\bodonnell\\src\\CopilotFSI\\agents\\mcp\\mcp-market-data\\appPackage\\declarativeAgent.json"
+      }
+    },
+    {
+      "suite": "validate-manifests",
+      "name": "mcp-market-data-empty-actions",
+      "passed": true,
+      "message": "No empty actions array is present.",
+      "details": {
+        "path": "C:\\Users\\bodonnell\\src\\CopilotFSI\\agents\\mcp\\mcp-market-data\\appPackage\\declarativeAgent.json"
+      }
+    },
+    {
+      "suite": "validate-manifests",
+      "name": "mcp-market-data-conversation-starters",
+      "passed": true,
+      "message": "Conversation starters are present.",
+      "details": {
+        "path": "C:\\Users\\bodonnell\\src\\CopilotFSI\\agents\\mcp\\mcp-market-data\\appPackage\\declarativeAgent.json"
+      }
+    },
+    {
+      "suite": "validate-manifests",
+      "name": "mcp-research-ratings-required-properties",
+      "passed": true,
+      "message": "Required manifest properties are present.",
+      "details": {
+        "missing": [],
+        "path": "C:\\Users\\bodonnell\\src\\CopilotFSI\\agents\\mcp\\mcp-research-ratings\\appPackage\\declarativeAgent.json"
+      }
+    },
+    {
+      "suite": "validate-manifests",
+      "name": "mcp-research-ratings-instructions-length",
+      "passed": true,
+      "message": "Instruction length is within schema limits.",
+      "details": {
+        "length": 1824,
+        "path": "C:\\Users\\bodonnell\\src\\CopilotFSI\\agents\\mcp\\mcp-research-ratings\\appPackage\\declarativeAgent.json"
+      }
+    },
+    {
+      "suite": "validate-manifests",
+      "name": "mcp-research-ratings-empty-actions",
+      "passed": true,
+      "message": "No empty actions array is present.",
+      "details": {
+        "path": "C:\\Users\\bodonnell\\src\\CopilotFSI\\agents\\mcp\\mcp-research-ratings\\appPackage\\declarativeAgent.json"
+      }
+    },
+    {
+      "suite": "validate-manifests",
+      "name": "mcp-research-ratings-conversation-starters",
+      "passed": true,
+      "message": "Conversation starters are present.",
+      "details": {
+        "path": "C:\\Users\\bodonnell\\src\\CopilotFSI\\agents\\mcp\\mcp-research-ratings\\appPackage\\declarativeAgent.json"
+      }
+    },
+    {
+      "suite": "validate-manifests",
+      "name": "mcp-private-capital-required-properties",
+      "passed": true,
+      "message": "Required manifest properties are present.",
+      "details": {
+        "missing": [],
+        "path": "C:\\Users\\bodonnell\\src\\CopilotFSI\\agents\\mcp\\mcp-private-capital\\appPackage\\declarativeAgent.json"
+      }
+    },
+    {
+      "suite": "validate-manifests",
+      "name": "mcp-private-capital-instructions-length",
+      "passed": true,
+      "message": "Instruction length is within schema limits.",
+      "details": {
+        "length": 1109,
+        "path": "C:\\Users\\bodonnell\\src\\CopilotFSI\\agents\\mcp\\mcp-private-capital\\appPackage\\declarativeAgent.json"
+      }
+    },
+    {
+      "suite": "validate-manifests",
+      "name": "mcp-private-capital-empty-actions",
+      "passed": true,
+      "message": "No empty actions array is present.",
+      "details": {
+        "path": "C:\\Users\\bodonnell\\src\\CopilotFSI\\agents\\mcp\\mcp-private-capital\\appPackage\\declarativeAgent.json"
+      }
+    },
+    {
+      "suite": "validate-manifests",
+      "name": "mcp-private-capital-conversation-starters",
+      "passed": true,
+      "message": "Conversation starters are present.",
+      "details": {
+        "path": "C:\\Users\\bodonnell\\src\\CopilotFSI\\agents\\mcp\\mcp-private-capital\\appPackage\\declarativeAgent.json"
+      }
+    },
+    {
+      "suite": "validate-manifests",
+      "name": "mcp-transcripts-intel-required-properties",
+      "passed": true,
+      "message": "Required manifest properties are present.",
+      "details": {
+        "missing": [],
+        "path": "C:\\Users\\bodonnell\\src\\CopilotFSI\\agents\\mcp\\mcp-transcripts-intel\\appPackage\\declarativeAgent.json"
+      }
+    },
+    {
+      "suite": "validate-manifests",
+      "name": "mcp-transcripts-intel-instructions-length",
+      "passed": true,
+      "message": "Instruction length is within schema limits.",
+      "details": {
+        "length": 2220,
+        "path": "C:\\Users\\bodonnell\\src\\CopilotFSI\\agents\\mcp\\mcp-transcripts-intel\\appPackage\\declarativeAgent.json"
+      }
+    },
+    {
+      "suite": "validate-manifests",
+      "name": "mcp-transcripts-intel-empty-actions",
+      "passed": true,
+      "message": "No empty actions array is present.",
+      "details": {
+        "path": "C:\\Users\\bodonnell\\src\\CopilotFSI\\agents\\mcp\\mcp-transcripts-intel\\appPackage\\declarativeAgent.json"
+      }
+    },
+    {
+      "suite": "validate-manifests",
+      "name": "mcp-transcripts-intel-conversation-starters",
+      "passed": true,
+      "message": "Conversation starters are present.",
+      "details": {
+        "path": "C:\\Users\\bodonnell\\src\\CopilotFSI\\agents\\mcp\\mcp-transcripts-intel\\appPackage\\declarativeAgent.json"
+      }
+    },
+    {
+      "suite": "validate-manifests",
+      "name": "mcp-public-filings-required-properties",
+      "passed": true,
+      "message": "Required manifest properties are present.",
+      "details": {
+        "missing": [],
+        "path": "C:\\Users\\bodonnell\\src\\CopilotFSI\\agents\\mcp\\mcp-public-filings\\appPackage\\declarativeAgent.json"
+      }
+    },
+    {
+      "suite": "validate-manifests",
+      "name": "mcp-public-filings-instructions-length",
+      "passed": true,
+      "message": "Instruction length is within schema limits.",
+      "details": {
+        "length": 2039,
+        "path": "C:\\Users\\bodonnell\\src\\CopilotFSI\\agents\\mcp\\mcp-public-filings\\appPackage\\declarativeAgent.json"
+      }
+    },
+    {
+      "suite": "validate-manifests",
+      "name": "mcp-public-filings-empty-actions",
+      "passed": true,
+      "message": "No empty actions array is present.",
+      "details": {
+        "path": "C:\\Users\\bodonnell\\src\\CopilotFSI\\agents\\mcp\\mcp-public-filings\\appPackage\\declarativeAgent.json"
+      }
+    },
+    {
+      "suite": "validate-manifests",
+      "name": "mcp-public-filings-conversation-starters",
+      "passed": true,
+      "message": "Conversation starters are present.",
+      "details": {
+        "path": "C:\\Users\\bodonnell\\src\\CopilotFSI\\agents\\mcp\\mcp-public-filings\\appPackage\\declarativeAgent.json"
+      }
+    },
+    {
+      "suite": "validate-manifests",
+      "name": "mcp-document-platforms-required-properties",
+      "passed": true,
+      "message": "Required manifest properties are present.",
+      "details": {
+        "missing": [],
+        "path": "C:\\Users\\bodonnell\\src\\CopilotFSI\\agents\\mcp\\mcp-document-platforms\\appPackage\\declarativeAgent.json"
+      }
+    },
+    {
+      "suite": "validate-manifests",
+      "name": "mcp-document-platforms-instructions-length",
+      "passed": true,
+      "message": "Instruction length is within schema limits.",
+      "details": {
+        "length": 1289,
+        "path": "C:\\Users\\bodonnell\\src\\CopilotFSI\\agents\\mcp\\mcp-document-platforms\\appPackage\\declarativeAgent.json"
+      }
+    },
+    {
+      "suite": "validate-manifests",
+      "name": "mcp-document-platforms-empty-actions",
+      "passed": true,
+      "message": "No empty actions array is present.",
+      "details": {
+        "path": "C:\\Users\\bodonnell\\src\\CopilotFSI\\agents\\mcp\\mcp-document-platforms\\appPackage\\declarativeAgent.json"
+      }
+    },
+    {
+      "suite": "validate-manifests",
+      "name": "mcp-document-platforms-conversation-starters",
+      "passed": true,
+      "message": "Conversation starters are present.",
+      "details": {
+        "path": "C:\\Users\\bodonnell\\src\\CopilotFSI\\agents\\mcp\\mcp-document-platforms\\appPackage\\declarativeAgent.json"
+      }
+    },
+    {
+      "suite": "validate-manifests",
+      "name": "mcp-data-warehouses-required-properties",
+      "passed": true,
+      "message": "Required manifest properties are present.",
+      "details": {
+        "missing": [],
+        "path": "C:\\Users\\bodonnell\\src\\CopilotFSI\\agents\\mcp\\mcp-data-warehouses\\appPackage\\declarativeAgent.json"
+      }
+    },
+    {
+      "suite": "validate-manifests",
+      "name": "mcp-data-warehouses-instructions-length",
+      "passed": true,
+      "message": "Instruction length is within schema limits.",
+      "details": {
+        "length": 1070,
+        "path": "C:\\Users\\bodonnell\\src\\CopilotFSI\\agents\\mcp\\mcp-data-warehouses\\appPackage\\declarativeAgent.json"
+      }
+    },
+    {
+      "suite": "validate-manifests",
+      "name": "mcp-data-warehouses-empty-actions",
+      "passed": true,
+      "message": "No empty actions array is present.",
+      "details": {
+        "path": "C:\\Users\\bodonnell\\src\\CopilotFSI\\agents\\mcp\\mcp-data-warehouses\\appPackage\\declarativeAgent.json"
+      }
+    },
+    {
+      "suite": "validate-manifests",
+      "name": "mcp-data-warehouses-conversation-starters",
+      "passed": true,
+      "message": "Conversation starters are present.",
+      "details": {
+        "path": "C:\\Users\\bodonnell\\src\\CopilotFSI\\agents\\mcp\\mcp-data-warehouses\\appPackage\\declarativeAgent.json"
+      }
+    },
+    {
+      "suite": "validate-manifests",
+      "name": "mcp-bloomberg-required-properties",
+      "passed": true,
+      "message": "Required manifest properties are present.",
+      "details": {
+        "missing": [],
+        "path": "C:\\Users\\bodonnell\\src\\CopilotFSI\\agents\\mcp\\mcp-bloomberg\\appPackage\\declarativeAgent.json"
+      }
+    },
+    {
+      "suite": "validate-manifests",
+      "name": "mcp-bloomberg-instructions-length",
+      "passed": true,
+      "message": "Instruction length is within schema limits.",
+      "details": {
+        "length": 1376,
+        "path": "C:\\Users\\bodonnell\\src\\CopilotFSI\\agents\\mcp\\mcp-bloomberg\\appPackage\\declarativeAgent.json"
+      }
+    },
+    {
+      "suite": "validate-manifests",
+      "name": "mcp-bloomberg-empty-actions",
+      "passed": true,
+      "message": "No empty actions array is present.",
+      "details": {
+        "path": "C:\\Users\\bodonnell\\src\\CopilotFSI\\agents\\mcp\\mcp-bloomberg\\appPackage\\declarativeAgent.json"
+      }
+    },
+    {
+      "suite": "validate-manifests",
+      "name": "mcp-bloomberg-conversation-starters",
+      "passed": true,
+      "message": "Conversation starters are present.",
+      "details": {
+        "path": "C:\\Users\\bodonnell\\src\\CopilotFSI\\agents\\mcp\\mcp-bloomberg\\appPackage\\declarativeAgent.json"
+      }
+    },
+    {
+      "suite": "validate-manifests",
+      "name": "compliance-guardrail-agent-required-properties",
+      "passed": true,
+      "message": "Required manifest properties are present.",
+      "details": {
+        "missing": [],
+        "path": "C:\\Users\\bodonnell\\src\\CopilotFSI\\agents\\compliance-guardrail-agent\\appPackage\\declarativeAgent.json"
+      }
+    },
+    {
+      "suite": "validate-manifests",
+      "name": "compliance-guardrail-agent-instructions-length",
+      "passed": true,
+      "message": "Instruction length is within schema limits.",
+      "details": {
+        "length": 2361,
+        "path": "C:\\Users\\bodonnell\\src\\CopilotFSI\\agents\\compliance-guardrail-agent\\appPackage\\declarativeAgent.json"
+      }
+    },
+    {
+      "suite": "validate-manifests",
+      "name": "compliance-guardrail-agent-empty-actions",
+      "passed": true,
+      "message": "No empty actions array is present.",
+      "details": {
+        "path": "C:\\Users\\bodonnell\\src\\CopilotFSI\\agents\\compliance-guardrail-agent\\appPackage\\declarativeAgent.json"
+      }
+    },
+    {
+      "suite": "validate-manifests",
+      "name": "compliance-guardrail-agent-conversation-starters",
+      "passed": true,
+      "message": "Conversation starters are present.",
+      "details": {
+        "path": "C:\\Users\\bodonnell\\src\\CopilotFSI\\agents\\compliance-guardrail-agent\\appPackage\\declarativeAgent.json"
+      }
+    },
+    {
+      "suite": "validate-manifests",
+      "name": "comparable-analysis-agent-required-properties",
+      "passed": true,
+      "message": "Required manifest properties are present.",
+      "details": {
+        "missing": [],
+        "path": "C:\\Users\\bodonnell\\src\\CopilotFSI\\agents\\comparable-analysis-agent\\appPackage\\declarativeAgent.json"
+      }
+    },
+    {
+      "suite": "validate-manifests",
+      "name": "comparable-analysis-agent-instructions-length",
+      "passed": true,
+      "message": "Instruction length is within schema limits.",
+      "details": {
+        "length": 4435,
+        "path": "C:\\Users\\bodonnell\\src\\CopilotFSI\\agents\\comparable-analysis-agent\\appPackage\\declarativeAgent.json"
+      }
+    },
+    {
+      "suite": "validate-manifests",
+      "name": "comparable-analysis-agent-empty-actions",
+      "passed": true,
+      "message": "No empty actions array is present.",
+      "details": {
+        "path": "C:\\Users\\bodonnell\\src\\CopilotFSI\\agents\\comparable-analysis-agent\\appPackage\\declarativeAgent.json"
+      }
+    },
+    {
+      "suite": "validate-manifests",
+      "name": "comparable-analysis-agent-conversation-starters",
+      "passed": true,
+      "message": "Conversation starters are present.",
+      "details": {
+        "path": "C:\\Users\\bodonnell\\src\\CopilotFSI\\agents\\comparable-analysis-agent\\appPackage\\declarativeAgent.json"
+      }
+    },
+    {
+      "suite": "validate-manifests",
+      "name": "comparable-analysis-agent-websearch-site-count",
+      "passed": true,
+      "message": "WebSearch site list is within schema limits.",
+      "details": {
+        "siteCount": 4,
+        "path": "C:\\Users\\bodonnell\\src\\CopilotFSI\\agents\\comparable-analysis-agent\\appPackage\\declarativeAgent.json"
+      }
+    },
+    {
+      "suite": "validate-manifests",
+      "name": "comparable-analysis-agent-websearch-site-urls",
+      "passed": true,
+      "message": "WebSearch site entries all contain URLs.",
+      "details": {
+        "path": "C:\\Users\\bodonnell\\src\\CopilotFSI\\agents\\comparable-analysis-agent\\appPackage\\declarativeAgent.json"
+      }
+    },
+    {
+      "suite": "validate-manifests",
+      "name": "comparable-analysis-agent-worker-agents",
+      "passed": true,
+      "message": "Worker agents are configured.",
+      "details": {
+        "workerCount": 3,
+        "path": "C:\\Users\\bodonnell\\src\\CopilotFSI\\agents\\comparable-analysis-agent\\appPackage\\declarativeAgent.json"
+      }
+    },
+    {
+      "suite": "validate-manifests",
+      "name": "dcf-model-agent-required-properties",
+      "passed": true,
+      "message": "Required manifest properties are present.",
+      "details": {
+        "missing": [],
+        "path": "C:\\Users\\bodonnell\\src\\CopilotFSI\\agents\\dcf-model-agent\\appPackage\\declarativeAgent.json"
+      }
+    },
+    {
+      "suite": "validate-manifests",
+      "name": "dcf-model-agent-instructions-length",
+      "passed": true,
+      "message": "Instruction length is within schema limits.",
+      "details": {
+        "length": 4077,
+        "path": "C:\\Users\\bodonnell\\src\\CopilotFSI\\agents\\dcf-model-agent\\appPackage\\declarativeAgent.json"
+      }
+    },
+    {
+      "suite": "validate-manifests",
+      "name": "dcf-model-agent-empty-actions",
+      "passed": true,
+      "message": "No empty actions array is present.",
+      "details": {
+        "path": "C:\\Users\\bodonnell\\src\\CopilotFSI\\agents\\dcf-model-agent\\appPackage\\declarativeAgent.json"
+      }
+    },
+    {
+      "suite": "validate-manifests",
+      "name": "dcf-model-agent-conversation-starters",
+      "passed": true,
+      "message": "Conversation starters are present.",
+      "details": {
+        "path": "C:\\Users\\bodonnell\\src\\CopilotFSI\\agents\\dcf-model-agent\\appPackage\\declarativeAgent.json"
+      }
+    },
+    {
+      "suite": "validate-manifests",
+      "name": "dcf-model-agent-websearch-site-count",
+      "passed": true,
+      "message": "WebSearch site list is within schema limits.",
+      "details": {
+        "siteCount": 4,
+        "path": "C:\\Users\\bodonnell\\src\\CopilotFSI\\agents\\dcf-model-agent\\appPackage\\declarativeAgent.json"
+      }
+    },
+    {
+      "suite": "validate-manifests",
+      "name": "dcf-model-agent-websearch-site-urls",
+      "passed": true,
+      "message": "WebSearch site entries all contain URLs.",
+      "details": {
+        "path": "C:\\Users\\bodonnell\\src\\CopilotFSI\\agents\\dcf-model-agent\\appPackage\\declarativeAgent.json"
+      }
+    },
+    {
+      "suite": "validate-manifests",
+      "name": "dcf-model-agent-worker-agents",
+      "passed": true,
+      "message": "Worker agents are configured.",
+      "details": {
+        "workerCount": 4,
+        "path": "C:\\Users\\bodonnell\\src\\CopilotFSI\\agents\\dcf-model-agent\\appPackage\\declarativeAgent.json"
+      }
+    },
+    {
+      "suite": "validate-manifests",
+      "name": "due-diligence-agent-required-properties",
+      "passed": true,
+      "message": "Required manifest properties are present.",
+      "details": {
+        "missing": [],
+        "path": "C:\\Users\\bodonnell\\src\\CopilotFSI\\agents\\due-diligence-agent\\appPackage\\declarativeAgent.json"
+      }
+    },
+    {
+      "suite": "validate-manifests",
+      "name": "due-diligence-agent-instructions-length",
+      "passed": true,
+      "message": "Instruction length is within schema limits.",
+      "details": {
+        "length": 3372,
+        "path": "C:\\Users\\bodonnell\\src\\CopilotFSI\\agents\\due-diligence-agent\\appPackage\\declarativeAgent.json"
+      }
+    },
+    {
+      "suite": "validate-manifests",
+      "name": "due-diligence-agent-empty-actions",
+      "passed": true,
+      "message": "No empty actions array is present.",
+      "details": {
+        "path": "C:\\Users\\bodonnell\\src\\CopilotFSI\\agents\\due-diligence-agent\\appPackage\\declarativeAgent.json"
+      }
+    },
+    {
+      "suite": "validate-manifests",
+      "name": "due-diligence-agent-conversation-starters",
+      "passed": true,
+      "message": "Conversation starters are present.",
+      "details": {
+        "path": "C:\\Users\\bodonnell\\src\\CopilotFSI\\agents\\due-diligence-agent\\appPackage\\declarativeAgent.json"
+      }
+    },
+    {
+      "suite": "validate-manifests",
+      "name": "due-diligence-agent-websearch-site-count",
+      "passed": true,
+      "message": "WebSearch site list is within schema limits.",
+      "details": {
+        "siteCount": 4,
+        "path": "C:\\Users\\bodonnell\\src\\CopilotFSI\\agents\\due-diligence-agent\\appPackage\\declarativeAgent.json"
+      }
+    },
+    {
+      "suite": "validate-manifests",
+      "name": "due-diligence-agent-websearch-site-urls",
+      "passed": true,
+      "message": "WebSearch site entries all contain URLs.",
+      "details": {
+        "path": "C:\\Users\\bodonnell\\src\\CopilotFSI\\agents\\due-diligence-agent\\appPackage\\declarativeAgent.json"
+      }
+    },
+    {
+      "suite": "validate-manifests",
+      "name": "due-diligence-agent-worker-agents",
+      "passed": true,
+      "message": "Worker agents are configured.",
+      "details": {
+        "workerCount": 3,
+        "path": "C:\\Users\\bodonnell\\src\\CopilotFSI\\agents\\due-diligence-agent\\appPackage\\declarativeAgent.json"
+      }
+    },
+    {
+      "suite": "validate-manifests",
+      "name": "company-profile-agent-required-properties",
+      "passed": true,
+      "message": "Required manifest properties are present.",
+      "details": {
+        "missing": [],
+        "path": "C:\\Users\\bodonnell\\src\\CopilotFSI\\agents\\company-profile-agent\\appPackage\\declarativeAgent.json"
+      }
+    },
+    {
+      "suite": "validate-manifests",
+      "name": "company-profile-agent-instructions-length",
+      "passed": true,
+      "message": "Instruction length is within schema limits.",
+      "details": {
+        "length": 3432,
+        "path": "C:\\Users\\bodonnell\\src\\CopilotFSI\\agents\\company-profile-agent\\appPackage\\declarativeAgent.json"
+      }
+    },
+    {
+      "suite": "validate-manifests",
+      "name": "company-profile-agent-empty-actions",
+      "passed": true,
+      "message": "No empty actions array is present.",
+      "details": {
+        "path": "C:\\Users\\bodonnell\\src\\CopilotFSI\\agents\\company-profile-agent\\appPackage\\declarativeAgent.json"
+      }
+    },
+    {
+      "suite": "validate-manifests",
+      "name": "company-profile-agent-conversation-starters",
+      "passed": true,
+      "message": "Conversation starters are present.",
+      "details": {
+        "path": "C:\\Users\\bodonnell\\src\\CopilotFSI\\agents\\company-profile-agent\\appPackage\\declarativeAgent.json"
+      }
+    },
+    {
+      "suite": "validate-manifests",
+      "name": "company-profile-agent-websearch-site-count",
+      "passed": true,
+      "message": "WebSearch site list is within schema limits.",
+      "details": {
+        "siteCount": 4,
+        "path": "C:\\Users\\bodonnell\\src\\CopilotFSI\\agents\\company-profile-agent\\appPackage\\declarativeAgent.json"
+      }
+    },
+    {
+      "suite": "validate-manifests",
+      "name": "company-profile-agent-websearch-site-urls",
+      "passed": true,
+      "message": "WebSearch site entries all contain URLs.",
+      "details": {
+        "path": "C:\\Users\\bodonnell\\src\\CopilotFSI\\agents\\company-profile-agent\\appPackage\\declarativeAgent.json"
+      }
+    },
+    {
+      "suite": "validate-manifests",
+      "name": "company-profile-agent-worker-agents",
+      "passed": true,
+      "message": "Worker agents are configured.",
+      "details": {
+        "workerCount": 3,
+        "path": "C:\\Users\\bodonnell\\src\\CopilotFSI\\agents\\company-profile-agent\\appPackage\\declarativeAgent.json"
+      }
+    },
+    {
+      "suite": "validate-manifests",
+      "name": "earnings-analysis-agent-required-properties",
+      "passed": true,
+      "message": "Required manifest properties are present.",
+      "details": {
+        "missing": [],
+        "path": "C:\\Users\\bodonnell\\src\\CopilotFSI\\agents\\earnings-analysis-agent\\appPackage\\declarativeAgent.json"
+      }
+    },
+    {
+      "suite": "validate-manifests",
+      "name": "earnings-analysis-agent-instructions-length",
+      "passed": true,
+      "message": "Instruction length is within schema limits.",
+      "details": {
+        "length": 3722,
+        "path": "C:\\Users\\bodonnell\\src\\CopilotFSI\\agents\\earnings-analysis-agent\\appPackage\\declarativeAgent.json"
+      }
+    },
+    {
+      "suite": "validate-manifests",
+      "name": "earnings-analysis-agent-empty-actions",
+      "passed": true,
+      "message": "No empty actions array is present.",
+      "details": {
+        "path": "C:\\Users\\bodonnell\\src\\CopilotFSI\\agents\\earnings-analysis-agent\\appPackage\\declarativeAgent.json"
+      }
+    },
+    {
+      "suite": "validate-manifests",
+      "name": "earnings-analysis-agent-conversation-starters",
+      "passed": true,
+      "message": "Conversation starters are present.",
+      "details": {
+        "path": "C:\\Users\\bodonnell\\src\\CopilotFSI\\agents\\earnings-analysis-agent\\appPackage\\declarativeAgent.json"
+      }
+    },
+    {
+      "suite": "validate-manifests",
+      "name": "earnings-analysis-agent-websearch-site-count",
+      "passed": true,
+      "message": "WebSearch site list is within schema limits.",
+      "details": {
+        "siteCount": 4,
+        "path": "C:\\Users\\bodonnell\\src\\CopilotFSI\\agents\\earnings-analysis-agent\\appPackage\\declarativeAgent.json"
+      }
+    },
+    {
+      "suite": "validate-manifests",
+      "name": "earnings-analysis-agent-websearch-site-urls",
+      "passed": true,
+      "message": "WebSearch site entries all contain URLs.",
+      "details": {
+        "path": "C:\\Users\\bodonnell\\src\\CopilotFSI\\agents\\earnings-analysis-agent\\appPackage\\declarativeAgent.json"
+      }
+    },
+    {
+      "suite": "validate-manifests",
+      "name": "earnings-analysis-agent-worker-agents",
+      "passed": true,
+      "message": "Worker agents are configured.",
+      "details": {
+        "workerCount": 3,
+        "path": "C:\\Users\\bodonnell\\src\\CopilotFSI\\agents\\earnings-analysis-agent\\appPackage\\declarativeAgent.json"
+      }
+    },
+    {
+      "suite": "validate-manifests",
+      "name": "precedent-transactions-agent-required-properties",
+      "passed": true,
+      "message": "Required manifest properties are present.",
+      "details": {
+        "missing": [],
+        "path": "C:\\Users\\bodonnell\\src\\CopilotFSI\\agents\\precedent-transactions-agent\\appPackage\\declarativeAgent.json"
+      }
+    },
+    {
+      "suite": "validate-manifests",
+      "name": "precedent-transactions-agent-instructions-length",
+      "passed": true,
+      "message": "Instruction length is within schema limits.",
+      "details": {
+        "length": 3128,
+        "path": "C:\\Users\\bodonnell\\src\\CopilotFSI\\agents\\precedent-transactions-agent\\appPackage\\declarativeAgent.json"
+      }
+    },
+    {
+      "suite": "validate-manifests",
+      "name": "precedent-transactions-agent-empty-actions",
+      "passed": true,
+      "message": "No empty actions array is present.",
+      "details": {
+        "path": "C:\\Users\\bodonnell\\src\\CopilotFSI\\agents\\precedent-transactions-agent\\appPackage\\declarativeAgent.json"
+      }
+    },
+    {
+      "suite": "validate-manifests",
+      "name": "precedent-transactions-agent-conversation-starters",
+      "passed": true,
+      "message": "Conversation starters are present.",
+      "details": {
+        "path": "C:\\Users\\bodonnell\\src\\CopilotFSI\\agents\\precedent-transactions-agent\\appPackage\\declarativeAgent.json"
+      }
+    },
+    {
+      "suite": "validate-manifests",
+      "name": "precedent-transactions-agent-websearch-site-count",
+      "passed": true,
+      "message": "WebSearch site list is within schema limits.",
+      "details": {
+        "siteCount": 4,
+        "path": "C:\\Users\\bodonnell\\src\\CopilotFSI\\agents\\precedent-transactions-agent\\appPackage\\declarativeAgent.json"
+      }
+    },
+    {
+      "suite": "validate-manifests",
+      "name": "precedent-transactions-agent-websearch-site-urls",
+      "passed": true,
+      "message": "WebSearch site entries all contain URLs.",
+      "details": {
+        "path": "C:\\Users\\bodonnell\\src\\CopilotFSI\\agents\\precedent-transactions-agent\\appPackage\\declarativeAgent.json"
+      }
+    },
+    {
+      "suite": "validate-manifests",
+      "name": "precedent-transactions-agent-worker-agents",
+      "passed": true,
+      "message": "Worker agents are configured.",
+      "details": {
+        "workerCount": 2,
+        "path": "C:\\Users\\bodonnell\\src\\CopilotFSI\\agents\\precedent-transactions-agent\\appPackage\\declarativeAgent.json"
+      }
+    },
+    {
+      "suite": "validate-manifests",
+      "name": "coverage-report-agent-required-properties",
+      "passed": true,
+      "message": "Required manifest properties are present.",
+      "details": {
+        "missing": [],
+        "path": "C:\\Users\\bodonnell\\src\\CopilotFSI\\agents\\coverage-report-agent\\appPackage\\declarativeAgent.json"
+      }
+    },
+    {
+      "suite": "validate-manifests",
+      "name": "coverage-report-agent-instructions-length",
+      "passed": true,
+      "message": "Instruction length is within schema limits.",
+      "details": {
+        "length": 4850,
+        "path": "C:\\Users\\bodonnell\\src\\CopilotFSI\\agents\\coverage-report-agent\\appPackage\\declarativeAgent.json"
+      }
+    },
+    {
+      "suite": "validate-manifests",
+      "name": "coverage-report-agent-empty-actions",
+      "passed": true,
+      "message": "No empty actions array is present.",
+      "details": {
+        "path": "C:\\Users\\bodonnell\\src\\CopilotFSI\\agents\\coverage-report-agent\\appPackage\\declarativeAgent.json"
+      }
+    },
+    {
+      "suite": "validate-manifests",
+      "name": "coverage-report-agent-conversation-starters",
+      "passed": true,
+      "message": "Conversation starters are present.",
+      "details": {
+        "path": "C:\\Users\\bodonnell\\src\\CopilotFSI\\agents\\coverage-report-agent\\appPackage\\declarativeAgent.json"
+      }
+    },
+    {
+      "suite": "validate-manifests",
+      "name": "coverage-report-agent-websearch-site-count",
+      "passed": true,
+      "message": "WebSearch site list is within schema limits.",
+      "details": {
+        "siteCount": 4,
+        "path": "C:\\Users\\bodonnell\\src\\CopilotFSI\\agents\\coverage-report-agent\\appPackage\\declarativeAgent.json"
+      }
+    },
+    {
+      "suite": "validate-manifests",
+      "name": "coverage-report-agent-websearch-site-urls",
+      "passed": true,
+      "message": "WebSearch site entries all contain URLs.",
+      "details": {
+        "path": "C:\\Users\\bodonnell\\src\\CopilotFSI\\agents\\coverage-report-agent\\appPackage\\declarativeAgent.json"
+      }
+    },
+    {
+      "suite": "validate-manifests",
+      "name": "coverage-report-agent-worker-agents",
+      "passed": true,
+      "message": "Worker agents are configured.",
+      "details": {
+        "workerCount": 8,
+        "path": "C:\\Users\\bodonnell\\src\\CopilotFSI\\agents\\coverage-report-agent\\appPackage\\declarativeAgent.json"
+      }
+    },
+    {
+      "suite": "validate-manifests",
+      "name": "fsi-primary-agent-required-properties",
+      "passed": true,
+      "message": "Required manifest properties are present.",
+      "details": {
+        "missing": [],
+        "path": "C:\\Users\\bodonnell\\src\\CopilotFSI\\agents\\fsi-primary-agent\\appPackage\\declarativeAgent.json"
+      }
+    },
+    {
+      "suite": "validate-manifests",
+      "name": "fsi-primary-agent-instructions-length",
+      "passed": true,
+      "message": "Instruction length is within schema limits.",
+      "details": {
+        "length": 4409,
+        "path": "C:\\Users\\bodonnell\\src\\CopilotFSI\\agents\\fsi-primary-agent\\appPackage\\declarativeAgent.json"
+      }
+    },
+    {
+      "suite": "validate-manifests",
+      "name": "fsi-primary-agent-empty-actions",
+      "passed": true,
+      "message": "No empty actions array is present.",
+      "details": {
+        "path": "C:\\Users\\bodonnell\\src\\CopilotFSI\\agents\\fsi-primary-agent\\appPackage\\declarativeAgent.json"
+      }
+    },
+    {
+      "suite": "validate-manifests",
+      "name": "fsi-primary-agent-conversation-starters",
+      "passed": true,
+      "message": "Conversation starters are present.",
+      "details": {
+        "path": "C:\\Users\\bodonnell\\src\\CopilotFSI\\agents\\fsi-primary-agent\\appPackage\\declarativeAgent.json"
+      }
+    },
+    {
+      "suite": "validate-manifests",
+      "name": "fsi-primary-agent-websearch-site-count",
+      "passed": true,
+      "message": "WebSearch site list is within schema limits.",
+      "details": {
+        "siteCount": 4,
+        "path": "C:\\Users\\bodonnell\\src\\CopilotFSI\\agents\\fsi-primary-agent\\appPackage\\declarativeAgent.json"
+      }
+    },
+    {
+      "suite": "validate-manifests",
+      "name": "fsi-primary-agent-websearch-site-urls",
+      "passed": true,
+      "message": "WebSearch site entries all contain URLs.",
+      "details": {
+        "path": "C:\\Users\\bodonnell\\src\\CopilotFSI\\agents\\fsi-primary-agent\\appPackage\\declarativeAgent.json"
+      }
+    },
+    {
+      "suite": "validate-manifests",
+      "name": "fsi-primary-agent-worker-agents",
+      "passed": true,
+      "message": "Worker agents are configured.",
+      "details": {
+        "workerCount": 8,
+        "path": "C:\\Users\\bodonnell\\src\\CopilotFSI\\agents\\fsi-primary-agent\\appPackage\\declarativeAgent.json"
+      }
+    }
+  ]
+}

@@ -1,0 +1,33 @@
+{
+    "$schema": "https://developer.microsoft.com/json-schemas/teams/vDevPreview/MicrosoftTeams.schema.json",
+    "manifestVersion": "devPreview",
+    "version": "1.0.0",
+    "id": "f74de3af-c697-4cd6-9975-04181f165b40",
+    "developer": {
+        "name": "Financial Services",
+        "websiteUrl": "https://example.com",
+        "privacyUrl": "https://example.com/privacy",
+        "termsOfUseUrl": "https://example.com/terms"
+    },
+    "name": {
+        "short": "Financial Services Copilot",
+        "full": "Financial Services Copilot - Enterprise Assistant"
+    },
+    "description": {
+        "short": "Enterprise financial services assistant for analysis and modeling.",
+        "full": "Enterprise financial services assistant providing comparable company analysis, DCF modeling, due diligence data packs, company profiles, earnings analysis, and coverage report initiation."
+    },
+    "icons": {
+        "outline": "outline.png",
+        "color": "color.png"
+    },
+    "accentColor": "#0078D4",
+    "copilotAgents": {
+        "declarativeAgents": [
+            {
+                "id": "declarativeAgent",
+                "file": "declarativeAgent.json"
+            }
+        ]
+    }
+}

@@ -1,0 +1,34 @@
+{
+    "$schema": "https://developer.microsoft.com/json-schemas/teams/vDevPreview/MicrosoftTeams.schema.json",
+    "manifestVersion": "devPreview",
+    "version": "1.0.0",
+    "id": "ce754317-6136-4a5d-a5a1-ad79dcc1543b",
+    "developer": {
+        "name": "Financial Services",
+        "websiteUrl": "https://example.com",
+        "privacyUrl": "https://example.com/privacy",
+        "termsOfUseUrl": "https://example.com/terms"
+    },
+    "name": {
+        "short": "S&P Global Data Connector",
+        "full": "S&P Global Market Intelligence Data Connector"
+    },
+    "description": {
+        "short": "Provides S&P Global Market Intelligence financials, ratings, and ESG data.",
+        "full": "Provides access to S&P Global Market Intelligence data including company financials, credit ratings, debt schedules, industry analysis, ESG scores, and earnings transcripts."
+    },
+    "icons": {
+        "outline": "outline.png",
+        "color": "color.png"
+    },
+    "accentColor": "#0078D4",
+    "defaultBlockUntilAdminAction": true,
+    "copilotAgents": {
+        "declarativeAgents": [
+            {
+                "id": "declarativeAgent",
+                "file": "declarativeAgent.json"
+            }
+        ]
+    }
+}

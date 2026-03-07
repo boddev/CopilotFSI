@@ -3,6 +3,7 @@
   "manifestVersion": "devPreview",
   "id": "${{TEAMS_APP_ID}}",
   "version": "1.0.0",
+  "defaultBlockUntilAdminAction": true,
   "developer": {
     "name": "Financial Services",
     "websiteUrl": "https://example.com",
@@ -14,7 +15,7 @@
     "full": "Document Platforms Connector (Box & Egnyte)"
   },
   "description": {
-    "short": "Provides access to documents in Box and Egnyte data rooms with AI-powered extraction.",
+    "short": "Provides document access from Box and Egnyte with AI extraction.",
     "full": "Provides access to documents in Box and Egnyte data rooms with text extraction powered by Azure AI Document Intelligence for PDF parsing, OCR, and table extraction."
   },
   "icons": { "outline": "outline.png", "color": "color.png" },

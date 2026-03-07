@@ -19,7 +19,7 @@ function Open-PrimaryAgent {
     # ── Locate the primary agent's .env file ──
     $primaryAgentPath = Join-Path $ProjectRoot "agents" "fsi-primary-agent"
     $envFileName = ".env.$Environment"
-    $envFilePath = Join-Path $primaryAgentPath $envFileName
+    $envFilePath = Join-Path $primaryAgentPath "env" $envFileName
 
     if (-not (Test-Path $primaryAgentPath)) {
         Write-Host "  ❌ Primary agent directory not found: $primaryAgentPath" -ForegroundColor Red
@@ -82,16 +82,16 @@ function Open-PrimaryAgent {
 
     Write-Host "║                                                              ║"
 
-    $pName = "  Primary Agent: Financial Services Copilot"
-    Write-Host "║$($pName.PadRight($boxWidth))║"
+    $nameLine = "  Primary Agent: Financial Services Copilot"
+    Write-Host "║$($nameLine.PadRight($boxWidth))║"
 
-    $pId = "  App ID: $teamsAppId"
-    if ($pId.Length -gt $boxWidth) { $pId = $pId.Substring(0, $boxWidth - 1) + '…' }
-    Write-Host "║$($pId.PadRight($boxWidth))║"
+    $appIdLine = "  App ID: $teamsAppId"
+    if ($appIdLine.Length -gt $boxWidth) { $appIdLine = $appIdLine.Substring(0, $boxWidth - 1) + '…' }
+    Write-Host "║$($appIdLine.PadRight($boxWidth))║"
 
-    $pLink = "  Deep Link: $deepLinkUrl"
-    if ($pLink.Length -gt $boxWidth) { $pLink = $pLink.Substring(0, $boxWidth - 1) + '…' }
-    Write-Host "║$($pLink.PadRight($boxWidth))║"
+    $linkLine = "  Deep Link: $deepLinkUrl"
+    if ($linkLine.Length -gt $boxWidth) { $linkLine = $linkLine.Substring(0, $boxWidth - 1) + '…' }
+    Write-Host "║$($linkLine.PadRight($boxWidth))║"
 
     Write-Host "║                                                              ║"
 

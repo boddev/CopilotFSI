@@ -1,0 +1,159 @@
+{
+    "$schema": "https://aka.ms/json-schemas/copilot/plugin/v2.4/schema.json",
+    "schema_version": "v2.4",
+    "name_for_human": "Financial Datasets",
+    "description_for_human": "Access financial data from the Financial Datasets API (financialdatasets.ai) as a fallback data source for financial analysis.",
+    "description_for_model": "Use this plugin as a fallback source for financial data when FactSet is unavailable. Provides financial statements (income statement, balance sheet, cash flow), historical stock prices, financial metrics (valuation, profitability, leverage, efficiency), and line-item search across tickers via the financialdatasets.ai REST API. Covers ~17,000 active and delisted U.S. tickers with 30+ years of history. Call this when primary data sources are unreachable or for cross-validation of financial data.",
+    "namespace": "financialdatasets",
+    "functions": [
+        {
+            "name": "get_financial_statements",
+            "description": "Retrieve financial statements (income statement, balance sheet, and cash flow statement) for a ticker. Maps to the GET /financials endpoint.",
+            "parameters": {
+                "type": "object",
+                "properties": {
+                    "ticker": {
+                        "type": "string",
+                        "description": "Stock ticker symbol (e.g., AAPL, MSFT)"
+                    },
+                    "period": {
+                        "type": "string",
+                        "description": "Reporting period: 'annual', 'quarterly', or 'ttm'"
+                    },
+                    "limit": {
+                        "type": "integer",
+                        "description": "Number of periods to return (default: 4)"
+                    }
+                },
+                "required": [
+                    "ticker"
+                ]
+            }
+        },
+        {
+            "name": "get_financial_metrics",
+            "description": "Retrieve historical financial metrics including valuation, profitability, leverage, liquidity, and efficiency ratios. Maps to the GET /metrics/historical endpoint.",
+            "parameters": {
+                "type": "object",
+                "properties": {
+                    "ticker": {
+                        "type": "string",
+                        "description": "Stock ticker symbol (e.g., AAPL, MSFT)"
+                    },
+                    "period": {
+                        "type": "string",
+                        "description": "Reporting period: 'annual', 'quarterly', or 'ttm'"
+                    },
+                    "limit": {
+                        "type": "integer",
+                        "description": "Number of periods to return (default: 4)"
+                    }
+                },
+                "required": [
+                    "ticker"
+                ]
+            }
+        },
+        {
+            "name": "get_prices",
+            "description": "Retrieve historical stock price data including open, high, low, close, and volume. Maps to the GET /prices endpoint.",
+            "parameters": {
+                "type": "object",
+                "properties": {
+                    "ticker": {
+                        "type": "string",
+                        "description": "Stock ticker symbol (e.g., AAPL, MSFT)"
+                    },
+                    "interval": {
+                        "type": "string",
+                        "description": "Price interval: 'day', 'week', 'month', or 'year'"
+                    },
+                    "interval_multiplier": {
+                        "type": "integer",
+                        "description": "Multiplier for the interval (minimum: 1)"
+                    },
+                    "start_date": {
+                        "type": "string",
+                        "description": "Start date in YYYY-MM-DD format"
+                    },
+                    "end_date": {
+                        "type": "string",
+                        "description": "End date in YYYY-MM-DD format"
+                    }
+                },
+                "required": [
+                    "ticker"
+                ]
+            }
+        },
+        {
+            "name": "get_price_snapshot",
+            "description": "Get the current real-time stock price, day change, and day change percent for a ticker. Maps to the GET /prices/snapshot endpoint.",
+            "parameters": {
+                "type": "object",
+                "properties": {
+                    "ticker": {
+                        "type": "string",
+                        "description": "Stock ticker symbol (e.g., AAPL, MSFT)"
+                    }
+                },
+                "required": [
+                    "ticker"
+                ]
+            }
+        },
+        {
+            "name": "search_line_items",
+            "description": "Search for specific financial line items (e.g., revenue, net_income, total_debt) across one or more tickers. Maps to the POST /financials/search/line-items endpoint. Useful for pulling comparable metrics across multiple companies.",
+            "parameters": {
+                "type": "object",
+                "properties": {
+                    "tickers": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        },
+                        "description": "List of stock ticker symbols to search across"
+                    },
+                    "line_items": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        },
+                        "description": "List of financial line item names to retrieve (e.g., revenue, net_income, total_debt, free_cash_flow)"
+                    },
+                    "period": {
+                        "type": "string",
+                        "description": "Reporting period: 'annual', 'quarterly', or 'ttm'"
+                    },
+                    "limit": {
+                        "type": "integer",
+                        "description": "Number of periods to return per ticker"
+                    }
+                },
+                "required": [
+                    "tickers",
+                    "line_items"
+                ]
+            }
+        }
+    ],
+    "runtimes": [
+        {
+            "type": "RemoteMCPServer",
+            "spec": {
+                "url": "https://mcp.financialdatasets.ai/mcp"
+            },
+            "auth": {
+                "type": "OAuthPluginVault"
+            },
+            "run_for_functions": [
+                "get_financial_statements",
+                "get_financial_metrics",
+                "get_prices",
+                "get_price_snapshot",
+                "search_line_items"
+            ]
+        }
+    ]
+}

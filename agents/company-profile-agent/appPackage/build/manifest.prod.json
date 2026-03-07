@@ -1,0 +1,34 @@
+{
+    "$schema": "https://developer.microsoft.com/json-schemas/teams/vDevPreview/MicrosoftTeams.schema.json",
+    "manifestVersion": "devPreview",
+    "version": "1.0.0",
+    "id": "0e9b1aad-7f39-47d3-ad9e-e6b28c13e2ce",
+    "developer": {
+        "name": "Financial Services",
+        "websiteUrl": "https://example.com",
+        "privacyUrl": "https://example.com/privacy",
+        "termsOfUseUrl": "https://example.com/terms"
+    },
+    "name": {
+        "short": "Company Profile Agent",
+        "full": "Company Profile and Pitch Book Agent"
+    },
+    "description": {
+        "short": "Generates company overviews, one-pagers, and pitch book content.",
+        "full": "Generates condensed company overviews, one-pagers, and pitch book content from multiple financial data sources."
+    },
+    "icons": {
+        "outline": "outline.png",
+        "color": "color.png"
+    },
+    "accentColor": "#0078D4",
+    "defaultBlockUntilAdminAction": true,
+    "copilotAgents": {
+        "declarativeAgents": [
+            {
+                "id": "declarativeAgent",
+                "file": "declarativeAgent.json"
+            }
+        ]
+    }
+}

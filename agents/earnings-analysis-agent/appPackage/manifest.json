@@ -3,6 +3,7 @@
   "manifestVersion": "devPreview",
   "id": "${{TEAMS_APP_ID}}",
   "version": "1.0.0",
+  "defaultBlockUntilAdminAction": true,
   "developer": {
     "name": "Financial Services",
     "websiteUrl": "https://example.com",
@@ -14,7 +15,7 @@
     "full": "Earnings Analysis and Guidance Tracking Agent"
   },
   "description": {
-    "short": "Processes earnings transcripts and SEC filings for beat/miss and guidance analysis.",
+    "short": "Analyzes earnings transcripts and SEC filings for beat/miss signals.",
     "full": "Processes quarterly earnings transcripts, SEC filings, and consensus data to deliver beat/miss analysis, guidance tracking, and management commentary extraction."
   },
   "icons": {

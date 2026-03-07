@@ -14,23 +14,26 @@
 .PARAMETER SkipPrerequisites
     Skip prerequisite checks.
 .PARAMETER AutoInstallPrereqs
-    Automatically install missing prerequisites.
+    Automatically install missing prerequisites (default: $true). Pass -AutoInstallPrereqs:$false to disable.
 .PARAMETER NonInteractive
-    Use default MCP selections (SEC EDGAR + Alpha Vantage only).
+    Use default MCP selections (SharePoint & OneDrive only).
+.PARAMETER RunTests
+    Run the local validation harness after provisioning completes.
 .EXAMPLE
     .\Install-FSICopilot.ps1
     .\Install-FSICopilot.ps1 -DryRun
     .\Install-FSICopilot.ps1 -Environment dev -AutoInstallPrereqs
+    .\Install-FSICopilot.ps1 -RunTests
 #>
 [CmdletBinding()]
 param(
     [switch]$DryRun,
     [string]$Environment = "prod",
     [switch]$SkipPrerequisites,
-    [switch]$AutoInstallPrereqs,
-    [switch]$NonInteractive
+    [bool]$AutoInstallPrereqs = $true,
+    [switch]$NonInteractive,
+    [switch]$RunTests
 )
-
 # ─────────────────────────────────────────────────────────────────────
 # 1. Setup
 # ─────────────────────────────────────────────────────────────────────
@@ -38,12 +41,15 @@ $ErrorActionPreference = 'Stop'
 $ProjectRoot = Split-Path $PSScriptRoot -Parent
 $ConfigPath  = Join-Path $PSScriptRoot "config"
 $LibPath     = Join-Path $PSScriptRoot "lib"
+$TestsPath   = Join-Path $ProjectRoot "tests\run-all-tests.ps1"
 
 # Dot-source all modules
 . "$LibPath\Test-Prerequisites.ps1"
 . "$LibPath\Show-McpSelector.ps1"
 . "$LibPath\Set-McpServerUrls.ps1"
 . "$LibPath\Resolve-TitleIds.ps1"
+. "$LibPath\Remove-UnconfiguredPlugins.ps1"
+. "$LibPath\Set-OAuthCredentials.ps1"
 . "$LibPath\Invoke-AgentProvisioning.ps1"
 . "$LibPath\Open-PrimaryAgent.ps1"
 
@@ -55,19 +61,23 @@ $startTime = Get-Date
 # ─────────────────────────────────────────────────────────────────────
 function Show-WelcomeBanner {
     Write-Host ""
-    Write-Host " ╔═══════════════════════════════════════════════════════════════════╗" -ForegroundColor Cyan
-    Write-Host " ║                                                                   ║" -ForegroundColor Cyan
-    Write-Host " ║     ███████╗███████╗██╗     ██████╗ ██████╗ ██████╗ ██╗██╗      ║" -ForegroundColor Cyan
-    Write-Host " ║     ██╔════╝██╔════╝██║    ██╔════╝██╔═══██╗██╔══██╗██║██║      ║" -ForegroundColor Cyan
-    Write-Host " ║     █████╗  ███████╗██║    ██║     ██║   ██║██████╔╝██║██║      ║" -ForegroundColor Cyan
-    Write-Host " ║     ██╔══╝  ╚════██║██║    ██║     ██║   ██║██╔═══╝ ██║██║      ║" -ForegroundColor Cyan
-    Write-Host " ║     ██║     ███████║██║    ╚██████╗╚██████╔╝██║     ██║███████╗ ║" -ForegroundColor Cyan
-    Write-Host " ║     ╚═╝     ╚══════╝╚═╝     ╚═════╝ ╚═════╝ ╚═╝     ╚═╝╚══════╝ ║" -ForegroundColor Cyan
-    Write-Host " ║                                                                   ║" -ForegroundColor Cyan
-    Write-Host " ║          Financial Services Copilot for Microsoft 365             ║" -ForegroundColor Cyan
-    Write-Host " ║                        Installer v$InstallerVersion                              ║" -ForegroundColor Cyan
-    Write-Host " ║                                                                   ║" -ForegroundColor Cyan
-    Write-Host " ╚═══════════════════════════════════════════════════════════════════╝" -ForegroundColor Cyan
+    Write-Host " ╔═══════════════════════════════════════════════════════════════════════════════╗" -ForegroundColor Cyan
+    Write-Host " ║                                                                               ║" -ForegroundColor Cyan
+    Write-Host " ║ ███████╗███████╗██╗     ██████╗ ██████╗ ██████╗ ██╗██╗      ██████╗ ████████╗ ║" -ForegroundColor Cyan
+    Write-Host " ║ ██╔════╝██╔════╝██║    ██╔════╝██╔═══██╗██╔══██╗██║██║     ██╔═══██╗╚══██╔══╝ ║" -ForegroundColor Cyan
+    Write-Host " ║ █████╗  ███████╗██║    ██║     ██║   ██║██████╔╝██║██║     ██║   ██║   ██║    ║" -ForegroundColor Cyan
+    Write-Host " ║ ██╔══╝  ╚════██║██║    ██║     ██║   ██║██╔═══╝ ██║██║     ██║   ██║   ██║    ║" -ForegroundColor Cyan
+    Write-Host " ║ ██║     ███████║██║    ╚██████╗╚██████╔╝██║     ██║███████╗╚██████╔╝   ██║    ║" -ForegroundColor Cyan
+    Write-Host " ║ ╚═╝     ╚══════╝╚═╝     ╚═════╝ ╚═════╝ ╚═╝     ╚═╝╚══════╝ ╚═════╝    ╚═╝    ║" -ForegroundColor Cyan
+    Write-Host " ║                                                                               ║" -ForegroundColor Cyan
+    Write-Host " ║                 Financial Services Copilot for Microsoft 365                  ║" -ForegroundColor Cyan
+    $versionText = "Installer v$InstallerVersion"
+    $vPadTotal = 79 - $versionText.Length
+    $vPadLeft = [math]::Floor($vPadTotal / 2)
+    $vPadRight = $vPadTotal - $vPadLeft
+    Write-Host (" ║" + (" " * $vPadLeft) + $versionText + (" " * $vPadRight) + "║") -ForegroundColor Cyan
+    Write-Host " ║                                                                               ║" -ForegroundColor Cyan
+    Write-Host " ╚═══════════════════════════════════════════════════════════════════════════════╝" -ForegroundColor Cyan
     Write-Host ""
 
     if ($DryRun) {
@@ -149,12 +159,15 @@ $mcpConfigPath = Join-Path $ConfigPath "mcp-providers.json"
 try {
     if ($NonInteractive) {
         $selectedProviders = @{
-            "sec-edgar"      = "https://data.sec.gov"
-            "alpha-vantage"  = "https://www.alphavantage.co"
+            "sharepoint-onedrive"  = "builtin"
         }
         Write-Host "  Using default providers (non-interactive mode):" -ForegroundColor Yellow
         foreach ($key in $selectedProviders.Keys) {
-            Write-Host "    • $key → $($selectedProviders[$key])" -ForegroundColor White
+            if ($selectedProviders[$key] -eq 'builtin') {
+                Write-Host "    • $key (built-in to M365)" -ForegroundColor White
+            } else {
+                Write-Host "    • $key → $($selectedProviders[$key])" -ForegroundColor White
+            }
         }
     }
     else {
@@ -192,6 +205,59 @@ catch {
 }
 
 # ─────────────────────────────────────────────────────────────────────
+# Step 4b: Remove unconfigured plugin files
+# ─────────────────────────────────────────────────────────────────────
+Write-Host "`n📋 Step 4b: Plugin Cleanup" -ForegroundColor Cyan
+Write-Host ("═" * 50)
+
+try {
+    $removedCount = Remove-UnconfiguredPlugins -ProjectRoot $ProjectRoot -DryRun:$DryRun
+
+    if ($DryRun) {
+        Write-Host "  [DRY RUN] Would remove $removedCount unconfigured plugin file(s)" -ForegroundColor Yellow
+    }
+    elseif ($removedCount -gt 0) {
+        Write-Host "  ✅ Removed $removedCount unconfigured plugin file(s)" -ForegroundColor Green
+    }
+    else {
+        Write-Host "  ✅ No cleanup needed — all plugins configured" -ForegroundColor Green
+    }
+}
+catch {
+    Write-Host "  ⚠️  Plugin cleanup warning: $_" -ForegroundColor Yellow
+}
+
+# ─────────────────────────────────────────────────────────────────────
+# Step 4c: OAuth Credential Setup
+# ─────────────────────────────────────────────────────────────────────
+Write-Host "`n📋 Step 4c: OAuth Credential Setup" -ForegroundColor Cyan
+Write-Host ("═" * 50)
+
+try {
+    $oauthCount = Set-OAuthCredentials -SelectedProviders $selectedProviders `
+        -ConfigPath $mcpConfigPath `
+        -ProjectRoot $ProjectRoot `
+        -Environment $Environment `
+        -NonInteractive:$NonInteractive `
+        -DryRun:$DryRun
+
+    if ($oauthCount -gt 0) {
+        if ($DryRun) {
+            Write-Host "  [DRY RUN] Would configure OAuth for $oauthCount provider(s)" -ForegroundColor Yellow
+        }
+        else {
+            Write-Host "  ✅ OAuth credentials configured for $oauthCount provider(s)" -ForegroundColor Green
+        }
+    }
+    else {
+        Write-Host "  ✅ No OAuth setup needed" -ForegroundColor Green
+    }
+}
+catch {
+    Write-Host "  ⚠️  OAuth setup warning: $_" -ForegroundColor Yellow
+}
+
+# ─────────────────────────────────────────────────────────────────────
 # Step 5: Agent Provisioning (4-tier)
 # ─────────────────────────────────────────────────────────────────────
 Write-Host "`n📋 Step 5: Agent Provisioning" -ForegroundColor Cyan
@@ -200,17 +266,41 @@ Write-Host ("═" * 50)
 $manifestPath = Join-Path $ConfigPath "agent-manifest.json"
 
 try {
-    $allTitleIds = Invoke-AgentProvisioning `
+    $placeholderResetCount = Restore-TitleIdPlaceholders `
+        -ProjectRoot $ProjectRoot `
+        -ConfigPath $manifestPath `
+        -DryRun:$DryRun
+
+    if ($DryRun) {
+        Write-Host "  [DRY RUN] Would reset worker-agent placeholders in $placeholderResetCount file(s)" -ForegroundColor Yellow
+    }
+    elseif ($placeholderResetCount -gt 0) {
+        Write-Host "  ✅ Worker-agent placeholders reset from manifest ($placeholderResetCount file(s))" -ForegroundColor Green
+    }
+    else {
+        Write-Host "  ✅ Worker-agent placeholders already matched the manifest" -ForegroundColor Green
+    }
+
+    $provisionResult = Invoke-AgentProvisioning `
         -ConfigPath $manifestPath `
         -ProjectRoot $ProjectRoot `
         -Environment $Environment `
         -DryRun:$DryRun
 
+    $allTitleIds = $provisionResult.TitleIds
+
     if ($DryRun) {
         Write-Host "  [DRY RUN] Would provision all agents across 4 tiers" -ForegroundColor Yellow
     }
     else {
-        Write-Host "  ✅ Agent provisioning complete ($($allTitleIds.Count) agents)" -ForegroundColor Green
+        $succeededCount = $provisionResult.Succeeded.Count
+        $failedCount = $provisionResult.Failed.Count
+        if ($failedCount -gt 0) {
+            Write-Host "  ⚠️  Agent provisioning: $succeededCount succeeded, $failedCount failed" -ForegroundColor Yellow
+        }
+        else {
+            Write-Host "  ✅ Agent provisioning complete ($succeededCount agents)" -ForegroundColor Green
+        }
     }
 }
 catch {
@@ -219,9 +309,42 @@ catch {
 }
 
 # ─────────────────────────────────────────────────────────────────────
-# Step 6: Installation Complete — Launch
+# Step 6: Validation Tests
 # ─────────────────────────────────────────────────────────────────────
-Write-Host "`n📋 Step 6: Installation Complete!" -ForegroundColor Cyan
+if ($RunTests) {
+    Write-Host "`n📋 Step 6: Validation Tests" -ForegroundColor Cyan
+    Write-Host ("═" * 50)
+
+    if (-not (Test-Path $TestsPath)) {
+        Write-Host "  ❌ Test harness not found at $TestsPath" -ForegroundColor Red
+        exit 1
+    }
+
+    try {
+        $testReportDir = Join-Path $ProjectRoot "tests\reports"
+        $testCommand = @("-NoProfile", "-File", $TestsPath, "-ProjectRoot", $ProjectRoot, "-ReportDir", $testReportDir)
+        if (-not $DryRun) {
+            $testCommand += "-RequireResolvedTitleIds"
+        }
+
+        & (Get-Process -Id $PID).Path @testCommand
+        if ($LASTEXITCODE -ne 0) {
+            Write-Host "  ❌ Validation tests failed" -ForegroundColor Red
+            exit 1
+        }
+
+        Write-Host "  ✅ Validation tests passed" -ForegroundColor Green
+    }
+    catch {
+        Write-Host "  ❌ Validation tests failed: $_" -ForegroundColor Red
+        exit 1
+    }
+}
+
+# ─────────────────────────────────────────────────────────────────────
+# Step 7: Installation Complete — Launch
+# ─────────────────────────────────────────────────────────────────────
+Write-Host "`n📋 Step 7: Installation Complete!" -ForegroundColor Cyan
 Write-Host ("═" * 50)
 
 $elapsed = (Get-Date) - $startTime

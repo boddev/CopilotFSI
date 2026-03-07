@@ -1,0 +1,912 @@
+{
+  "suite": "validate-worker-wiring",
+  "generatedAt": "2026-03-06T14:28:20.3518049-06:00",
+  "total": 48,
+  "failed": 0,
+  "passed": 48,
+  "success": true,
+  "results": [
+    {
+      "suite": "validate-worker-wiring",
+      "name": "comparable-analysis-agent-manifest-entry",
+      "passed": true,
+      "message": "Agent exists for worker wiring validation.",
+      "details": {
+        "agentId": "comparable-analysis-agent"
+      }
+    },
+    {
+      "suite": "validate-worker-wiring",
+      "name": "comparable-analysis-agent-manifest-deps",
+      "passed": true,
+      "message": "Manifest workerAgentDeps match the expected dependency contract.",
+      "details": {
+        "missing": [],
+        "actual": [
+          "MCP_FACTSET_TITLE_ID",
+          "MCP_PUBLIC_FILINGS_TITLE_ID",
+          "MCP_MARKET_DATA_TITLE_ID"
+        ],
+        "extra": [],
+        "expected": [
+          "MCP_FACTSET_TITLE_ID",
+          "MCP_PUBLIC_FILINGS_TITLE_ID",
+          "MCP_MARKET_DATA_TITLE_ID"
+        ]
+      }
+    },
+    {
+      "suite": "validate-worker-wiring",
+      "name": "comparable-analysis-agent-known-placeholders",
+      "passed": true,
+      "message": "Expected placeholders resolve to known manifest entries.",
+      "details": {
+        "unknown": []
+      }
+    },
+    {
+      "suite": "validate-worker-wiring",
+      "name": "comparable-analysis-agent-worker-count",
+      "passed": true,
+      "message": "Declarative worker_agents count matches expectations.",
+      "details": {
+        "actual": 3,
+        "expected": 3
+      }
+    },
+    {
+      "suite": "validate-worker-wiring",
+      "name": "comparable-analysis-agent-worker-id-membership",
+      "passed": true,
+      "message": "Worker IDs align to the expected placeholder or resolved-ID contract.",
+      "details": {
+        "missingDependencies": [],
+        "actual": [
+          "{{MCP_FACTSET_TITLE_ID}}",
+          "{{MCP_PUBLIC_FILINGS_TITLE_ID}}",
+          "{{MCP_MARKET_DATA_TITLE_ID}}"
+        ],
+        "expected": [
+          {
+            "dependency": "MCP_FACTSET_TITLE_ID",
+            "placeholder": "{{MCP_FACTSET_TITLE_ID}}",
+            "resolvedId": "T_48b5a718-6769-dc88-84d7-6973dcdfd4bc",
+            "matchedIds": [
+              "{{MCP_FACTSET_TITLE_ID}}"
+            ]
+          },
+          {
+            "dependency": "MCP_PUBLIC_FILINGS_TITLE_ID",
+            "placeholder": "{{MCP_PUBLIC_FILINGS_TITLE_ID}}",
+            "resolvedId": "T_4b844b96-fab5-5651-2668-da99a6d68eba",
+            "matchedIds": [
+              "{{MCP_PUBLIC_FILINGS_TITLE_ID}}"
+            ]
+          },
+          {
+            "dependency": "MCP_MARKET_DATA_TITLE_ID",
+            "placeholder": "{{MCP_MARKET_DATA_TITLE_ID}}",
+            "resolvedId": "T_ed2492aa-4524-c7dd-10f4-ba0343d03759",
+            "matchedIds": [
+              "{{MCP_MARKET_DATA_TITLE_ID}}"
+            ]
+          }
+        ],
+        "unexpectedWorkers": []
+      }
+    },
+    {
+      "suite": "validate-worker-wiring",
+      "name": "comparable-analysis-agent-worker-id-format",
+      "passed": true,
+      "message": "Worker IDs have the expected format.",
+      "details": {
+        "invalid": [],
+        "requireResolvedTitleIds": false
+      }
+    },
+    {
+      "suite": "validate-worker-wiring",
+      "name": "dcf-model-agent-manifest-entry",
+      "passed": true,
+      "message": "Agent exists for worker wiring validation.",
+      "details": {
+        "agentId": "dcf-model-agent"
+      }
+    },
+    {
+      "suite": "validate-worker-wiring",
+      "name": "dcf-model-agent-manifest-deps",
+      "passed": true,
+      "message": "Manifest workerAgentDeps match the expected dependency contract.",
+      "details": {
+        "missing": [],
+        "actual": [
+          "MCP_FACTSET_TITLE_ID",
+          "MCP_SP_GLOBAL_TITLE_ID",
+          "MCP_MARKET_DATA_TITLE_ID",
+          "MCP_RESEARCH_RATINGS_TITLE_ID"
+        ],
+        "extra": [],
+        "expected": [
+          "MCP_FACTSET_TITLE_ID",
+          "MCP_SP_GLOBAL_TITLE_ID",
+          "MCP_MARKET_DATA_TITLE_ID",
+          "MCP_RESEARCH_RATINGS_TITLE_ID"
+        ]
+      }
+    },
+    {
+      "suite": "validate-worker-wiring",
+      "name": "dcf-model-agent-known-placeholders",
+      "passed": true,
+      "message": "Expected placeholders resolve to known manifest entries.",
+      "details": {
+        "unknown": []
+      }
+    },
+    {
+      "suite": "validate-worker-wiring",
+      "name": "dcf-model-agent-worker-count",
+      "passed": true,
+      "message": "Declarative worker_agents count matches expectations.",
+      "details": {
+        "actual": 4,
+        "expected": 4
+      }
+    },
+    {
+      "suite": "validate-worker-wiring",
+      "name": "dcf-model-agent-worker-id-membership",
+      "passed": true,
+      "message": "Worker IDs align to the expected placeholder or resolved-ID contract.",
+      "details": {
+        "missingDependencies": [],
+        "actual": [
+          "{{MCP_FACTSET_TITLE_ID}}",
+          "{{MCP_SP_GLOBAL_TITLE_ID}}",
+          "{{MCP_MARKET_DATA_TITLE_ID}}",
+          "{{MCP_RESEARCH_RATINGS_TITLE_ID}}"
+        ],
+        "expected": [
+          {
+            "dependency": "MCP_FACTSET_TITLE_ID",
+            "placeholder": "{{MCP_FACTSET_TITLE_ID}}",
+            "resolvedId": "T_48b5a718-6769-dc88-84d7-6973dcdfd4bc",
+            "matchedIds": [
+              "{{MCP_FACTSET_TITLE_ID}}"
+            ]
+          },
+          {
+            "dependency": "MCP_SP_GLOBAL_TITLE_ID",
+            "placeholder": "{{MCP_SP_GLOBAL_TITLE_ID}}",
+            "resolvedId": "T_2ff0e9ff-1628-0332-f2c4-46b9d5ebc88f",
+            "matchedIds": [
+              "{{MCP_SP_GLOBAL_TITLE_ID}}"
+            ]
+          },
+          {
+            "dependency": "MCP_MARKET_DATA_TITLE_ID",
+            "placeholder": "{{MCP_MARKET_DATA_TITLE_ID}}",
+            "resolvedId": "T_ed2492aa-4524-c7dd-10f4-ba0343d03759",
+            "matchedIds": [
+              "{{MCP_MARKET_DATA_TITLE_ID}}"
+            ]
+          },
+          {
+            "dependency": "MCP_RESEARCH_RATINGS_TITLE_ID",
+            "placeholder": "{{MCP_RESEARCH_RATINGS_TITLE_ID}}",
+            "resolvedId": "T_dc8f820c-29b3-eb71-4add-30729682297b",
+            "matchedIds": [
+              "{{MCP_RESEARCH_RATINGS_TITLE_ID}}"
+            ]
+          }
+        ],
+        "unexpectedWorkers": []
+      }
+    },
+    {
+      "suite": "validate-worker-wiring",
+      "name": "dcf-model-agent-worker-id-format",
+      "passed": true,
+      "message": "Worker IDs have the expected format.",
+      "details": {
+        "invalid": [],
+        "requireResolvedTitleIds": false
+      }
+    },
+    {
+      "suite": "validate-worker-wiring",
+      "name": "due-diligence-agent-manifest-entry",
+      "passed": true,
+      "message": "Agent exists for worker wiring validation.",
+      "details": {
+        "agentId": "due-diligence-agent"
+      }
+    },
+    {
+      "suite": "validate-worker-wiring",
+      "name": "due-diligence-agent-manifest-deps",
+      "passed": true,
+      "message": "Manifest workerAgentDeps match the expected dependency contract.",
+      "details": {
+        "missing": [],
+        "actual": [
+          "MCP_FACTSET_TITLE_ID",
+          "MCP_PUBLIC_FILINGS_TITLE_ID",
+          "MCP_RESEARCH_RATINGS_TITLE_ID"
+        ],
+        "extra": [],
+        "expected": [
+          "MCP_FACTSET_TITLE_ID",
+          "MCP_PUBLIC_FILINGS_TITLE_ID",
+          "MCP_RESEARCH_RATINGS_TITLE_ID"
+        ]
+      }
+    },
+    {
+      "suite": "validate-worker-wiring",
+      "name": "due-diligence-agent-known-placeholders",
+      "passed": true,
+      "message": "Expected placeholders resolve to known manifest entries.",
+      "details": {
+        "unknown": []
+      }
+    },
+    {
+      "suite": "validate-worker-wiring",
+      "name": "due-diligence-agent-worker-count",
+      "passed": true,
+      "message": "Declarative worker_agents count matches expectations.",
+      "details": {
+        "actual": 3,
+        "expected": 3
+      }
+    },
+    {
+      "suite": "validate-worker-wiring",
+      "name": "due-diligence-agent-worker-id-membership",
+      "passed": true,
+      "message": "Worker IDs align to the expected placeholder or resolved-ID contract.",
+      "details": {
+        "missingDependencies": [],
+        "actual": [
+          "{{MCP_FACTSET_TITLE_ID}}",
+          "{{MCP_PUBLIC_FILINGS_TITLE_ID}}",
+          "{{MCP_RESEARCH_RATINGS_TITLE_ID}}"
+        ],
+        "expected": [
+          {
+            "dependency": "MCP_FACTSET_TITLE_ID",
+            "placeholder": "{{MCP_FACTSET_TITLE_ID}}",
+            "resolvedId": "T_48b5a718-6769-dc88-84d7-6973dcdfd4bc",
+            "matchedIds": [
+              "{{MCP_FACTSET_TITLE_ID}}"
+            ]
+          },
+          {
+            "dependency": "MCP_PUBLIC_FILINGS_TITLE_ID",
+            "placeholder": "{{MCP_PUBLIC_FILINGS_TITLE_ID}}",
+            "resolvedId": "T_4b844b96-fab5-5651-2668-da99a6d68eba",
+            "matchedIds": [
+              "{{MCP_PUBLIC_FILINGS_TITLE_ID}}"
+            ]
+          },
+          {
+            "dependency": "MCP_RESEARCH_RATINGS_TITLE_ID",
+            "placeholder": "{{MCP_RESEARCH_RATINGS_TITLE_ID}}",
+            "resolvedId": "T_dc8f820c-29b3-eb71-4add-30729682297b",
+            "matchedIds": [
+              "{{MCP_RESEARCH_RATINGS_TITLE_ID}}"
+            ]
+          }
+        ],
+        "unexpectedWorkers": []
+      }
+    },
+    {
+      "suite": "validate-worker-wiring",
+      "name": "due-diligence-agent-worker-id-format",
+      "passed": true,
+      "message": "Worker IDs have the expected format.",
+      "details": {
+        "invalid": [],
+        "requireResolvedTitleIds": false
+      }
+    },
+    {
+      "suite": "validate-worker-wiring",
+      "name": "company-profile-agent-manifest-entry",
+      "passed": true,
+      "message": "Agent exists for worker wiring validation.",
+      "details": {
+        "agentId": "company-profile-agent"
+      }
+    },
+    {
+      "suite": "validate-worker-wiring",
+      "name": "company-profile-agent-manifest-deps",
+      "passed": true,
+      "message": "Manifest workerAgentDeps match the expected dependency contract.",
+      "details": {
+        "missing": [],
+        "actual": [
+          "MCP_FACTSET_TITLE_ID",
+          "MCP_SP_GLOBAL_TITLE_ID",
+          "MCP_RESEARCH_RATINGS_TITLE_ID"
+        ],
+        "extra": [],
+        "expected": [
+          "MCP_FACTSET_TITLE_ID",
+          "MCP_SP_GLOBAL_TITLE_ID",
+          "MCP_RESEARCH_RATINGS_TITLE_ID"
+        ]
+      }
+    },
+    {
+      "suite": "validate-worker-wiring",
+      "name": "company-profile-agent-known-placeholders",
+      "passed": true,
+      "message": "Expected placeholders resolve to known manifest entries.",
+      "details": {
+        "unknown": []
+      }
+    },
+    {
+      "suite": "validate-worker-wiring",
+      "name": "company-profile-agent-worker-count",
+      "passed": true,
+      "message": "Declarative worker_agents count matches expectations.",
+      "details": {
+        "actual": 3,
+        "expected": 3
+      }
+    },
+    {
+      "suite": "validate-worker-wiring",
+      "name": "company-profile-agent-worker-id-membership",
+      "passed": true,
+      "message": "Worker IDs align to the expected placeholder or resolved-ID contract.",
+      "details": {
+        "missingDependencies": [],
+        "actual": [
+          "{{MCP_FACTSET_TITLE_ID}}",
+          "{{MCP_SP_GLOBAL_TITLE_ID}}",
+          "{{MCP_RESEARCH_RATINGS_TITLE_ID}}"
+        ],
+        "expected": [
+          {
+            "dependency": "MCP_FACTSET_TITLE_ID",
+            "placeholder": "{{MCP_FACTSET_TITLE_ID}}",
+            "resolvedId": "T_48b5a718-6769-dc88-84d7-6973dcdfd4bc",
+            "matchedIds": [
+              "{{MCP_FACTSET_TITLE_ID}}"
+            ]
+          },
+          {
+            "dependency": "MCP_SP_GLOBAL_TITLE_ID",
+            "placeholder": "{{MCP_SP_GLOBAL_TITLE_ID}}",
+            "resolvedId": "T_2ff0e9ff-1628-0332-f2c4-46b9d5ebc88f",
+            "matchedIds": [
+              "{{MCP_SP_GLOBAL_TITLE_ID}}"
+            ]
+          },
+          {
+            "dependency": "MCP_RESEARCH_RATINGS_TITLE_ID",
+            "placeholder": "{{MCP_RESEARCH_RATINGS_TITLE_ID}}",
+            "resolvedId": "T_dc8f820c-29b3-eb71-4add-30729682297b",
+            "matchedIds": [
+              "{{MCP_RESEARCH_RATINGS_TITLE_ID}}"
+            ]
+          }
+        ],
+        "unexpectedWorkers": []
+      }
+    },
+    {
+      "suite": "validate-worker-wiring",
+      "name": "company-profile-agent-worker-id-format",
+      "passed": true,
+      "message": "Worker IDs have the expected format.",
+      "details": {
+        "invalid": [],
+        "requireResolvedTitleIds": false
+      }
+    },
+    {
+      "suite": "validate-worker-wiring",
+      "name": "earnings-analysis-agent-manifest-entry",
+      "passed": true,
+      "message": "Agent exists for worker wiring validation.",
+      "details": {
+        "agentId": "earnings-analysis-agent"
+      }
+    },
+    {
+      "suite": "validate-worker-wiring",
+      "name": "earnings-analysis-agent-manifest-deps",
+      "passed": true,
+      "message": "Manifest workerAgentDeps match the expected dependency contract.",
+      "details": {
+        "missing": [],
+        "actual": [
+          "MCP_FACTSET_TITLE_ID",
+          "MCP_PUBLIC_FILINGS_TITLE_ID",
+          "MCP_TRANSCRIPTS_INTEL_TITLE_ID"
+        ],
+        "extra": [],
+        "expected": [
+          "MCP_FACTSET_TITLE_ID",
+          "MCP_PUBLIC_FILINGS_TITLE_ID",
+          "MCP_TRANSCRIPTS_INTEL_TITLE_ID"
+        ]
+      }
+    },
+    {
+      "suite": "validate-worker-wiring",
+      "name": "earnings-analysis-agent-known-placeholders",
+      "passed": true,
+      "message": "Expected placeholders resolve to known manifest entries.",
+      "details": {
+        "unknown": []
+      }
+    },
+    {
+      "suite": "validate-worker-wiring",
+      "name": "earnings-analysis-agent-worker-count",
+      "passed": true,
+      "message": "Declarative worker_agents count matches expectations.",
+      "details": {
+        "actual": 3,
+        "expected": 3
+      }
+    },
+    {
+      "suite": "validate-worker-wiring",
+      "name": "earnings-analysis-agent-worker-id-membership",
+      "passed": true,
+      "message": "Worker IDs align to the expected placeholder or resolved-ID contract.",
+      "details": {
+        "missingDependencies": [],
+        "actual": [
+          "{{MCP_FACTSET_TITLE_ID}}",
+          "{{MCP_PUBLIC_FILINGS_TITLE_ID}}",
+          "{{MCP_TRANSCRIPTS_INTEL_TITLE_ID}}"
+        ],
+        "expected": [
+          {
+            "dependency": "MCP_FACTSET_TITLE_ID",
+            "placeholder": "{{MCP_FACTSET_TITLE_ID}}",
+            "resolvedId": "T_48b5a718-6769-dc88-84d7-6973dcdfd4bc",
+            "matchedIds": [
+              "{{MCP_FACTSET_TITLE_ID}}"
+            ]
+          },
+          {
+            "dependency": "MCP_PUBLIC_FILINGS_TITLE_ID",
+            "placeholder": "{{MCP_PUBLIC_FILINGS_TITLE_ID}}",
+            "resolvedId": "T_4b844b96-fab5-5651-2668-da99a6d68eba",
+            "matchedIds": [
+              "{{MCP_PUBLIC_FILINGS_TITLE_ID}}"
+            ]
+          },
+          {
+            "dependency": "MCP_TRANSCRIPTS_INTEL_TITLE_ID",
+            "placeholder": "{{MCP_TRANSCRIPTS_INTEL_TITLE_ID}}",
+            "resolvedId": "T_7951c8a2-7548-36ce-0b73-af047b210777",
+            "matchedIds": [
+              "{{MCP_TRANSCRIPTS_INTEL_TITLE_ID}}"
+            ]
+          }
+        ],
+        "unexpectedWorkers": []
+      }
+    },
+    {
+      "suite": "validate-worker-wiring",
+      "name": "earnings-analysis-agent-worker-id-format",
+      "passed": true,
+      "message": "Worker IDs have the expected format.",
+      "details": {
+        "invalid": [],
+        "requireResolvedTitleIds": false
+      }
+    },
+    {
+      "suite": "validate-worker-wiring",
+      "name": "precedent-transactions-agent-manifest-entry",
+      "passed": true,
+      "message": "Agent exists for worker wiring validation.",
+      "details": {
+        "agentId": "precedent-transactions-agent"
+      }
+    },
+    {
+      "suite": "validate-worker-wiring",
+      "name": "precedent-transactions-agent-manifest-deps",
+      "passed": true,
+      "message": "Manifest workerAgentDeps match the expected dependency contract.",
+      "details": {
+        "missing": [],
+        "actual": [
+          "MCP_FACTSET_TITLE_ID",
+          "MCP_SP_GLOBAL_TITLE_ID"
+        ],
+        "extra": [],
+        "expected": [
+          "MCP_FACTSET_TITLE_ID",
+          "MCP_SP_GLOBAL_TITLE_ID"
+        ]
+      }
+    },
+    {
+      "suite": "validate-worker-wiring",
+      "name": "precedent-transactions-agent-known-placeholders",
+      "passed": true,
+      "message": "Expected placeholders resolve to known manifest entries.",
+      "details": {
+        "unknown": []
+      }
+    },
+    {
+      "suite": "validate-worker-wiring",
+      "name": "precedent-transactions-agent-worker-count",
+      "passed": true,
+      "message": "Declarative worker_agents count matches expectations.",
+      "details": {
+        "actual": 2,
+        "expected": 2
+      }
+    },
+    {
+      "suite": "validate-worker-wiring",
+      "name": "precedent-transactions-agent-worker-id-membership",
+      "passed": true,
+      "message": "Worker IDs align to the expected placeholder or resolved-ID contract.",
+      "details": {
+        "missingDependencies": [],
+        "actual": [
+          "{{MCP_FACTSET_TITLE_ID}}",
+          "{{MCP_SP_GLOBAL_TITLE_ID}}"
+        ],
+        "expected": [
+          {
+            "dependency": "MCP_FACTSET_TITLE_ID",
+            "placeholder": "{{MCP_FACTSET_TITLE_ID}}",
+            "resolvedId": "T_48b5a718-6769-dc88-84d7-6973dcdfd4bc",
+            "matchedIds": [
+              "{{MCP_FACTSET_TITLE_ID}}"
+            ]
+          },
+          {
+            "dependency": "MCP_SP_GLOBAL_TITLE_ID",
+            "placeholder": "{{MCP_SP_GLOBAL_TITLE_ID}}",
+            "resolvedId": "T_2ff0e9ff-1628-0332-f2c4-46b9d5ebc88f",
+            "matchedIds": [
+              "{{MCP_SP_GLOBAL_TITLE_ID}}"
+            ]
+          }
+        ],
+        "unexpectedWorkers": []
+      }
+    },
+    {
+      "suite": "validate-worker-wiring",
+      "name": "precedent-transactions-agent-worker-id-format",
+      "passed": true,
+      "message": "Worker IDs have the expected format.",
+      "details": {
+        "invalid": [],
+        "requireResolvedTitleIds": false
+      }
+    },
+    {
+      "suite": "validate-worker-wiring",
+      "name": "coverage-report-agent-manifest-entry",
+      "passed": true,
+      "message": "Agent exists for worker wiring validation.",
+      "details": {
+        "agentId": "coverage-report-agent"
+      }
+    },
+    {
+      "suite": "validate-worker-wiring",
+      "name": "coverage-report-agent-manifest-deps",
+      "passed": true,
+      "message": "Manifest workerAgentDeps match the expected dependency contract.",
+      "details": {
+        "missing": [],
+        "actual": [
+          "COMPARABLE_ANALYSIS_AGENT_TITLE_ID",
+          "DCF_MODEL_AGENT_TITLE_ID",
+          "EARNINGS_ANALYSIS_AGENT_TITLE_ID",
+          "PRECEDENT_TRANSACTIONS_AGENT_TITLE_ID",
+          "MCP_FACTSET_TITLE_ID",
+          "MCP_SP_GLOBAL_TITLE_ID",
+          "MCP_PUBLIC_FILINGS_TITLE_ID",
+          "MCP_RESEARCH_RATINGS_TITLE_ID"
+        ],
+        "extra": [],
+        "expected": [
+          "COMPARABLE_ANALYSIS_AGENT_TITLE_ID",
+          "DCF_MODEL_AGENT_TITLE_ID",
+          "EARNINGS_ANALYSIS_AGENT_TITLE_ID",
+          "PRECEDENT_TRANSACTIONS_AGENT_TITLE_ID",
+          "MCP_FACTSET_TITLE_ID",
+          "MCP_SP_GLOBAL_TITLE_ID",
+          "MCP_PUBLIC_FILINGS_TITLE_ID",
+          "MCP_RESEARCH_RATINGS_TITLE_ID"
+        ]
+      }
+    },
+    {
+      "suite": "validate-worker-wiring",
+      "name": "coverage-report-agent-known-placeholders",
+      "passed": true,
+      "message": "Expected placeholders resolve to known manifest entries.",
+      "details": {
+        "unknown": []
+      }
+    },
+    {
+      "suite": "validate-worker-wiring",
+      "name": "coverage-report-agent-worker-count",
+      "passed": true,
+      "message": "Declarative worker_agents count matches expectations.",
+      "details": {
+        "actual": 8,
+        "expected": 8
+      }
+    },
+    {
+      "suite": "validate-worker-wiring",
+      "name": "coverage-report-agent-worker-id-membership",
+      "passed": true,
+      "message": "Worker IDs align to the expected placeholder or resolved-ID contract.",
+      "details": {
+        "missingDependencies": [],
+        "actual": [
+          "{{COMPARABLE_ANALYSIS_AGENT_TITLE_ID}}",
+          "{{DCF_MODEL_AGENT_TITLE_ID}}",
+          "{{EARNINGS_ANALYSIS_AGENT_TITLE_ID}}",
+          "{{PRECEDENT_TRANSACTIONS_AGENT_TITLE_ID}}",
+          "{{MCP_FACTSET_TITLE_ID}}",
+          "{{MCP_SP_GLOBAL_TITLE_ID}}",
+          "{{MCP_PUBLIC_FILINGS_TITLE_ID}}",
+          "{{MCP_RESEARCH_RATINGS_TITLE_ID}}"
+        ],
+        "expected": [
+          {
+            "dependency": "COMPARABLE_ANALYSIS_AGENT_TITLE_ID",
+            "placeholder": "{{COMPARABLE_ANALYSIS_AGENT_TITLE_ID}}",
+            "resolvedId": "T_0c3cceb2-6747-3d94-2645-b79920ab73b9",
+            "matchedIds": [
+              "{{COMPARABLE_ANALYSIS_AGENT_TITLE_ID}}"
+            ]
+          },
+          {
+            "dependency": "DCF_MODEL_AGENT_TITLE_ID",
+            "placeholder": "{{DCF_MODEL_AGENT_TITLE_ID}}",
+            "resolvedId": "T_e4c8c7ac-5b5f-608c-7ea1-a93e8be9a303",
+            "matchedIds": [
+              "{{DCF_MODEL_AGENT_TITLE_ID}}"
+            ]
+          },
+          {
+            "dependency": "EARNINGS_ANALYSIS_AGENT_TITLE_ID",
+            "placeholder": "{{EARNINGS_ANALYSIS_AGENT_TITLE_ID}}",
+            "resolvedId": "T_90342803-b07e-738c-9b87-71d62492a6ea",
+            "matchedIds": [
+              "{{EARNINGS_ANALYSIS_AGENT_TITLE_ID}}"
+            ]
+          },
+          {
+            "dependency": "PRECEDENT_TRANSACTIONS_AGENT_TITLE_ID",
+            "placeholder": "{{PRECEDENT_TRANSACTIONS_AGENT_TITLE_ID}}",
+            "resolvedId": "T_d1820768-6420-645b-08f1-7072995e7e2c",
+            "matchedIds": [
+              "{{PRECEDENT_TRANSACTIONS_AGENT_TITLE_ID}}"
+            ]
+          },
+          {
+            "dependency": "MCP_FACTSET_TITLE_ID",
+            "placeholder": "{{MCP_FACTSET_TITLE_ID}}",
+            "resolvedId": "T_48b5a718-6769-dc88-84d7-6973dcdfd4bc",
+            "matchedIds": [
+              "{{MCP_FACTSET_TITLE_ID}}"
+            ]
+          },
+          {
+            "dependency": "MCP_SP_GLOBAL_TITLE_ID",
+            "placeholder": "{{MCP_SP_GLOBAL_TITLE_ID}}",
+            "resolvedId": "T_2ff0e9ff-1628-0332-f2c4-46b9d5ebc88f",
+            "matchedIds": [
+              "{{MCP_SP_GLOBAL_TITLE_ID}}"
+            ]
+          },
+          {
+            "dependency": "MCP_PUBLIC_FILINGS_TITLE_ID",
+            "placeholder": "{{MCP_PUBLIC_FILINGS_TITLE_ID}}",
+            "resolvedId": "T_4b844b96-fab5-5651-2668-da99a6d68eba",
+            "matchedIds": [
+              "{{MCP_PUBLIC_FILINGS_TITLE_ID}}"
+            ]
+          },
+          {
+            "dependency": "MCP_RESEARCH_RATINGS_TITLE_ID",
+            "placeholder": "{{MCP_RESEARCH_RATINGS_TITLE_ID}}",
+            "resolvedId": "T_dc8f820c-29b3-eb71-4add-30729682297b",
+            "matchedIds": [
+              "{{MCP_RESEARCH_RATINGS_TITLE_ID}}"
+            ]
+          }
+        ],
+        "unexpectedWorkers": []
+      }
+    },
+    {
+      "suite": "validate-worker-wiring",
+      "name": "coverage-report-agent-worker-id-format",
+      "passed": true,
+      "message": "Worker IDs have the expected format.",
+      "details": {
+        "invalid": [],
+        "requireResolvedTitleIds": false
+      }
+    },
+    {
+      "suite": "validate-worker-wiring",
+      "name": "fsi-primary-agent-manifest-entry",
+      "passed": true,
+      "message": "Agent exists for worker wiring validation.",
+      "details": {
+        "agentId": "fsi-primary-agent"
+      }
+    },
+    {
+      "suite": "validate-worker-wiring",
+      "name": "fsi-primary-agent-manifest-deps",
+      "passed": true,
+      "message": "Manifest workerAgentDeps match the expected dependency contract.",
+      "details": {
+        "missing": [],
+        "actual": [
+          "COMPLIANCE_GUARDRAIL_AGENT_TITLE_ID",
+          "COMPARABLE_ANALYSIS_AGENT_TITLE_ID",
+          "DCF_MODEL_AGENT_TITLE_ID",
+          "DUE_DILIGENCE_AGENT_TITLE_ID",
+          "COMPANY_PROFILE_AGENT_TITLE_ID",
+          "EARNINGS_ANALYSIS_AGENT_TITLE_ID",
+          "PRECEDENT_TRANSACTIONS_AGENT_TITLE_ID",
+          "COVERAGE_REPORT_AGENT_TITLE_ID"
+        ],
+        "extra": [],
+        "expected": [
+          "COMPLIANCE_GUARDRAIL_AGENT_TITLE_ID",
+          "COMPARABLE_ANALYSIS_AGENT_TITLE_ID",
+          "DCF_MODEL_AGENT_TITLE_ID",
+          "DUE_DILIGENCE_AGENT_TITLE_ID",
+          "COMPANY_PROFILE_AGENT_TITLE_ID",
+          "EARNINGS_ANALYSIS_AGENT_TITLE_ID",
+          "PRECEDENT_TRANSACTIONS_AGENT_TITLE_ID",
+          "COVERAGE_REPORT_AGENT_TITLE_ID"
+        ]
+      }
+    },
+    {
+      "suite": "validate-worker-wiring",
+      "name": "fsi-primary-agent-known-placeholders",
+      "passed": true,
+      "message": "Expected placeholders resolve to known manifest entries.",
+      "details": {
+        "unknown": []
+      }
+    },
+    {
+      "suite": "validate-worker-wiring",
+      "name": "fsi-primary-agent-worker-count",
+      "passed": true,
+      "message": "Declarative worker_agents count matches expectations.",
+      "details": {
+        "actual": 8,
+        "expected": 8
+      }
+    },
+    {
+      "suite": "validate-worker-wiring",
+      "name": "fsi-primary-agent-worker-id-membership",
+      "passed": true,
+      "message": "Worker IDs align to the expected placeholder or resolved-ID contract.",
+      "details": {
+        "missingDependencies": [],
+        "actual": [
+          "{{COMPLIANCE_GUARDRAIL_AGENT_TITLE_ID}}",
+          "{{COMPARABLE_ANALYSIS_AGENT_TITLE_ID}}",
+          "{{DCF_MODEL_AGENT_TITLE_ID}}",
+          "{{DUE_DILIGENCE_AGENT_TITLE_ID}}",
+          "{{COMPANY_PROFILE_AGENT_TITLE_ID}}",
+          "{{EARNINGS_ANALYSIS_AGENT_TITLE_ID}}",
+          "{{PRECEDENT_TRANSACTIONS_AGENT_TITLE_ID}}",
+          "{{COVERAGE_REPORT_AGENT_TITLE_ID}}"
+        ],
+        "expected": [
+          {
+            "dependency": "COMPLIANCE_GUARDRAIL_AGENT_TITLE_ID",
+            "placeholder": "{{COMPLIANCE_GUARDRAIL_AGENT_TITLE_ID}}",
+            "resolvedId": "T_03429485-61f8-e622-8557-b8591283b004",
+            "matchedIds": [
+              "{{COMPLIANCE_GUARDRAIL_AGENT_TITLE_ID}}"
+            ]
+          },
+          {
+            "dependency": "COMPARABLE_ANALYSIS_AGENT_TITLE_ID",
+            "placeholder": "{{COMPARABLE_ANALYSIS_AGENT_TITLE_ID}}",
+            "resolvedId": "T_0c3cceb2-6747-3d94-2645-b79920ab73b9",
+            "matchedIds": [
+              "{{COMPARABLE_ANALYSIS_AGENT_TITLE_ID}}"
+            ]
+          },
+          {
+            "dependency": "DCF_MODEL_AGENT_TITLE_ID",
+            "placeholder": "{{DCF_MODEL_AGENT_TITLE_ID}}",
+            "resolvedId": "T_e4c8c7ac-5b5f-608c-7ea1-a93e8be9a303",
+            "matchedIds": [
+              "{{DCF_MODEL_AGENT_TITLE_ID}}"
+            ]
+          },
+          {
+            "dependency": "DUE_DILIGENCE_AGENT_TITLE_ID",
+            "placeholder": "{{DUE_DILIGENCE_AGENT_TITLE_ID}}",
+            "resolvedId": "T_f6cfd349-5eef-090a-05aa-276f3ffac895",
+            "matchedIds": [
+              "{{DUE_DILIGENCE_AGENT_TITLE_ID}}"
+            ]
+          },
+          {
+            "dependency": "COMPANY_PROFILE_AGENT_TITLE_ID",
+            "placeholder": "{{COMPANY_PROFILE_AGENT_TITLE_ID}}",
+            "resolvedId": "T_b424a253-3e58-f996-265a-0c20dc2920cb",
+            "matchedIds": [
+              "{{COMPANY_PROFILE_AGENT_TITLE_ID}}"
+            ]
+          },
+          {
+            "dependency": "EARNINGS_ANALYSIS_AGENT_TITLE_ID",
+            "placeholder": "{{EARNINGS_ANALYSIS_AGENT_TITLE_ID}}",
+            "resolvedId": "T_90342803-b07e-738c-9b87-71d62492a6ea",
+            "matchedIds": [
+              "{{EARNINGS_ANALYSIS_AGENT_TITLE_ID}}"
+            ]
+          },
+          {
+            "dependency": "PRECEDENT_TRANSACTIONS_AGENT_TITLE_ID",
+            "placeholder": "{{PRECEDENT_TRANSACTIONS_AGENT_TITLE_ID}}",
+            "resolvedId": "T_d1820768-6420-645b-08f1-7072995e7e2c",
+            "matchedIds": [
+              "{{PRECEDENT_TRANSACTIONS_AGENT_TITLE_ID}}"
+            ]
+          },
+          {
+            "dependency": "COVERAGE_REPORT_AGENT_TITLE_ID",
+            "placeholder": "{{COVERAGE_REPORT_AGENT_TITLE_ID}}",
+            "resolvedId": "T_6cb1f02f-d002-168e-b9ef-25c11201d114",
+            "matchedIds": [
+              "{{COVERAGE_REPORT_AGENT_TITLE_ID}}"
+            ]
+          }
+        ],
+        "unexpectedWorkers": []
+      }
+    },
+    {
+      "suite": "validate-worker-wiring",
+      "name": "fsi-primary-agent-worker-id-format",
+      "passed": true,
+      "message": "Worker IDs have the expected format.",
+      "details": {
+        "invalid": [],
+        "requireResolvedTitleIds": false
+      }
+    }
+  ]
+}

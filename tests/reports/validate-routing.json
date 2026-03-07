@@ -1,0 +1,292 @@
+{
+  "suite": "validate-routing",
+  "generatedAt": "2026-03-06T14:28:17.9746821-06:00",
+  "total": 30,
+  "failed": 0,
+  "passed": 30,
+  "success": true,
+  "results": [
+    {
+      "suite": "validate-routing",
+      "name": "ratings-comparison-intel-target-exists",
+      "passed": true,
+      "message": "Target agent exists in the manifest and on disk.",
+      "details": {
+        "targetAgentId": "company-profile-agent"
+      }
+    },
+    {
+      "suite": "validate-routing",
+      "name": "ratings-comparison-intel-orchestrator-contract",
+      "passed": true,
+      "message": "Primary orchestrator contains the expected routing guidance.",
+      "details": {
+        "query": "Show Moody's vs. S&P comparison for Intel",
+        "missing": []
+      }
+    },
+    {
+      "suite": "validate-routing",
+      "name": "ratings-comparison-intel-target-contract",
+      "passed": true,
+      "message": "Target agent instructions cover the expected response contract.",
+      "details": {
+        "targetAgentId": "company-profile-agent",
+        "missing": []
+      }
+    },
+    {
+      "suite": "validate-routing",
+      "name": "ratings-comparison-intel-primary-dependency",
+      "passed": true,
+      "message": "FSI Primary is wired to the expected target agent.",
+      "details": {
+        "targetPlaceholder": "COMPANY_PROFILE_AGENT_TITLE_ID"
+      }
+    },
+    {
+      "suite": "validate-routing",
+      "name": "ratings-comparison-intel-target-websearch",
+      "passed": true,
+      "message": "Target agent has WebSearch enabled for fallback use.",
+      "details": {
+        "targetAgentId": "company-profile-agent"
+      }
+    },
+    {
+      "suite": "validate-routing",
+      "name": "comparable-analysis-salesforce-target-exists",
+      "passed": true,
+      "message": "Target agent exists in the manifest and on disk.",
+      "details": {
+        "targetAgentId": "comparable-analysis-agent"
+      }
+    },
+    {
+      "suite": "validate-routing",
+      "name": "comparable-analysis-salesforce-orchestrator-contract",
+      "passed": true,
+      "message": "Primary orchestrator contains the expected routing guidance.",
+      "details": {
+        "query": "Run a comparable company analysis for Salesforce including EV/EBITDA",
+        "missing": []
+      }
+    },
+    {
+      "suite": "validate-routing",
+      "name": "comparable-analysis-salesforce-target-contract",
+      "passed": true,
+      "message": "Target agent instructions cover the expected response contract.",
+      "details": {
+        "targetAgentId": "comparable-analysis-agent",
+        "missing": []
+      }
+    },
+    {
+      "suite": "validate-routing",
+      "name": "comparable-analysis-salesforce-primary-dependency",
+      "passed": true,
+      "message": "FSI Primary is wired to the expected target agent.",
+      "details": {
+        "targetPlaceholder": "COMPARABLE_ANALYSIS_AGENT_TITLE_ID"
+      }
+    },
+    {
+      "suite": "validate-routing",
+      "name": "comparable-analysis-salesforce-target-websearch",
+      "passed": true,
+      "message": "Target agent has WebSearch enabled for fallback use.",
+      "details": {
+        "targetAgentId": "comparable-analysis-agent"
+      }
+    },
+    {
+      "suite": "validate-routing",
+      "name": "dcf-microsoft-target-exists",
+      "passed": true,
+      "message": "Target agent exists in the manifest and on disk.",
+      "details": {
+        "targetAgentId": "dcf-model-agent"
+      }
+    },
+    {
+      "suite": "validate-routing",
+      "name": "dcf-microsoft-orchestrator-contract",
+      "passed": true,
+      "message": "Primary orchestrator contains the expected routing guidance.",
+      "details": {
+        "query": "Build a DCF model for Microsoft",
+        "missing": []
+      }
+    },
+    {
+      "suite": "validate-routing",
+      "name": "dcf-microsoft-target-contract",
+      "passed": true,
+      "message": "Target agent instructions cover the expected response contract.",
+      "details": {
+        "targetAgentId": "dcf-model-agent",
+        "missing": []
+      }
+    },
+    {
+      "suite": "validate-routing",
+      "name": "dcf-microsoft-primary-dependency",
+      "passed": true,
+      "message": "FSI Primary is wired to the expected target agent.",
+      "details": {
+        "targetPlaceholder": "DCF_MODEL_AGENT_TITLE_ID"
+      }
+    },
+    {
+      "suite": "validate-routing",
+      "name": "dcf-microsoft-target-websearch",
+      "passed": true,
+      "message": "Target agent has WebSearch enabled for fallback use.",
+      "details": {
+        "targetAgentId": "dcf-model-agent"
+      }
+    },
+    {
+      "suite": "validate-routing",
+      "name": "earnings-apple-target-exists",
+      "passed": true,
+      "message": "Target agent exists in the manifest and on disk.",
+      "details": {
+        "targetAgentId": "earnings-analysis-agent"
+      }
+    },
+    {
+      "suite": "validate-routing",
+      "name": "earnings-apple-orchestrator-contract",
+      "passed": true,
+      "message": "Primary orchestrator contains the expected routing guidance.",
+      "details": {
+        "query": "Analyze Apple's most recent quarterly earnings",
+        "missing": []
+      }
+    },
+    {
+      "suite": "validate-routing",
+      "name": "earnings-apple-target-contract",
+      "passed": true,
+      "message": "Target agent instructions cover the expected response contract.",
+      "details": {
+        "targetAgentId": "earnings-analysis-agent",
+        "missing": []
+      }
+    },
+    {
+      "suite": "validate-routing",
+      "name": "earnings-apple-primary-dependency",
+      "passed": true,
+      "message": "FSI Primary is wired to the expected target agent.",
+      "details": {
+        "targetPlaceholder": "EARNINGS_ANALYSIS_AGENT_TITLE_ID"
+      }
+    },
+    {
+      "suite": "validate-routing",
+      "name": "earnings-apple-target-websearch",
+      "passed": true,
+      "message": "Target agent has WebSearch enabled for fallback use.",
+      "details": {
+        "targetAgentId": "earnings-analysis-agent"
+      }
+    },
+    {
+      "suite": "validate-routing",
+      "name": "due-diligence-datadog-target-exists",
+      "passed": true,
+      "message": "Target agent exists in the manifest and on disk.",
+      "details": {
+        "targetAgentId": "due-diligence-agent"
+      }
+    },
+    {
+      "suite": "validate-routing",
+      "name": "due-diligence-datadog-orchestrator-contract",
+      "passed": true,
+      "message": "Primary orchestrator contains the expected routing guidance.",
+      "details": {
+        "query": "Create a due diligence data pack for Datadog",
+        "missing": []
+      }
+    },
+    {
+      "suite": "validate-routing",
+      "name": "due-diligence-datadog-target-contract",
+      "passed": true,
+      "message": "Target agent instructions cover the expected response contract.",
+      "details": {
+        "targetAgentId": "due-diligence-agent",
+        "missing": []
+      }
+    },
+    {
+      "suite": "validate-routing",
+      "name": "due-diligence-datadog-primary-dependency",
+      "passed": true,
+      "message": "FSI Primary is wired to the expected target agent.",
+      "details": {
+        "targetPlaceholder": "DUE_DILIGENCE_AGENT_TITLE_ID"
+      }
+    },
+    {
+      "suite": "validate-routing",
+      "name": "due-diligence-datadog-target-websearch",
+      "passed": true,
+      "message": "Target agent has WebSearch enabled for fallback use.",
+      "details": {
+        "targetAgentId": "due-diligence-agent"
+      }
+    },
+    {
+      "suite": "validate-routing",
+      "name": "coverage-palantir-target-exists",
+      "passed": true,
+      "message": "Target agent exists in the manifest and on disk.",
+      "details": {
+        "targetAgentId": "coverage-report-agent"
+      }
+    },
+    {
+      "suite": "validate-routing",
+      "name": "coverage-palantir-orchestrator-contract",
+      "passed": true,
+      "message": "Primary orchestrator contains the expected routing guidance.",
+      "details": {
+        "query": "Initiate analyst coverage on Palantir Technologies",
+        "missing": []
+      }
+    },
+    {
+      "suite": "validate-routing",
+      "name": "coverage-palantir-target-contract",
+      "passed": true,
+      "message": "Target agent instructions cover the expected response contract.",
+      "details": {
+        "targetAgentId": "coverage-report-agent",
+        "missing": []
+      }
+    },
+    {
+      "suite": "validate-routing",
+      "name": "coverage-palantir-primary-dependency",
+      "passed": true,
+      "message": "FSI Primary is wired to the expected target agent.",
+      "details": {
+        "targetPlaceholder": "COVERAGE_REPORT_AGENT_TITLE_ID"
+      }
+    },
+    {
+      "suite": "validate-routing",
+      "name": "coverage-palantir-target-websearch",
+      "passed": true,
+      "message": "Target agent has WebSearch enabled for fallback use.",
+      "details": {
+        "targetAgentId": "coverage-report-agent"
+      }
+    }
+  ]
+}

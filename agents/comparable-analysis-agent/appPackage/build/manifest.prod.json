@@ -1,0 +1,34 @@
+{
+    "$schema": "https://developer.microsoft.com/json-schemas/teams/vDevPreview/MicrosoftTeams.schema.json",
+    "manifestVersion": "devPreview",
+    "version": "1.0.0",
+    "id": "cfc5985d-138e-44bc-99c8-69e77b1a914f",
+    "developer": {
+        "name": "Financial Services",
+        "websiteUrl": "https://example.com",
+        "privacyUrl": "https://example.com/privacy",
+        "termsOfUseUrl": "https://example.com/terms"
+    },
+    "name": {
+        "short": "Comp Analysis Agent",
+        "full": "Comparable Company Analysis Agent"
+    },
+    "description": {
+        "short": "Generates comparable company analysis with valuation multiples.",
+        "full": "Generates institutional-quality trading comparable company analysis with valuation multiples, operating metrics, and peer set benchmarking."
+    },
+    "icons": {
+        "outline": "outline.png",
+        "color": "color.png"
+    },
+    "accentColor": "#0078D4",
+    "defaultBlockUntilAdminAction": true,
+    "copilotAgents": {
+        "declarativeAgents": [
+            {
+                "id": "declarativeAgent",
+                "file": "declarativeAgent.json"
+            }
+        ]
+    }
+}

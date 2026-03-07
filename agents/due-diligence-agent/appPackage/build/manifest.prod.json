@@ -1,0 +1,34 @@
+{
+    "$schema": "https://developer.microsoft.com/json-schemas/teams/vDevPreview/MicrosoftTeams.schema.json",
+    "manifestVersion": "devPreview",
+    "version": "1.0.0",
+    "id": "c23fde0e-c094-4aa4-8199-e07bed57d844",
+    "developer": {
+        "name": "Financial Services",
+        "websiteUrl": "https://example.com",
+        "privacyUrl": "https://example.com/privacy",
+        "termsOfUseUrl": "https://example.com/terms"
+    },
+    "name": {
+        "short": "Due Diligence Agent",
+        "full": "Due Diligence Data Pack Agent"
+    },
+    "description": {
+        "short": "Processes data room documents into structured due diligence workbooks for M&A.",
+        "full": "Processes data room documents and supplemental data sources into structured due diligence workbooks for M&A transactions."
+    },
+    "icons": {
+        "outline": "outline.png",
+        "color": "color.png"
+    },
+    "accentColor": "#0078D4",
+    "defaultBlockUntilAdminAction": true,
+    "copilotAgents": {
+        "declarativeAgents": [
+            {
+                "id": "declarativeAgent",
+                "file": "declarativeAgent.json"
+            }
+        ]
+    }
+}

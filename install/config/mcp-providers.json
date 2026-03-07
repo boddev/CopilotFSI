@@ -6,38 +6,41 @@
       "category": "Market Data & Fundamentals",
       "description": "Comprehensive financial data including fundamentals, estimates, pricing, and ratios",
       "authType": "OAuthPluginVault",
-      "publicUrl": null,
+      "publicUrl": "https://mcp.factset.com/content/v1",
       "officialMcp": false,
       "officialMcpRepo": null,
       "urlPattern": "/mcp/factset",
       "pluginFiles": [
-        "agents/mcp/mcp-factset/appPackage/ai-plugin-factset.json",
-        "agents/comparable-analysis-agent/appPackage/ai-plugin-factset.json",
-        "agents/coverage-report-agent/appPackage/ai-plugin-factset.json",
-        "agents/dcf-model-agent/appPackage/ai-plugin-factset.json",
-        "agents/due-diligence-agent/appPackage/ai-plugin-factset.json",
-        "agents/earnings-analysis-agent/appPackage/ai-plugin-factset.json",
-        "agents/company-profile-agent/appPackage/ai-plugin-factset.json",
-        "agents/precedent-transactions-agent/appPackage/ai-plugin-factset.json"
-      ]
+        "agents/mcp/mcp-factset/appPackage/ai-plugin-factset.json"
+      ],
+      "oauth": {
+        "envPrefix": "FACTSET_OAUTH",
+        "authorizationUrl": "{{FACTSET_OAUTH_AUTH_URL}}",
+        "tokenUrl": "{{FACTSET_OAUTH_TOKEN_URL}}",
+        "refreshUrl": "{{FACTSET_OAUTH_REFRESH_URL}}",
+        "scope": "{{FACTSET_OAUTH_SCOPE}}"
+      }
     },
     {
       "id": "sp-global",
       "name": "S&P Global",
       "category": "Market Data & Fundamentals",
       "description": "Market intelligence, credit ratings, and financial analytics",
-      "authType": "ApiKey",
-      "publicUrl": null,
+      "authType": "OAuthPluginVault",
+      "publicUrl": "https://kfinance.kensho.com/integrations/mcp",
       "officialMcp": false,
       "officialMcpRepo": null,
       "urlPattern": "/mcp/sp-global",
       "pluginFiles": [
-        "agents/mcp/mcp-sp-global/appPackage/ai-plugin-sp-global.json",
-        "agents/company-profile-agent/appPackage/ai-plugin-sp-global.json",
-        "agents/coverage-report-agent/appPackage/ai-plugin-sp-global.json",
-        "agents/dcf-model-agent/appPackage/ai-plugin-sp-global.json",
-        "agents/precedent-transactions-agent/appPackage/ai-plugin-sp-global.json"
-      ]
+        "agents/mcp/mcp-sp-global/appPackage/ai-plugin-sp-global.json"
+      ],
+      "oauth": {
+        "envPrefix": "SP_GLOBAL_OAUTH",
+        "authorizationUrl": "{{SP_GLOBAL_OAUTH_AUTH_URL}}",
+        "tokenUrl": "{{SP_GLOBAL_OAUTH_TOKEN_URL}}",
+        "refreshUrl": "{{SP_GLOBAL_OAUTH_REFRESH_URL}}",
+        "scope": "{{SP_GLOBAL_OAUTH_SCOPE}}"
+      }
     },
     {
       "id": "bloomberg",
@@ -51,7 +54,14 @@
       "urlPattern": "/mcp/bloomberg",
       "pluginFiles": [
         "agents/mcp/mcp-bloomberg/appPackage/ai-plugin-bloomberg.json"
-      ]
+      ],
+      "oauth": {
+        "envPrefix": "BLOOMBERG_OAUTH",
+        "authorizationUrl": "{{BLOOMBERG_OAUTH_AUTH_URL}}",
+        "tokenUrl": "{{BLOOMBERG_OAUTH_TOKEN_URL}}",
+        "refreshUrl": "{{BLOOMBERG_OAUTH_REFRESH_URL}}",
+        "scope": "{{BLOOMBERG_OAUTH_SCOPE}}"
+      }
     },
     {
       "id": "alpha-vantage",
@@ -64,9 +74,7 @@
       "officialMcpRepo": null,
       "urlPattern": "/mcp/alpha-vantage",
       "pluginFiles": [
-        "agents/mcp/mcp-market-data/appPackage/ai-plugin-alpha-vantage.json",
-        "agents/comparable-analysis-agent/appPackage/ai-plugin-alpha-vantage.json",
-        "agents/dcf-model-agent/appPackage/ai-plugin-alpha-vantage.json"
+        "agents/mcp/mcp-market-data/appPackage/ai-plugin-alpha-vantage.json"
       ]
     },
     {
@@ -80,9 +88,15 @@
       "officialMcpRepo": null,
       "urlPattern": "/mcp/lseg",
       "pluginFiles": [
-        "agents/mcp/mcp-market-data/appPackage/ai-plugin-lseg.json",
-        "agents/coverage-report-agent/appPackage/ai-plugin-lseg.json"
-      ]
+        "agents/mcp/mcp-market-data/appPackage/ai-plugin-lseg.json"
+      ],
+      "oauth": {
+        "envPrefix": "LSEG_OAUTH",
+        "authorizationUrl": "{{LSEG_OAUTH_AUTH_URL}}",
+        "tokenUrl": "{{LSEG_OAUTH_TOKEN_URL}}",
+        "refreshUrl": "{{LSEG_OAUTH_REFRESH_URL}}",
+        "scope": "{{LSEG_OAUTH_SCOPE}}"
+      }
     },
     {
       "id": "morningstar",
@@ -95,23 +109,36 @@
       "officialMcpRepo": null,
       "urlPattern": "/mcp/morningstar",
       "pluginFiles": [
-        "agents/mcp/mcp-research-ratings/appPackage/ai-plugin-morningstar.json",
-        "agents/company-profile-agent/appPackage/ai-plugin-morningstar.json"
-      ]
+        "agents/mcp/mcp-research-ratings/appPackage/ai-plugin-morningstar.json"
+      ],
+      "oauth": {
+        "envPrefix": "MORNINGSTAR_OAUTH",
+        "authorizationUrl": "{{MORNINGSTAR_OAUTH_AUTH_URL}}",
+        "tokenUrl": "{{MORNINGSTAR_OAUTH_TOKEN_URL}}",
+        "refreshUrl": "{{MORNINGSTAR_OAUTH_REFRESH_URL}}",
+        "scope": "{{MORNINGSTAR_OAUTH_SCOPE}}"
+      }
     },
     {
       "id": "moodys",
       "name": "Moody's",
       "category": "Research & Ratings",
       "description": "Credit ratings, research, and risk analysis",
-      "authType": "ApiKey",
-      "publicUrl": null,
+      "authType": "OAuthPluginVault",
+      "publicUrl": "https://api.moodys.com/genai-ready-data/m1/mcp",
       "officialMcp": false,
       "officialMcpRepo": null,
       "urlPattern": "/mcp/moodys",
       "pluginFiles": [
         "agents/mcp/mcp-research-ratings/appPackage/ai-plugin-moodys.json"
-      ]
+      ],
+      "oauth": {
+        "envPrefix": "MOODYS_OAUTH",
+        "authorizationUrl": "{{MOODYS_OAUTH_AUTH_URL}}",
+        "tokenUrl": "{{MOODYS_OAUTH_TOKEN_URL}}",
+        "refreshUrl": "{{MOODYS_OAUTH_REFRESH_URL}}",
+        "scope": "{{MOODYS_OAUTH_SCOPE}}"
+      }
     },
     {
       "id": "pitchbook",
@@ -124,9 +151,7 @@
       "officialMcpRepo": null,
       "urlPattern": "/mcp/pitchbook",
       "pluginFiles": [
-        "agents/mcp/mcp-private-capital/appPackage/ai-plugin-pitchbook.json",
-        "agents/company-profile-agent/appPackage/ai-plugin-pitchbook.json",
-        "agents/precedent-transactions-agent/appPackage/ai-plugin-pitchbook.json"
+        "agents/mcp/mcp-private-capital/appPackage/ai-plugin-pitchbook.json"
       ]
     },
     {
@@ -154,8 +179,7 @@
       "officialMcpRepo": "https://github.com/aiera-inc/aiera-mcp",
       "urlPattern": "/mcp/aiera",
       "pluginFiles": [
-        "agents/mcp/mcp-transcripts-intel/appPackage/ai-plugin-aiera.json",
-        "agents/earnings-analysis-agent/appPackage/ai-plugin-aiera.json"
+        "agents/mcp/mcp-transcripts-intel/appPackage/ai-plugin-aiera.json"
       ]
     },
     {
@@ -193,15 +217,12 @@
       "category": "Public Filings & Data",
       "description": "SEC filings, company disclosures, and regulatory data",
       "authType": "None",
-      "publicUrl": "https://data.sec.gov",
+      "publicUrl": "https://edgar-gc-mcp-a9b0d3djcvbafhex.northcentralus-01.azurewebsites.net/mcp",
       "officialMcp": false,
       "officialMcpRepo": null,
       "urlPattern": "/mcp/sec-edgar",
       "pluginFiles": [
-        "agents/mcp/mcp-public-filings/appPackage/ai-plugin-sec-edgar.json",
-        "agents/coverage-report-agent/appPackage/ai-plugin-sec-edgar.json",
-        "agents/due-diligence-agent/appPackage/ai-plugin-sec-edgar.json",
-        "agents/earnings-analysis-agent/appPackage/ai-plugin-sec-edgar.json"
+        "agents/mcp/mcp-public-filings/appPackage/ai-plugin-sec-edgar.json"
       ]
     },
     {
@@ -223,14 +244,21 @@
       "name": "Daloopa",
       "category": "Public Filings & Data",
       "description": "AI-extracted financial data from SEC filings and reports",
-      "authType": "ApiKey",
+      "authType": "OAuthPluginVault",
       "publicUrl": "https://mcp.daloopa.com/server/mcp",
       "officialMcp": true,
       "officialMcpRepo": "https://docs.daloopa.com/docs/mcp-integrations",
       "urlPattern": "/mcp/daloopa",
       "pluginFiles": [
         "agents/mcp/mcp-public-filings/appPackage/ai-plugin-daloopa.json"
-      ]
+      ],
+      "oauth": {
+        "envPrefix": "DALOOPA_OAUTH",
+        "authorizationUrl": "{{DALOOPA_OAUTH_AUTH_URL}}",
+        "tokenUrl": "{{DALOOPA_OAUTH_TOKEN_URL}}",
+        "refreshUrl": "{{DALOOPA_OAUTH_REFRESH_URL}}",
+        "scope": "{{DALOOPA_OAUTH_SCOPE}}"
+      }
     },
     {
       "id": "financial-datasets",
@@ -242,10 +270,19 @@
       "officialMcp": true,
       "officialMcpRepo": null,
       "urlPattern": "/mcp/financial-datasets",
-      "pluginFiles": [
-        "agents/comparable-analysis-agent/appPackage/ai-plugin-financial-datasets.json",
-        "agents/earnings-analysis-agent/appPackage/ai-plugin-financial-datasets.json"
-      ]
+      "pluginFiles": []
+    },
+    {
+      "id": "sharepoint-onedrive",
+      "name": "SharePoint & OneDrive",
+      "category": "Document Platforms",
+      "description": "Built-in M365 document access via Microsoft Graph (no MCP server required)",
+      "authType": "None",
+      "publicUrl": "builtin",
+      "officialMcp": false,
+      "builtIn": true,
+      "urlPattern": null,
+      "pluginFiles": []
     },
     {
       "id": "box",
@@ -258,9 +295,15 @@
       "officialMcpRepo": null,
       "urlPattern": "/mcp/box",
       "pluginFiles": [
-        "agents/mcp/mcp-document-platforms/appPackage/ai-plugin-box.json",
-        "agents/due-diligence-agent/appPackage/ai-plugin-box.json"
-      ]
+        "agents/mcp/mcp-document-platforms/appPackage/ai-plugin-box.json"
+      ],
+      "oauth": {
+        "envPrefix": "BOX_OAUTH",
+        "authorizationUrl": "{{BOX_OAUTH_AUTH_URL}}",
+        "tokenUrl": "{{BOX_OAUTH_TOKEN_URL}}",
+        "refreshUrl": "{{BOX_OAUTH_REFRESH_URL}}",
+        "scope": "{{BOX_OAUTH_SCOPE}}"
+      }
     },
     {
       "id": "egnyte",
@@ -274,7 +317,14 @@
       "urlPattern": "/mcp/egnyte",
       "pluginFiles": [
         "agents/mcp/mcp-document-platforms/appPackage/ai-plugin-egnyte.json"
-      ]
+      ],
+      "oauth": {
+        "envPrefix": "EGNYTE_OAUTH",
+        "authorizationUrl": "{{EGNYTE_OAUTH_AUTH_URL}}",
+        "tokenUrl": "{{EGNYTE_OAUTH_TOKEN_URL}}",
+        "refreshUrl": "{{EGNYTE_OAUTH_REFRESH_URL}}",
+        "scope": "{{EGNYTE_OAUTH_SCOPE}}"
+      }
     },
     {
       "id": "snowflake",
@@ -288,7 +338,14 @@
       "urlPattern": "/mcp/snowflake",
       "pluginFiles": [
         "agents/mcp/mcp-data-warehouses/appPackage/ai-plugin-snowflake.json"
-      ]
+      ],
+      "oauth": {
+        "envPrefix": "SNOWFLAKE_OAUTH",
+        "authorizationUrl": "{{SNOWFLAKE_OAUTH_AUTH_URL}}",
+        "tokenUrl": "{{SNOWFLAKE_OAUTH_TOKEN_URL}}",
+        "refreshUrl": "{{SNOWFLAKE_OAUTH_REFRESH_URL}}",
+        "scope": "{{SNOWFLAKE_OAUTH_SCOPE}}"
+      }
     },
     {
       "id": "databricks",
@@ -302,7 +359,14 @@
       "urlPattern": "/mcp/databricks",
       "pluginFiles": [
         "agents/mcp/mcp-data-warehouses/appPackage/ai-plugin-databricks.json"
-      ]
+      ],
+      "oauth": {
+        "envPrefix": "DATABRICKS_OAUTH",
+        "authorizationUrl": "{{DATABRICKS_OAUTH_AUTH_URL}}",
+        "tokenUrl": "{{DATABRICKS_OAUTH_TOKEN_URL}}",
+        "refreshUrl": "{{DATABRICKS_OAUTH_REFRESH_URL}}",
+        "scope": "{{DATABRICKS_OAUTH_SCOPE}}"
+      }
     }
   ]
 }

@@ -1,0 +1,34 @@
+{
+    "$schema": "https://developer.microsoft.com/json-schemas/teams/vDevPreview/MicrosoftTeams.schema.json",
+    "manifestVersion": "devPreview",
+    "version": "1.0.0",
+    "id": "fe0646b0-b591-4fc2-b1e8-2a39f5ae0b5c",
+    "developer": {
+        "name": "Financial Services",
+        "websiteUrl": "https://example.com",
+        "privacyUrl": "https://example.com/privacy",
+        "termsOfUseUrl": "https://example.com/terms"
+    },
+    "name": {
+        "short": "Public Filings Connector",
+        "full": "Public Filings Connector (SEC EDGAR, FMP, Daloopa)"
+    },
+    "description": {
+        "short": "Provides access to public company filings from SEC EDGAR, FMP, and Daloopa.",
+        "full": "Provides access to public company filings from SEC EDGAR (raw filings, XBRL), Financial Modeling Prep (structured financials), and Daloopa (auto-extracted data)."
+    },
+    "icons": {
+        "outline": "outline.png",
+        "color": "color.png"
+    },
+    "accentColor": "#0078D4",
+    "defaultBlockUntilAdminAction": true,
+    "copilotAgents": {
+        "declarativeAgents": [
+            {
+                "id": "declarativeAgent",
+                "file": "declarativeAgent.json"
+            }
+        ]
+    }
+}

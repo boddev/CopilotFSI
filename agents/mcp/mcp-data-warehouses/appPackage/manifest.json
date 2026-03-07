@@ -3,6 +3,7 @@
   "manifestVersion": "devPreview",
   "id": "${{TEAMS_APP_ID}}",
   "version": "1.0.0",
+  "defaultBlockUntilAdminAction": true,
   "developer": {
     "name": "Financial Services",
     "websiteUrl": "https://example.com",
@@ -14,7 +15,7 @@
     "full": "Data Warehouse Connector (Snowflake & Databricks)"
   },
   "description": {
-    "short": "Provides access to internal enterprise financial data in Snowflake and Databricks.",
+    "short": "Provides enterprise financial data from Snowflake and Databricks.",
     "full": "Provides access to internal enterprise financial data stored in Snowflake (via Cortex managed MCP) and Databricks (via Unity Catalog managed MCP)."
   },
   "icons": { "outline": "outline.png", "color": "color.png" },

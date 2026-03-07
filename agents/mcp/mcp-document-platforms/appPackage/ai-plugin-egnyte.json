@@ -1,103 +1,153 @@
-{
-  "$schema": "https://aka.ms/json-schemas/copilot/plugin/v2.4/schema.json",
-  "schema_version": "v2.4",
-  "name_for_human": "Egnyte",
-  "namespace": "Egnyte",
-  "description_for_human": "Search, retrieve, and read files stored in Egnyte.",
-  "description_for_model": "Provides access to Egnyte's enterprise file management platform. Use this plugin to search for files across Egnyte repositories, retrieve file details, list folder contents, extract text from documents, and retrieve file metadata. Essential for accessing deal room documents, compliance files, research materials, and other content stored in Egnyte.",
-  "functions": [
-    {
-      "name": "search_files",
-      "description": "Search for files in Egnyte using full-text search with optional path and file type filters.",
-      "parameters": {
-        "type": "object",
-        "properties": {
-          "query": { "type": "string", "description": "Full-text search query to find files" },
-          "path": { "type": "string", "description": "Optional folder path to scope the search (e.g., '/Shared/Research')" },
-          "file_type": { "type": "string", "description": "Optional file type filter: 'pdf', 'docx', 'xlsx', 'pptx', or 'all'" }
-        },
-        "required": ["query", "path", "file_type"]
-      },
-      "capabilities": {
-        "security_info": {
-          "data_handling": ["GetPrivateData"]
-        }
-      }
-    },
-    {
-      "name": "get_file",
-      "description": "Retrieve file details including name, size, owner, and download link from Egnyte.",
-      "parameters": {
-        "type": "object",
-        "properties": {
-          "file_path": { "type": "string", "description": "Full file path in Egnyte (e.g., '/Shared/Research/report.pdf')" }
-        },
-        "required": ["file_path"]
-      },
-      "capabilities": {
-        "security_info": {
-          "data_handling": ["GetPrivateData"]
-        }
-      }
-    },
-    {
-      "name": "list_folder",
-      "description": "List the contents of an Egnyte folder including files and sub-folders.",
-      "parameters": {
-        "type": "object",
-        "properties": {
-          "folder_path": { "type": "string", "description": "Folder path in Egnyte (e.g., '/Shared/Research' or '/' for root)" }
-        },
-        "required": ["folder_path"]
-      },
-      "capabilities": {
-        "security_info": {
-          "data_handling": ["GetPrivateData"]
-        }
-      }
-    },
-    {
-      "name": "get_file_text",
-      "description": "Extract and retrieve the text content from a file stored in Egnyte.",
-      "parameters": {
-        "type": "object",
-        "properties": {
-          "file_path": { "type": "string", "description": "Full file path in Egnyte (e.g., '/Shared/Research/report.pdf')" }
-        },
-        "required": ["file_path"]
-      },
-      "capabilities": {
-        "security_info": {
-          "data_handling": ["GetPrivateData"]
-        }
-      }
-    },
-    {
-      "name": "get_file_metadata",
-      "description": "Retrieve metadata and custom properties associated with a file in Egnyte.",
-      "parameters": {
-        "type": "object",
-        "properties": {
-          "file_path": { "type": "string", "description": "Full file path in Egnyte (e.g., '/Shared/Research/report.pdf')" }
-        },
-        "required": ["file_path"]
-      },
-      "capabilities": {
-        "security_info": {
-          "data_handling": ["GetPrivateData"]
-        }
-      }
-    }
-  ],
-  "runtimes": [
-    {
-      "type": "RemoteMCPServer",
-      "spec": {
-        "url": "https://{{MCP_HOST}}/mcp/egnyte"
-      },
-      "auth": {
-        "type": "OAuthPluginVault"
-      }
-    }
-  ]
+﻿{
+    "$schema":  "https://aka.ms/json-schemas/copilot/plugin/v2.4/schema.json",
+    "schema_version":  "v2.4",
+    "name_for_human":  "Egnyte",
+    "namespace":  "Egnyte",
+    "description_for_human":  "Search, retrieve, and read files stored in Egnyte.",
+    "description_for_model":  "Provides access to Egnyte\u0027s enterprise file management platform. Use this plugin to search for files across Egnyte repositories, retrieve file details, list folder contents, extract text from documents, and retrieve file metadata. Essential for accessing deal room documents, compliance files, research materials, and other content stored in Egnyte.",
+    "functions":  [
+                      {
+                          "name":  "search_files",
+                          "description":  "Search for files in Egnyte using full-text search with optional path and file type filters.",
+                          "parameters":  {
+                                             "type":  "object",
+                                             "properties":  {
+                                                                "query":  {
+                                                                              "type":  "string",
+                                                                              "description":  "Full-text search query to find files"
+                                                                          },
+                                                                "path":  {
+                                                                             "type":  "string",
+                                                                             "description":  "Optional folder path to scope the search (e.g., \u0027/Shared/Research\u0027)"
+                                                                         },
+                                                                "file_type":  {
+                                                                                  "type":  "string",
+                                                                                  "description":  "Optional file type filter: \u0027pdf\u0027, \u0027docx\u0027, \u0027xlsx\u0027, \u0027pptx\u0027, or \u0027all\u0027"
+                                                                              }
+                                                            },
+                                             "required":  [
+                                                              "query",
+                                                              "path",
+                                                              "file_type"
+                                                          ]
+                                         },
+                          "capabilities":  {
+                                               "security_info":  {
+                                                                     "data_handling":  [
+                                                                                           "GetPrivateData"
+                                                                                       ]
+                                                                 }
+                                           }
+                      },
+                      {
+                          "name":  "get_file",
+                          "description":  "Retrieve file details including name, size, owner, and download link from Egnyte.",
+                          "parameters":  {
+                                             "type":  "object",
+                                             "properties":  {
+                                                                "file_path":  {
+                                                                                  "type":  "string",
+                                                                                  "description":  "Full file path in Egnyte (e.g., \u0027/Shared/Research/report.pdf\u0027)"
+                                                                              }
+                                                            },
+                                             "required":  [
+                                                              "file_path"
+                                                          ]
+                                         },
+                          "capabilities":  {
+                                               "security_info":  {
+                                                                     "data_handling":  [
+                                                                                           "GetPrivateData"
+                                                                                       ]
+                                                                 }
+                                           }
+                      },
+                      {
+                          "name":  "list_folder",
+                          "description":  "List the contents of an Egnyte folder including files and sub-folders.",
+                          "parameters":  {
+                                             "type":  "object",
+                                             "properties":  {
+                                                                "folder_path":  {
+                                                                                    "type":  "string",
+                                                                                    "description":  "Folder path in Egnyte (e.g., \u0027/Shared/Research\u0027 or \u0027/\u0027 for root)"
+                                                                                }
+                                                            },
+                                             "required":  [
+                                                              "folder_path"
+                                                          ]
+                                         },
+                          "capabilities":  {
+                                               "security_info":  {
+                                                                     "data_handling":  [
+                                                                                           "GetPrivateData"
+                                                                                       ]
+                                                                 }
+                                           }
+                      },
+                      {
+                          "name":  "get_file_text",
+                          "description":  "Extract and retrieve the text content from a file stored in Egnyte.",
+                          "parameters":  {
+                                             "type":  "object",
+                                             "properties":  {
+                                                                "file_path":  {
+                                                                                  "type":  "string",
+                                                                                  "description":  "Full file path in Egnyte (e.g., \u0027/Shared/Research/report.pdf\u0027)"
+                                                                              }
+                                                            },
+                                             "required":  [
+                                                              "file_path"
+                                                          ]
+                                         },
+                          "capabilities":  {
+                                               "security_info":  {
+                                                                     "data_handling":  [
+                                                                                           "GetPrivateData"
+                                                                                       ]
+                                                                 }
+                                           }
+                      },
+                      {
+                          "name":  "get_file_metadata",
+                          "description":  "Retrieve metadata and custom properties associated with a file in Egnyte.",
+                          "parameters":  {
+                                             "type":  "object",
+                                             "properties":  {
+                                                                "file_path":  {
+                                                                                  "type":  "string",
+                                                                                  "description":  "Full file path in Egnyte (e.g., \u0027/Shared/Research/report.pdf\u0027)"
+                                                                              }
+                                                            },
+                                             "required":  [
+                                                              "file_path"
+                                                          ]
+                                         },
+                          "capabilities":  {
+                                               "security_info":  {
+                                                                     "data_handling":  [
+                                                                                           "GetPrivateData"
+                                                                                       ]
+                                                                 }
+                                           }
+                      }
+                  ],
+    "runtimes":  [
+                     {
+                         "type":  "RemoteMCPServer",
+                         "spec":  {
+                                      "url":  "https://{{MCP_HOST}}/mcp/egnyte"
+                                  },
+                         "auth":  {
+                                      "type":  "OAuthPluginVault"
+                                  },
+                         "run_for_functions":  [
+                                                   "search_files",
+                                                   "get_file",
+                                                   "list_folder",
+                                                   "get_file_text",
+                                                   "get_file_metadata"
+                                               ]
+                     }
+                 ]
 }

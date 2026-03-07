@@ -3,6 +3,7 @@
   "manifestVersion": "devPreview",
   "id": "${{TEAMS_APP_ID}}",
   "version": "1.0.0",
+  "defaultBlockUntilAdminAction": true,
   "developer": {
     "name": "Financial Services",
     "websiteUrl": "https://example.com",
@@ -11,11 +12,11 @@
   },
   "name": {
     "short": "S&P Global Data Connector",
-    "full": "S&P Global / Capital IQ Data Connector"
+    "full": "S&P Global Market Intelligence Data Connector"
   },
   "description": {
-    "short": "Provides access to S&P Global / Capital IQ data including company financials, credit ratings, and ESG scores.",
-    "full": "Provides access to S&P Global / Capital IQ data including company financials, credit ratings, debt schedules, industry analysis, ESG scores, and earnings transcripts."
+    "short": "Provides S&P Global Market Intelligence financials, ratings, and ESG data.",
+    "full": "Provides access to S&P Global Market Intelligence data including company financials, credit ratings, debt schedules, industry analysis, ESG scores, and earnings transcripts."
   },
   "icons": { "outline": "outline.png", "color": "color.png" },
   "accentColor": "#0078D4",

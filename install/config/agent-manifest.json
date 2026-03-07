@@ -14,7 +14,7 @@
       "type": "mcp-connector",
       "workerAgentDeps": [],
       "titleIdPlaceholder": "MCP_FACTSET_TITLE_ID",
-      "envFile": ".env.prod"
+      "envFile": "env/.env.prod"
     },
     {
       "id": "mcp-sp-global",
@@ -24,7 +24,7 @@
       "type": "mcp-connector",
       "workerAgentDeps": [],
       "titleIdPlaceholder": "MCP_SP_GLOBAL_TITLE_ID",
-      "envFile": ".env.prod"
+      "envFile": "env/.env.prod"
     },
     {
       "id": "mcp-market-data",
@@ -34,7 +34,7 @@
       "type": "mcp-connector",
       "workerAgentDeps": [],
       "titleIdPlaceholder": "MCP_MARKET_DATA_TITLE_ID",
-      "envFile": ".env.prod"
+      "envFile": "env/.env.prod"
     },
     {
       "id": "mcp-research-ratings",
@@ -44,7 +44,7 @@
       "type": "mcp-connector",
       "workerAgentDeps": [],
       "titleIdPlaceholder": "MCP_RESEARCH_RATINGS_TITLE_ID",
-      "envFile": ".env.prod"
+      "envFile": "env/.env.prod"
     },
     {
       "id": "mcp-private-capital",
@@ -54,7 +54,7 @@
       "type": "mcp-connector",
       "workerAgentDeps": [],
       "titleIdPlaceholder": "MCP_PRIVATE_CAPITAL_TITLE_ID",
-      "envFile": ".env.prod"
+      "envFile": "env/.env.prod"
     },
     {
       "id": "mcp-transcripts-intel",
@@ -64,7 +64,7 @@
       "type": "mcp-connector",
       "workerAgentDeps": [],
       "titleIdPlaceholder": "MCP_TRANSCRIPTS_INTEL_TITLE_ID",
-      "envFile": ".env.prod"
+      "envFile": "env/.env.prod"
     },
     {
       "id": "mcp-public-filings",
@@ -74,7 +74,7 @@
       "type": "mcp-connector",
       "workerAgentDeps": [],
       "titleIdPlaceholder": "MCP_PUBLIC_FILINGS_TITLE_ID",
-      "envFile": ".env.prod"
+      "envFile": "env/.env.prod"
     },
     {
       "id": "mcp-document-platforms",
@@ -84,7 +84,7 @@
       "type": "mcp-connector",
       "workerAgentDeps": [],
       "titleIdPlaceholder": "MCP_DOCUMENT_PLATFORMS_TITLE_ID",
-      "envFile": ".env.prod"
+      "envFile": "env/.env.prod"
     },
     {
       "id": "mcp-data-warehouses",
@@ -94,7 +94,7 @@
       "type": "mcp-connector",
       "workerAgentDeps": [],
       "titleIdPlaceholder": "MCP_DATA_WAREHOUSES_TITLE_ID",
-      "envFile": ".env.prod"
+      "envFile": "env/.env.prod"
     },
     {
       "id": "mcp-bloomberg",
@@ -104,17 +104,7 @@
       "type": "mcp-connector",
       "workerAgentDeps": [],
       "titleIdPlaceholder": "MCP_BLOOMBERG_TITLE_ID",
-      "envFile": ".env.prod"
-    },
-    {
-      "id": "semantic-normalization-agent",
-      "name": "Semantic Normalization Agent",
-      "path": "agents/semantic-normalization-agent",
-      "tier": 1,
-      "type": "utility",
-      "workerAgentDeps": [],
-      "titleIdPlaceholder": "SEMANTIC_NORMALIZATION_AGENT_TITLE_ID",
-      "envFile": ".env.prod"
+      "envFile": "env/.env.prod"
     },
     {
       "id": "compliance-guardrail-agent",
@@ -124,7 +114,7 @@
       "type": "utility",
       "workerAgentDeps": [],
       "titleIdPlaceholder": "COMPLIANCE_GUARDRAIL_AGENT_TITLE_ID",
-      "envFile": ".env.prod"
+      "envFile": "env/.env.prod"
     },
     {
       "id": "comparable-analysis-agent",
@@ -132,9 +122,13 @@
       "path": "agents/comparable-analysis-agent",
       "tier": 2,
       "type": "skill",
-      "workerAgentDeps": ["SEMANTIC_NORMALIZATION_AGENT_TITLE_ID"],
+      "workerAgentDeps": [
+        "MCP_FACTSET_TITLE_ID",
+        "MCP_PUBLIC_FILINGS_TITLE_ID",
+        "MCP_MARKET_DATA_TITLE_ID"
+      ],
       "titleIdPlaceholder": "COMPARABLE_ANALYSIS_AGENT_TITLE_ID",
-      "envFile": ".env.prod"
+      "envFile": "env/.env.prod"
     },
     {
       "id": "dcf-model-agent",
@@ -142,9 +136,14 @@
       "path": "agents/dcf-model-agent",
       "tier": 2,
       "type": "skill",
-      "workerAgentDeps": ["SEMANTIC_NORMALIZATION_AGENT_TITLE_ID"],
+      "workerAgentDeps": [
+        "MCP_FACTSET_TITLE_ID",
+        "MCP_SP_GLOBAL_TITLE_ID",
+        "MCP_MARKET_DATA_TITLE_ID",
+        "MCP_RESEARCH_RATINGS_TITLE_ID"
+      ],
       "titleIdPlaceholder": "DCF_MODEL_AGENT_TITLE_ID",
-      "envFile": ".env.prod"
+      "envFile": "env/.env.prod"
     },
     {
       "id": "due-diligence-agent",
@@ -152,9 +151,13 @@
       "path": "agents/due-diligence-agent",
       "tier": 2,
       "type": "skill",
-      "workerAgentDeps": ["SEMANTIC_NORMALIZATION_AGENT_TITLE_ID"],
+      "workerAgentDeps": [
+        "MCP_FACTSET_TITLE_ID",
+        "MCP_PUBLIC_FILINGS_TITLE_ID",
+        "MCP_RESEARCH_RATINGS_TITLE_ID"
+      ],
       "titleIdPlaceholder": "DUE_DILIGENCE_AGENT_TITLE_ID",
-      "envFile": ".env.prod"
+      "envFile": "env/.env.prod"
     },
     {
       "id": "company-profile-agent",
@@ -162,9 +165,13 @@
       "path": "agents/company-profile-agent",
       "tier": 2,
       "type": "skill",
-      "workerAgentDeps": ["SEMANTIC_NORMALIZATION_AGENT_TITLE_ID"],
+      "workerAgentDeps": [
+        "MCP_FACTSET_TITLE_ID",
+        "MCP_SP_GLOBAL_TITLE_ID",
+        "MCP_RESEARCH_RATINGS_TITLE_ID"
+      ],
       "titleIdPlaceholder": "COMPANY_PROFILE_AGENT_TITLE_ID",
-      "envFile": ".env.prod"
+      "envFile": "env/.env.prod"
     },
     {
       "id": "earnings-analysis-agent",
@@ -172,9 +179,13 @@
       "path": "agents/earnings-analysis-agent",
       "tier": 2,
       "type": "skill",
-      "workerAgentDeps": ["SEMANTIC_NORMALIZATION_AGENT_TITLE_ID"],
+      "workerAgentDeps": [
+        "MCP_FACTSET_TITLE_ID",
+        "MCP_PUBLIC_FILINGS_TITLE_ID",
+        "MCP_TRANSCRIPTS_INTEL_TITLE_ID"
+      ],
       "titleIdPlaceholder": "EARNINGS_ANALYSIS_AGENT_TITLE_ID",
-      "envFile": ".env.prod"
+      "envFile": "env/.env.prod"
     },
     {
       "id": "precedent-transactions-agent",
@@ -182,9 +193,9 @@
       "path": "agents/precedent-transactions-agent",
       "tier": 2,
       "type": "skill",
-      "workerAgentDeps": ["SEMANTIC_NORMALIZATION_AGENT_TITLE_ID"],
+      "workerAgentDeps": ["MCP_FACTSET_TITLE_ID", "MCP_SP_GLOBAL_TITLE_ID"],
       "titleIdPlaceholder": "PRECEDENT_TRANSACTIONS_AGENT_TITLE_ID",
-      "envFile": ".env.prod"
+      "envFile": "env/.env.prod"
     },
     {
       "id": "coverage-report-agent",
@@ -196,11 +207,14 @@
         "COMPARABLE_ANALYSIS_AGENT_TITLE_ID",
         "DCF_MODEL_AGENT_TITLE_ID",
         "EARNINGS_ANALYSIS_AGENT_TITLE_ID",
-        "SEMANTIC_NORMALIZATION_AGENT_TITLE_ID",
-        "PRECEDENT_TRANSACTIONS_AGENT_TITLE_ID"
+        "PRECEDENT_TRANSACTIONS_AGENT_TITLE_ID",
+        "MCP_FACTSET_TITLE_ID",
+        "MCP_SP_GLOBAL_TITLE_ID",
+        "MCP_PUBLIC_FILINGS_TITLE_ID",
+        "MCP_RESEARCH_RATINGS_TITLE_ID"
       ],
       "titleIdPlaceholder": "COVERAGE_REPORT_AGENT_TITLE_ID",
-      "envFile": ".env.prod"
+      "envFile": "env/.env.prod"
     },
     {
       "id": "fsi-primary-agent",
@@ -209,7 +223,6 @@
       "tier": 3,
       "type": "orchestrator",
       "workerAgentDeps": [
-        "SEMANTIC_NORMALIZATION_AGENT_TITLE_ID",
         "COMPLIANCE_GUARDRAIL_AGENT_TITLE_ID",
         "COMPARABLE_ANALYSIS_AGENT_TITLE_ID",
         "DCF_MODEL_AGENT_TITLE_ID",
@@ -220,7 +233,7 @@
         "COVERAGE_REPORT_AGENT_TITLE_ID"
       ],
       "titleIdPlaceholder": "FSI_PRIMARY_AGENT_TITLE_ID",
-      "envFile": ".env.prod"
+      "envFile": "env/.env.prod"
     }
   ]
 }

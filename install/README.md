@@ -27,6 +27,12 @@ cd install
 .\Install-FSICopilot.ps1
 ```
 
+Retest the local agent contracts at any time:
+
+```powershell
+..\tests\run-all-tests.ps1 -RequireResolvedTitleIds
+```
+
 The installer will:
 1. ✅ Check prerequisites
 2. 🔐 Authenticate to your M365 tenant
@@ -44,6 +50,7 @@ The installer will:
 | `-SkipPrerequisites` | Skip the prerequisites check |
 | `-AutoInstallPrereqs` | Auto-install missing prerequisites |
 | `-NonInteractive` | Use defaults (SEC EDGAR + Alpha Vantage only) |
+| `-RunTests` | Run the local validation harness after provisioning |
 
 ## MCP Server Setup
 
@@ -83,6 +90,8 @@ For enterprise providers, you'll need to either:
 .\Uninstall-FSICopilot.ps1
 ```
 
+The uninstall script removes the uploaded Microsoft 365 app resources and local environment artifacts. If an agent was published/approved into your organization's Agent Store, it can still remain visible until an admin removes or deletes it in **Microsoft 365 admin center > Agents > All agents**.
+
 Options:
 
 - `-DryRun` — Show what would be removed
@@ -99,16 +108,22 @@ Ensure you have admin permissions on the M365 tenant and a valid Copilot license
 - Check you're not hitting rate limits (the installer provisions in parallel)
 - Ensure the teamsapp.yml files are valid: `atk validate` in the agent directory
 - Check the atk CLI version: `atk --version` (requires recent version)
+- Run the local harness: `..\tests\run-all-tests.ps1`
 
 ### Worker agents not connecting
 
-The installer resolves title IDs automatically, but if an agent fails to provision,
-its title ID won't be available for downstream agents. Re-run the installer to retry.
+Worker-agent wiring is generated from `install\config\agent-manifest.json`. The installer resets declarative `worker_agents` placeholders from that manifest before provisioning, so re-running `.\Install-FSICopilot.ps1` is the safest way to republish fresh worker IDs if delegation looks stale or broken.
+
+If an upstream agent fails to provision, its title ID will not be available for downstream agents. After a successful install, run `..\tests\run-all-tests.ps1 -RequireResolvedTitleIds` to confirm the deployed worker IDs were resolved correctly.
 
 ### MCP server connection errors
 
 Verify your MCP server URLs are accessible from the M365 tenant's network.
 Enterprise MCP servers may require VPN or private endpoints.
+
+### Agents still show in Agent Store after uninstall
+
+The uninstall script removes the app package and app registration that Agents Toolkit created, but published agents can still remain in the Microsoft 365 Agent Registry / **Built for your org** catalog. Remove or delete those entries in **Microsoft 365 admin center > Agents > All agents** if you want them to disappear from the Agent Store.
 
 ## Architecture
 

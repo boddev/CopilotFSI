@@ -54,7 +54,7 @@ function Set-McpServerUrls {
         Write-Verbose "Processing provider '$providerName' → $newUrl"
 
         # Find provider entry in config
-        $providerEntry = $providersConfig.providers | Where-Object { $_.name -eq $providerName }
+        $providerEntry = $providersConfig.providers | Where-Object { $_.id -eq $providerName }
         if (-not $providerEntry) {
             Write-Warning "Provider '$providerName' not found in mcp-providers.json — skipping."
             continue

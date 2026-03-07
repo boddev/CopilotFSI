@@ -1,0 +1,34 @@
+{
+    "$schema": "https://developer.microsoft.com/json-schemas/teams/vDevPreview/MicrosoftTeams.schema.json",
+    "manifestVersion": "devPreview",
+    "version": "1.0.0",
+    "id": "18a83ffe-8a80-4a57-9e40-6ca18ff4af49",
+    "developer": {
+        "name": "Financial Services",
+        "websiteUrl": "https://example.com",
+        "privacyUrl": "https://example.com/privacy",
+        "termsOfUseUrl": "https://example.com/terms"
+    },
+    "name": {
+        "short": "Transcripts & Intel Connector",
+        "full": "Transcripts & Intelligence Connector (Aiera, Third Bridge, MT Newswires)"
+    },
+    "description": {
+        "short": "Provides earnings transcripts, expert interviews, and news.",
+        "full": "Provides unstructured financial intelligence from earnings transcripts (Aiera), expert interviews (Third Bridge), and financial news (MT Newswires)."
+    },
+    "icons": {
+        "outline": "outline.png",
+        "color": "color.png"
+    },
+    "accentColor": "#0078D4",
+    "defaultBlockUntilAdminAction": true,
+    "copilotAgents": {
+        "declarativeAgents": [
+            {
+                "id": "declarativeAgent",
+                "file": "declarativeAgent.json"
+            }
+        ]
+    }
+}

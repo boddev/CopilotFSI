@@ -1,0 +1,134 @@
+{
+    "$schema": "https://aka.ms/json-schemas/copilot/plugin/v2.4/schema.json",
+    "schema_version": "v2.4",
+    "name_for_human": "SEC EDGAR Filings",
+    "description_for_human": "Access SEC EDGAR filings, XBRL financial data, and company submissions data.",
+    "description_for_model": "Use this plugin to retrieve company metadata and recent filing history via the Submissions API, full-text search across filings via EFTS, retrieve all XBRL-tagged financial facts via CompanyFacts, query time series for specific XBRL concepts via CompanyConcept, and map ticker symbols to CIK numbers from the SEC EDGAR database. Essential for regulatory compliance research and public company analysis.",
+    "namespace": "secedgar",
+    "functions": [
+        {
+            "name": "get_submissions",
+            "description": "Retrieve company metadata and recent SEC filing history (up to 1000 filings) including form types, accession numbers, and filing dates. Also returns company CIK, SIC code, and addresses.",
+            "parameters": {
+                "type": "object",
+                "properties": {
+                    "ticker": {
+                        "type": "string",
+                        "description": "Stock ticker symbol (e.g., AAPL, MSFT) â€” will be mapped to CIK via company_tickers.json"
+                    }
+                },
+                "required": [
+                    "ticker"
+                ]
+            }
+        },
+        {
+            "name": "search_filings",
+            "description": "Full-text search across SEC EDGAR filings using EFTS search index. Returns matching filings with excerpts, form types, and dates.",
+            "parameters": {
+                "type": "object",
+                "properties": {
+                    "query": {
+                        "type": "string",
+                        "description": "Full-text search query to search within filing content"
+                    },
+                    "date_range": {
+                        "type": "string",
+                        "description": "Date range filter: 'custom' to use start_date/end_date, or omit for all dates"
+                    },
+                    "start_date": {
+                        "type": "string",
+                        "description": "Start date in YYYY-MM-DD format (used when date_range is 'custom')"
+                    },
+                    "end_date": {
+                        "type": "string",
+                        "description": "End date in YYYY-MM-DD format (used when date_range is 'custom')"
+                    },
+                    "forms": {
+                        "type": "string",
+                        "description": "Comma-separated form types to filter (e.g., '10-K,10-Q,8-K')"
+                    }
+                },
+                "required": [
+                    "query"
+                ]
+            }
+        },
+        {
+            "name": "get_company_facts",
+            "description": "Retrieve all XBRL-tagged financial facts ever filed by a company via SEC EDGAR CompanyFacts API. Returns complete history of standardized financial data points.",
+            "parameters": {
+                "type": "object",
+                "properties": {
+                    "ticker": {
+                        "type": "string",
+                        "description": "Stock ticker symbol (e.g., AAPL, MSFT) â€” will be mapped to CIK via company_tickers.json"
+                    }
+                },
+                "required": [
+                    "ticker"
+                ]
+            }
+        },
+        {
+            "name": "get_company_concept",
+            "description": "Retrieve a time series for a specific XBRL financial concept (e.g., Revenue, Assets) across all filings for a company via SEC EDGAR CompanyConcept API.",
+            "parameters": {
+                "type": "object",
+                "properties": {
+                    "ticker": {
+                        "type": "string",
+                        "description": "Stock ticker symbol (e.g., AAPL, MSFT) â€” will be mapped to CIK via company_tickers.json"
+                    },
+                    "taxonomy": {
+                        "type": "string",
+                        "description": "XBRL taxonomy: 'us-gaap', 'ifrs-full', or 'dei'"
+                    },
+                    "tag": {
+                        "type": "string",
+                        "description": "XBRL concept tag (e.g., 'Revenues', 'Assets', 'NetIncomeLoss')"
+                    }
+                },
+                "required": [
+                    "ticker",
+                    "taxonomy",
+                    "tag"
+                ]
+            }
+        },
+        {
+            "name": "get_ticker_mapping",
+            "description": "Map stock ticker symbols to SEC CIK numbers using the official SEC company_tickers.json file.",
+            "parameters": {
+                "type": "object",
+                "properties": {
+                    "ticker": {
+                        "type": "string",
+                        "description": "Stock ticker symbol to look up (e.g., AAPL, MSFT)"
+                    }
+                },
+                "required": [
+                    "ticker"
+                ]
+            }
+        }
+    ],
+    "runtimes": [
+        {
+            "type": "RemoteMCPServer",
+            "spec": {
+                "url": "https://edgar-gc-mcp-a9b0d3djcvbafhex.northcentralus-01.azurewebsites.net/mcp"
+            },
+            "auth": {
+                "type": "None"
+            },
+            "run_for_functions": [
+                "get_submissions",
+                "search_filings",
+                "get_company_facts",
+                "get_company_concept",
+                "get_ticker_mapping"
+            ]
+        }
+    ]
+}

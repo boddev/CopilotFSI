@@ -1,0 +1,201 @@
+{
+    "$schema": "https://aka.ms/json-schemas/copilot/plugin/v2.4/schema.json",
+    "schema_version": "v2.4",
+    "name_for_human": "S&P Global / Capital IQ Financial Data",
+    "description_for_human": "Access financial data, credit ratings, debt schedules, industry analysis, and ESG scores from S&P Global and Capital IQ.",
+    "description_for_model": "Use this plugin to retrieve financial statements, credit ratings, debt schedules, industry analysis, ESG scores, company profiles, and earnings transcripts from S&P Global / Capital IQ. Best for credit analysis, debt structure review, and industry-level insights.",
+    "namespace": "spglobal",
+    "functions": [
+        {
+            "name": "get_financials",
+            "description": "Retrieve financial statements and data from S&P Capital IQ.",
+            "parameters": {
+                "type": "object",
+                "properties": {
+                    "ticker": {
+                        "type": "string",
+                        "description": "Stock ticker symbol (e.g., AAPL, MSFT)"
+                    },
+                    "period": {
+                        "type": "string",
+                        "description": "Time period (e.g., LTM, FY2024, Q4FY2024)"
+                    },
+                    "statement_type": {
+                        "type": "string",
+                        "description": "Type of financial statement: income_statement, balance_sheet, or cash_flow"
+                    }
+                },
+                "required": [
+                    "ticker"
+                ]
+            }
+        },
+        {
+            "name": "get_credit_rating",
+            "description": "Retrieve S&P credit ratings and outlook for a company or security.",
+            "parameters": {
+                "type": "object",
+                "properties": {
+                    "ticker": {
+                        "type": "string",
+                        "description": "Stock ticker symbol or issuer identifier (e.g., AAPL, MSFT)"
+                    },
+                    "rating_type": {
+                        "type": "string",
+                        "description": "Type of rating: issuer, issue, or all"
+                    },
+                    "include_history": {
+                        "type": "boolean",
+                        "description": "Whether to include rating history (default: false)"
+                    }
+                },
+                "required": [
+                    "ticker"
+                ]
+            }
+        },
+        {
+            "name": "get_debt_schedule",
+            "description": "Retrieve detailed debt schedule including maturities, interest rates, and covenants.",
+            "parameters": {
+                "type": "object",
+                "properties": {
+                    "ticker": {
+                        "type": "string",
+                        "description": "Stock ticker symbol (e.g., AAPL, MSFT)"
+                    },
+                    "as_of_date": {
+                        "type": "string",
+                        "description": "Date for debt schedule snapshot in ISO format (e.g., 2024-12-31)"
+                    },
+                    "include_covenants": {
+                        "type": "boolean",
+                        "description": "Whether to include covenant details (default: false)"
+                    }
+                },
+                "required": [
+                    "ticker"
+                ]
+            }
+        },
+        {
+            "name": "get_industry_analysis",
+            "description": "Retrieve industry-level analysis including market size, growth trends, and competitive landscape.",
+            "parameters": {
+                "type": "object",
+                "properties": {
+                    "industry": {
+                        "type": "string",
+                        "description": "Industry name or GICS code (e.g., Software, 45103010)"
+                    },
+                    "region": {
+                        "type": "string",
+                        "description": "Geographic region: global, north_america, europe, asia_pacific"
+                    },
+                    "metrics": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        },
+                        "description": "Specific metrics to retrieve (e.g., market_size, growth_rate, concentration)"
+                    }
+                },
+                "required": [
+                    "industry"
+                ]
+            }
+        },
+        {
+            "name": "get_esg_scores",
+            "description": "Retrieve ESG (Environmental, Social, Governance) scores and assessments.",
+            "parameters": {
+                "type": "object",
+                "properties": {
+                    "ticker": {
+                        "type": "string",
+                        "description": "Stock ticker symbol (e.g., AAPL, MSFT)"
+                    },
+                    "framework": {
+                        "type": "string",
+                        "description": "ESG framework: sp_global, sasb, tcfd, or all"
+                    },
+                    "include_history": {
+                        "type": "boolean",
+                        "description": "Whether to include historical ESG scores (default: false)"
+                    }
+                },
+                "required": [
+                    "ticker"
+                ]
+            }
+        },
+        {
+            "name": "get_company_profile",
+            "description": "Retrieve detailed company profile from Capital IQ including business description, segments, and key personnel.",
+            "parameters": {
+                "type": "object",
+                "properties": {
+                    "ticker": {
+                        "type": "string",
+                        "description": "Stock ticker symbol (e.g., AAPL, MSFT)"
+                    },
+                    "include_segments": {
+                        "type": "boolean",
+                        "description": "Whether to include business segment details (default: true)"
+                    },
+                    "include_executives": {
+                        "type": "boolean",
+                        "description": "Whether to include executive/management information (default: true)"
+                    }
+                },
+                "required": [
+                    "ticker"
+                ]
+            }
+        },
+        {
+            "name": "get_earnings_transcripts",
+            "description": "Retrieve earnings call transcripts including Q&A sections.",
+            "parameters": {
+                "type": "object",
+                "properties": {
+                    "ticker": {
+                        "type": "string",
+                        "description": "Stock ticker symbol (e.g., AAPL, MSFT)"
+                    },
+                    "period": {
+                        "type": "string",
+                        "description": "Earnings period (e.g., Q4FY2024, Q1FY2025)"
+                    },
+                    "section": {
+                        "type": "string",
+                        "description": "Transcript section: prepared_remarks, qa, or full"
+                    }
+                },
+                "required": [
+                    "ticker"
+                ]
+            }
+        }
+    ],
+    "runtimes": [
+        {
+            "type": "RemoteMCPServer",
+            "spec": {
+                "url": "https://kfinance.kensho.com/integrations/mcp"
+            },
+            "auth": {
+                "type": "OAuthPluginVault"
+            },
+            "run_for_functions": [
+                "get_financials",
+                "get_credit_rating",
+                "get_debt_schedule",
+                "get_industry_analysis",
+                "get_esg_scores",
+                "get_company_profile",
+                "get_earnings_transcripts"
+            ]
+        }
+    ]
+}

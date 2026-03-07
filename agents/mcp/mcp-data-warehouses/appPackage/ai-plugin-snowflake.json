@@ -1,88 +1,134 @@
-{
-  "$schema": "https://aka.ms/json-schemas/copilot/plugin/v2.4/schema.json",
-  "schema_version": "v2.4",
-  "name_for_human": "Snowflake",
-  "namespace": "Snowflake",
-  "description_for_human": "Query data, explore schemas, and check freshness in Snowflake.",
-  "description_for_model": "Provides access to Snowflake's cloud data warehouse. Use this plugin to execute SQL queries against Snowflake databases, list available tables in a database and schema, inspect table schemas and column definitions, and check data freshness timestamps. Essential for ad-hoc data analysis, data exploration, reporting, and building data-driven investment insights from proprietary datasets.",
-  "functions": [
-    {
-      "name": "query_data",
-      "description": "Execute a SQL query against a Snowflake database and return the results.",
-      "parameters": {
-        "type": "object",
-        "properties": {
-          "sql_query": { "type": "string", "description": "SQL query to execute against the Snowflake database" },
-          "database": { "type": "string", "description": "Snowflake database name to query against" },
-          "schema": { "type": "string", "description": "Snowflake schema name within the database" }
-        },
-        "required": ["sql_query", "database", "schema"]
-      },
-      "capabilities": {
-        "security_info": {
-          "data_handling": ["GetPrivateData"]
-        }
-      }
-    },
-    {
-      "name": "list_tables",
-      "description": "List all tables available in a specified Snowflake database and schema.",
-      "parameters": {
-        "type": "object",
-        "properties": {
-          "database": { "type": "string", "description": "Snowflake database name" },
-          "schema": { "type": "string", "description": "Snowflake schema name within the database" }
-        },
-        "required": ["database", "schema"]
-      },
-      "capabilities": {
-        "security_info": {
-          "data_handling": ["GetPrivateData"]
-        }
-      }
-    },
-    {
-      "name": "get_table_schema",
-      "description": "Retrieve the column definitions, data types, and constraints for a Snowflake table.",
-      "parameters": {
-        "type": "object",
-        "properties": {
-          "table_name": { "type": "string", "description": "Fully qualified table name (e.g., 'DATABASE.SCHEMA.TABLE_NAME')" }
-        },
-        "required": ["table_name"]
-      },
-      "capabilities": {
-        "security_info": {
-          "data_handling": ["GetPrivateData"]
-        }
-      }
-    },
-    {
-      "name": "get_data_freshness",
-      "description": "Check the last update timestamp and data freshness for a Snowflake table.",
-      "parameters": {
-        "type": "object",
-        "properties": {
-          "table_name": { "type": "string", "description": "Fully qualified table name (e.g., 'DATABASE.SCHEMA.TABLE_NAME')" }
-        },
-        "required": ["table_name"]
-      },
-      "capabilities": {
-        "security_info": {
-          "data_handling": ["GetPrivateData"]
-        }
-      }
-    }
-  ],
-  "runtimes": [
-    {
-      "type": "RemoteMCPServer",
-      "spec": {
-        "url": "https://{{MCP_HOST}}/mcp/snowflake"
-      },
-      "auth": {
-        "type": "OAuthPluginVault"
-      }
-    }
-  ]
+﻿{
+    "$schema":  "https://aka.ms/json-schemas/copilot/plugin/v2.4/schema.json",
+    "schema_version":  "v2.4",
+    "name_for_human":  "Snowflake",
+    "namespace":  "Snowflake",
+    "description_for_human":  "Query data, explore schemas, and check freshness in Snowflake.",
+    "description_for_model":  "Provides access to Snowflake\u0027s cloud data warehouse. Use this plugin to execute SQL queries against Snowflake databases, list available tables in a database and schema, inspect table schemas and column definitions, and check data freshness timestamps. Essential for ad-hoc data analysis, data exploration, reporting, and building data-driven investment insights from proprietary datasets.",
+    "functions":  [
+                      {
+                          "name":  "query_data",
+                          "description":  "Execute a SQL query against a Snowflake database and return the results.",
+                          "parameters":  {
+                                             "type":  "object",
+                                             "properties":  {
+                                                                "sql_query":  {
+                                                                                  "type":  "string",
+                                                                                  "description":  "SQL query to execute against the Snowflake database"
+                                                                              },
+                                                                "database":  {
+                                                                                 "type":  "string",
+                                                                                 "description":  "Snowflake database name to query against"
+                                                                             },
+                                                                "schema":  {
+                                                                               "type":  "string",
+                                                                               "description":  "Snowflake schema name within the database"
+                                                                           }
+                                                            },
+                                             "required":  [
+                                                              "sql_query",
+                                                              "database",
+                                                              "schema"
+                                                          ]
+                                         },
+                          "capabilities":  {
+                                               "security_info":  {
+                                                                     "data_handling":  [
+                                                                                           "GetPrivateData"
+                                                                                       ]
+                                                                 }
+                                           }
+                      },
+                      {
+                          "name":  "list_tables",
+                          "description":  "List all tables available in a specified Snowflake database and schema.",
+                          "parameters":  {
+                                             "type":  "object",
+                                             "properties":  {
+                                                                "database":  {
+                                                                                 "type":  "string",
+                                                                                 "description":  "Snowflake database name"
+                                                                             },
+                                                                "schema":  {
+                                                                               "type":  "string",
+                                                                               "description":  "Snowflake schema name within the database"
+                                                                           }
+                                                            },
+                                             "required":  [
+                                                              "database",
+                                                              "schema"
+                                                          ]
+                                         },
+                          "capabilities":  {
+                                               "security_info":  {
+                                                                     "data_handling":  [
+                                                                                           "GetPrivateData"
+                                                                                       ]
+                                                                 }
+                                           }
+                      },
+                      {
+                          "name":  "get_table_schema",
+                          "description":  "Retrieve the column definitions, data types, and constraints for a Snowflake table.",
+                          "parameters":  {
+                                             "type":  "object",
+                                             "properties":  {
+                                                                "table_name":  {
+                                                                                   "type":  "string",
+                                                                                   "description":  "Fully qualified table name (e.g., \u0027DATABASE.SCHEMA.TABLE_NAME\u0027)"
+                                                                               }
+                                                            },
+                                             "required":  [
+                                                              "table_name"
+                                                          ]
+                                         },
+                          "capabilities":  {
+                                               "security_info":  {
+                                                                     "data_handling":  [
+                                                                                           "GetPrivateData"
+                                                                                       ]
+                                                                 }
+                                           }
+                      },
+                      {
+                          "name":  "get_data_freshness",
+                          "description":  "Check the last update timestamp and data freshness for a Snowflake table.",
+                          "parameters":  {
+                                             "type":  "object",
+                                             "properties":  {
+                                                                "table_name":  {
+                                                                                   "type":  "string",
+                                                                                   "description":  "Fully qualified table name (e.g., \u0027DATABASE.SCHEMA.TABLE_NAME\u0027)"
+                                                                               }
+                                                            },
+                                             "required":  [
+                                                              "table_name"
+                                                          ]
+                                         },
+                          "capabilities":  {
+                                               "security_info":  {
+                                                                     "data_handling":  [
+                                                                                           "GetPrivateData"
+                                                                                       ]
+                                                                 }
+                                           }
+                      }
+                  ],
+    "runtimes":  [
+                     {
+                         "type":  "RemoteMCPServer",
+                         "spec":  {
+                                      "url":  "https://{{MCP_HOST}}/mcp/snowflake"
+                                  },
+                         "auth":  {
+                                      "type":  "OAuthPluginVault"
+                                  },
+                         "run_for_functions":  [
+                                                   "query_data",
+                                                   "list_tables",
+                                                   "get_table_schema",
+                                                   "get_data_freshness"
+                                               ]
+                     }
+                 ]
 }

@@ -1,10 +1,10 @@
 function Read-TitleIds {
     <#
     .SYNOPSIS
-        Reads TEAMS_APP_TITLE_ID values from each agent's .env.prod file.
+        Reads M365_TITLE_ID values from each agent's env/.env.prod file.
     .DESCRIPTION
-        For each agent in the manifest, locates the .env.prod file under the agent's
-        directory and extracts the TEAMS_APP_TITLE_ID value. Returns a hashtable mapping
+        For each agent in the manifest, locates the env/.env.prod file under the agent's
+        directory and extracts the M365_TITLE_ID value. Returns a hashtable mapping
         each agent's titleIdPlaceholder name to the resolved title ID.
     .PARAMETER Agents
         Array of agent objects from agent-manifest.json. Each object must have at least
@@ -35,10 +35,10 @@ function Read-TitleIds {
             continue
         }
 
-        $envFile = Join-Path $ProjectRoot (Join-Path $agentPath ".env.prod")
+        $envFile = Join-Path $ProjectRoot (Join-Path $agentPath "env/.env.prod")
 
         if (-not (Test-Path $envFile)) {
-            Write-Warning "No .env.prod found for agent '$placeholder' at: $envFile"
+            Write-Warning "No env/.env.prod found for agent '$placeholder' at: $envFile"
             continue
         }
 
@@ -51,7 +51,7 @@ function Read-TitleIds {
                 # Skip comments and blank lines
                 if ($trimmed -eq '' -or $trimmed.StartsWith('#')) { continue }
 
-                if ($trimmed -match '^TEAMS_APP_TITLE_ID\s*=\s*(.+)$') {
+                if ($trimmed -match '^M365_TITLE_ID\s*=\s*(.+)$') {
                     $titleId = $Matches[1].Trim()
                     break
                 }
@@ -62,7 +62,7 @@ function Read-TitleIds {
                 Write-Verbose "Read $placeholder = $titleId from $envFile"
             }
             else {
-                Write-Warning "TEAMS_APP_TITLE_ID not found in $envFile"
+                Write-Warning "M365_TITLE_ID not found in $envFile"
             }
         }
         catch {
@@ -85,8 +85,8 @@ function Set-TitleIds {
         Example: @{ "SEMANTIC_NORMALIZATION_AGENT_TITLE_ID" = "P_abc123" }
     .PARAMETER TargetAgents
         Array of agent objects (from agent-manifest.json) whose declarativeAgent.json
-        files should have placeholders replaced. Each must have 'path' and
-        'workerAgentDeps' properties.
+        files should have placeholders replaced. Each must have a 'path' property.
+        All available title IDs are replaced, not just those in workerAgentDeps.
     .PARAMETER ProjectRoot
         Root path of the CopilotFSI project.
     .PARAMETER DryRun
@@ -119,30 +119,19 @@ function Set-TitleIds {
             continue
         }
 
-        $deps = $agent.workerAgentDeps
-        if (-not $deps -or $deps.Count -eq 0) {
-            Write-Verbose "No workerAgentDeps for agent at '$agentPath' — skipping."
-            continue
-        }
-
         try {
             $content = Get-Content -Path $declAgentFile -Raw
             $modified = $false
 
-            foreach ($depPlaceholder in $deps) {
-                $token = "{{$depPlaceholder}}"
+            # Replace all available title IDs (required + optional) in the file
+            foreach ($placeholder in $TitleIds.Keys) {
+                $token = "{{$placeholder}}"
 
                 if ($content -notmatch [regex]::Escape($token)) {
-                    Write-Verbose "  Placeholder $token not found in $declAgentFile — skipping."
                     continue
                 }
 
-                if (-not $TitleIds.ContainsKey($depPlaceholder)) {
-                    Write-Warning "No title ID resolved for placeholder '$depPlaceholder' — cannot replace in $declAgentFile"
-                    continue
-                }
-
-                $resolvedId = $TitleIds[$depPlaceholder]
+                $resolvedId = $TitleIds[$placeholder]
 
                 if ($DryRun) {
                     Write-Host "[DryRun] Would replace $token → $resolvedId in $declAgentFile"
@@ -170,18 +159,98 @@ function Set-TitleIds {
     return $replacementCount
 }
 
+function Remove-UnresolvedWorkerAgents {
+    <#
+    .SYNOPSIS
+        Strips unresolved {{...}} entries from worker_agents arrays in declarativeAgent.json files.
+    .DESCRIPTION
+        After title ID injection, some optional worker_agents may still contain {{PLACEHOLDER}}
+        tokens (e.g., optional MCP connectors that weren't provisioned). This function removes
+        those entries so the agent can still be provisioned with its required dependencies.
+    .PARAMETER TargetAgents
+        Array of agent objects from agent-manifest.json whose declarativeAgent.json files
+        should be cleaned.
+    .PARAMETER ProjectRoot
+        Root path of the CopilotFSI project.
+    .PARAMETER DryRun
+        If specified, logs removals without modifying files.
+    .OUTPUTS
+        System.Int32 — count of unresolved entries removed.
+    #>
+    [CmdletBinding()]
+    param(
+        [Parameter(Mandatory)]
+        [array]$TargetAgents,
+
+        [Parameter(Mandatory)]
+        [string]$ProjectRoot,
+
+        [switch]$DryRun
+    )
+
+    $removedCount = 0
+
+    foreach ($agent in $TargetAgents) {
+        $agentPath = $agent.path
+        $declAgentFile = Join-Path $ProjectRoot (Join-Path $agentPath "appPackage\declarativeAgent.json")
+
+        if (-not (Test-Path $declAgentFile)) {
+            continue
+        }
+
+        try {
+            $json = Get-Content -Path $declAgentFile -Raw | ConvertFrom-Json
+
+            if (-not $json.worker_agents -or $json.worker_agents.Count -eq 0) {
+                continue
+            }
+
+            $originalCount = $json.worker_agents.Count
+            $resolved = @($json.worker_agents | Where-Object { $_.id -notmatch '\{\{.*\}\}' })
+
+            if ($resolved.Count -eq $originalCount) {
+                continue
+            }
+
+            $unresolvedCount = $originalCount - $resolved.Count
+            $removedCount += $unresolvedCount
+
+            if ($DryRun) {
+                Write-Host "[DryRun] Would remove $unresolvedCount unresolved worker_agent(s) from $declAgentFile"
+            }
+            else {
+                $json.worker_agents = $resolved
+                $output = $json | ConvertTo-Json -Depth 10
+                Set-Content -Path $declAgentFile -Value $output -Encoding UTF8 -NoNewline
+                Write-Verbose "Removed $unresolvedCount unresolved worker_agent(s) from $declAgentFile"
+            }
+        }
+        catch {
+            Write-Error "Failed to process '$declAgentFile': $_"
+        }
+    }
+
+    Write-Verbose "Total unresolved worker_agents removed: $removedCount"
+    return $removedCount
+}
+
 function Restore-TitleIdPlaceholders {
     <#
     .SYNOPSIS
-        Restores title ID placeholders in declarativeAgent.json files (for uninstall).
+        Restores manifest-driven title ID placeholders in declarativeAgent.json files.
     .DESCRIPTION
-        Reads agent-manifest.json to discover all titleIdPlaceholder names, then scans
-        each declarativeAgent.json for resolved title IDs (P_xxxxxxxx format) within
-        worker_agents blocks and replaces them with the original {{PLACEHOLDER_NAME}}.
+        Reads agent-manifest.json and rebuilds each declarative agent's worker_agents
+        array from the manifest's workerAgentDeps placeholders. This keeps install and
+        uninstall deterministic even if declarativeAgent.json currently contains stale
+        or previously injected title IDs.
     .PARAMETER ProjectRoot
         Root path of the CopilotFSI project.
     .PARAMETER ConfigPath
         Path to the agent-manifest.json configuration file.
+    .PARAMETER DryRun
+        If specified, logs planned changes without modifying files.
+    .OUTPUTS
+        System.Int32 — count of declarative agent files reset to placeholder wiring.
     #>
     [CmdletBinding()]
     param(
@@ -189,7 +258,9 @@ function Restore-TitleIdPlaceholders {
         [string]$ProjectRoot,
 
         [Parameter(Mandatory)]
-        [string]$ConfigPath
+        [string]$ConfigPath,
+
+        [switch]$DryRun
     )
 
     if (-not (Test-Path $ConfigPath)) {
@@ -205,64 +276,52 @@ function Restore-TitleIdPlaceholders {
         return
     }
 
-    # Build a lookup: read current title IDs from .env.prod files
-    # so we know which concrete ID maps to which placeholder
-    $idToPlaceholder = @{}
+    $restoredCount = 0
 
     foreach ($agent in $manifest.agents) {
-        $placeholder = $agent.titleIdPlaceholder
-        if (-not $placeholder) { continue }
+        $workerAgentDeps = @($agent.workerAgentDeps)
+        if ($workerAgentDeps.Count -eq 0) {
+            continue
+        }
 
-        $envFile = Join-Path $ProjectRoot (Join-Path $agent.path ".env.prod")
-        if (-not (Test-Path $envFile)) { continue }
+        $declAgentFile = Join-Path $ProjectRoot (Join-Path $agent.path "appPackage\declarativeAgent.json")
+        if (-not (Test-Path $declAgentFile)) {
+            Write-Warning "declarativeAgent.json not found at: $declAgentFile"
+            continue
+        }
 
         try {
-            $lines = Get-Content -Path $envFile
-            foreach ($line in $lines) {
-                $trimmed = $line.Trim()
-                if ($trimmed -eq '' -or $trimmed.StartsWith('#')) { continue }
-                if ($trimmed -match '^TEAMS_APP_TITLE_ID\s*=\s*(.+)$') {
-                    $titleId = $Matches[1].Trim()
-                    $idToPlaceholder[$titleId] = $placeholder
-                    Write-Verbose "Mapped $titleId → {{$placeholder}}"
-                    break
-                }
+            $json = Get-Content -Path $declAgentFile -Raw | ConvertFrom-Json
+            $expectedIds = @($workerAgentDeps | ForEach-Object { "{{$($_)}}" })
+            $currentIds = @($json.worker_agents | ForEach-Object { $_.id })
+
+            if (($currentIds -join '|') -eq ($expectedIds -join '|')) {
+                continue
             }
+
+            if ($DryRun) {
+                Write-Host "[DryRun] Would reset worker_agents placeholders in $declAgentFile"
+                $restoredCount++
+                continue
+            }
+
+            $expectedWorkers = @($expectedIds | ForEach-Object { [pscustomobject]@{ id = $_ } })
+            if ($json.PSObject.Properties.Name -contains 'worker_agents') {
+                $json.worker_agents = $expectedWorkers
+            }
+            else {
+                $json | Add-Member -NotePropertyName worker_agents -NotePropertyValue $expectedWorkers
+            }
+
+            $output = $json | ConvertTo-Json -Depth 10
+            Set-Content -Path $declAgentFile -Value $output -Encoding UTF8 -NoNewline
+            Write-Verbose "Reset worker_agents placeholders in $declAgentFile"
+            $restoredCount++
         }
         catch {
-            Write-Warning "Could not read $envFile : $_"
+            Write-Error "Failed to restore placeholders in '$declAgentFile': $_"
         }
     }
 
-    if ($idToPlaceholder.Count -eq 0) {
-        Write-Warning "No title ID mappings found — nothing to restore."
-        return
-    }
-
-    # Scan all declarativeAgent.json files for injected title IDs
-    $declFiles = Get-ChildItem -Path $ProjectRoot -Filter "declarativeAgent.json" -Recurse -File
-
-    foreach ($file in $declFiles) {
-        try {
-            $content = Get-Content -Path $file.FullName -Raw
-            $modified = $false
-
-            foreach ($titleId in $idToPlaceholder.Keys) {
-                if ($content -match [regex]::Escape($titleId)) {
-                    $placeholder = $idToPlaceholder[$titleId]
-                    $content = $content -replace [regex]::Escape($titleId), "{{$placeholder}}"
-                    $modified = $true
-                    Write-Verbose "Restored $titleId → {{$placeholder}} in $($file.FullName)"
-                }
-            }
-
-            if ($modified) {
-                Set-Content -Path $file.FullName -Value $content -Encoding UTF8 -NoNewline
-                Write-Verbose "Saved $($file.FullName)"
-            }
-        }
-        catch {
-            Write-Error "Failed to restore placeholders in '$($file.FullName)': $_"
-        }
-    }
+    return $restoredCount
 }

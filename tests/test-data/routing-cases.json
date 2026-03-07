@@ -1,0 +1,74 @@
+[
+  {
+    "id": "ratings-comparison-intel",
+    "query": "Show Moody's vs. S&P comparison for Intel",
+    "targetAgentId": "company-profile-agent",
+    "orchestratorRequiredPhrases": [
+      "Company Profile Agent handles concise public-company overviews and credit-rating comparisons such as Moody's vs. S&P for Intel."
+    ],
+    "targetRequiredPhrases": [
+      "If the user asks for a narrow comparison or datapoint, such as a Moody's vs. S&P credit-rating comparison, answer that slice directly instead of expanding into a full teaser unless requested.",
+      "For ratings or provider-comparison requests, produce a concise comparison table with provider, rating, outlook/watch status, effective date, and explanatory notes."
+    ]
+  },
+  {
+    "id": "comparable-analysis-salesforce",
+    "query": "Run a comparable company analysis for Salesforce including EV/EBITDA",
+    "targetAgentId": "comparable-analysis-agent",
+    "orchestratorRequiredPhrases": [
+      "Comparable Analysis Agent: trading comps, peer comparisons, valuation multiples, EV/EBITDA, P/E, EV/Revenue."
+    ],
+    "targetRequiredPhrases": [
+      "If the user does not specify peers, select 8-12 liquid public comps from the closest GICS or ICB sub-industry and proceed without asking the user to approve the peer set.",
+      "select 8-12 liquid public peers with the closest business model and scale, and proceed without asking for confirmation."
+    ]
+  },
+  {
+    "id": "dcf-microsoft",
+    "query": "Build a DCF model for Microsoft",
+    "targetAgentId": "dcf-model-agent",
+    "orchestratorRequiredPhrases": [
+      "DCF Model Agent: DCF, intrinsic valuation, WACC, terminal value, sensitivity analysis, Monte Carlo."
+    ],
+    "targetRequiredPhrases": [
+      "Use standard assumptions unless the user explicitly provides overrides.",
+      "If a required connector errors, times out, is unavailable, or returns no usable data after one attempt, immediately use approved WebSearch to fill only the missing public data."
+    ]
+  },
+  {
+    "id": "earnings-apple",
+    "query": "Analyze Apple's most recent quarterly earnings",
+    "targetAgentId": "earnings-analysis-agent",
+    "orchestratorRequiredPhrases": [
+      "Earnings Analysis Agent: earnings results, transcripts, beat/miss, guidance changes, estimate revisions."
+    ],
+    "targetRequiredPhrases": [
+      "Default to the most recent reported quarter unless the user specifies another period.",
+      "If a required connector errors, times out, is unavailable, or returns no usable data after one attempt, immediately use approved WebSearch to fill only the missing public data."
+    ]
+  },
+  {
+    "id": "due-diligence-datadog",
+    "query": "Create a due diligence data pack for Datadog",
+    "targetAgentId": "due-diligence-agent",
+    "orchestratorRequiredPhrases": [
+      "Due Diligence Agent: DD packs, data room analysis, red flags, document review."
+    ],
+    "targetRequiredPhrases": [
+      "Default to all DD categories (Financial, Legal, Operational, Commercial, Tax, HR) unless the user specifies a subset.",
+      "If a required connector errors, times out, is unavailable, or returns no usable data after one attempt, immediately use approved WebSearch to fill only the missing public data."
+    ]
+  },
+  {
+    "id": "coverage-palantir",
+    "query": "Initiate analyst coverage on Palantir Technologies",
+    "targetAgentId": "coverage-report-agent",
+    "orchestratorRequiredPhrases": [
+      "Coverage Report Agent: initiation reports, industry analysis with valuation, full multi-methodology writeups, price targets."
+    ],
+    "targetRequiredPhrases": [
+      "If any delegated agent fails due to connector availability, request a reduced-scope answer that uses public web fallback rather than abandoning the valuation section.",
+      "If the user asks for a narrow deliverable, do not expand it into a full initiation report unless requested."
+    ]
+  }
+]
