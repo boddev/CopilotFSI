@@ -1,10 +1,13 @@
 # Agent Communication Matrix
 
-## Orchestrator Agent (Tier 3)
+> 100% M365 Copilot native — all agents are declarative, no backend code required.
+
+## Orchestrator Agents (Tier 3)
 
 | Agent | Capabilities | MCP Data Sources | Agent Dependencies |
 |---|---|---|---|
 | **FSI Primary** | WebSearch, CodeInterpreter, OneDrive/SP, GraphConnectors, People | *none* | Comp Analysis, DCF Model, Due Diligence, Company Profile, Earnings Analysis, Coverage Report, Precedent Txns, Compliance |
+| **Coverage Report** | WebSearch, CodeInterpreter, OneDrive/SP, GraphConnectors | FactSet, S&P Global, Public Filings, Research & Ratings | Comp Analysis, DCF Model, Earnings Analysis, Precedent Txns |
 
 ## Skill Agents (Tier 2)
 

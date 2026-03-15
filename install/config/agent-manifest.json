@@ -140,7 +140,9 @@
         "MCP_FACTSET_TITLE_ID",
         "MCP_SP_GLOBAL_TITLE_ID",
         "MCP_MARKET_DATA_TITLE_ID",
-        "MCP_RESEARCH_RATINGS_TITLE_ID"
+        "MCP_RESEARCH_RATINGS_TITLE_ID",
+        "MCP_PUBLIC_FILINGS_TITLE_ID",
+        "MCP_TRANSCRIPTS_INTEL_TITLE_ID"
       ],
       "titleIdPlaceholder": "DCF_MODEL_AGENT_TITLE_ID",
       "envFile": "env/.env.prod"

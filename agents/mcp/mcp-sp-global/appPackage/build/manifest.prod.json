@@ -2,7 +2,7 @@
     "$schema": "https://developer.microsoft.com/json-schemas/teams/vDevPreview/MicrosoftTeams.schema.json",
     "manifestVersion": "devPreview",
     "version": "1.0.0",
-    "id": "ce754317-6136-4a5d-a5a1-ad79dcc1543b",
+    "id": "97a9f992-a20e-4fce-a490-b2c4d0e0cd86",
     "developer": {
         "name": "Financial Services",
         "websiteUrl": "https://example.com",

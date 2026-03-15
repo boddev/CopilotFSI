@@ -104,6 +104,7 @@ foreach ($yml in $allYmlFiles) {
 }
 
 # Remove agents using atk uninstall --mode env (mirrors how install provisions)
+# Fallback chain: --mode env → --mode title-id → --mode manifest-id
 $currentTierLabel = ""
 foreach ($agent in $allAgentDirs) {
     $tierLabel = "Tier $($agent.Tier) : $($agent.TierName)"
@@ -131,26 +132,77 @@ foreach ($agent in $allAgentDirs) {
         continue
     }
 
+    # Pre-read title ID and manifest ID from .env file for fallback uninstall
+    $titleId    = $null
+    $manifestId = $null
+    $envFile    = Join-Path $agentPath "env" ".env.$Environment"
+    if (Test-Path $envFile) {
+        $envContent = Get-Content -Path $envFile -ErrorAction SilentlyContinue
+        foreach ($line in $envContent) {
+            if ($line -match '^\s*M365_TITLE_ID\s*=\s*(.+)$')  { $titleId    = $Matches[1].Trim() }
+            if ($line -match '^\s*TEAMS_APP_ID\s*=\s*(.+)$')    { $manifestId = $Matches[1].Trim() }
+        }
+    }
+
     if ($DryRun) {
         Write-Host "  [DRY RUN] Would remove: $agentName" -ForegroundColor Yellow
+        if ($titleId)    { Write-Host "             Title ID:    $titleId" -ForegroundColor DarkGray }
+        if ($manifestId) { Write-Host "             Manifest ID: $manifestId" -ForegroundColor DarkGray }
         $removedCount++
     }
     else {
+        $removed = $false
+
+        # Attempt 1: --mode env (standard, mirrors how atk provision works)
         try {
-            # Use --mode env which mirrors how atk provision works
             $result = & atk uninstall --mode env --env $Environment --folder $agentPath --options 'm365-app,app-registration' --interactive false 2>&1
             $output = ($result | Out-String).Trim()
-
-            if ($LASTEXITCODE -ne 0) {
-                throw "atk uninstall failed (exit code $LASTEXITCODE):`n$output"
+            if ($LASTEXITCODE -eq 0) {
+                Write-Host "  ✅ Removed: $agentName" -ForegroundColor Green
+                $removedCount++
+                $successfulPaths += $agentPath
+                $removed = $true
             }
-
-            Write-Host "  ✅ Removed: $agentName" -ForegroundColor Green
-            $removedCount++
-            $successfulPaths += $agentPath
         }
-        catch {
-            Write-Host "  ❌ Failed to remove: $agentName — $_" -ForegroundColor Red
+        catch { }
+
+        # Attempt 2: --mode title-id (catches ghost agents that persist after env cleanup)
+        if (-not $removed -and $titleId) {
+            try {
+                Write-Host "  ⚠️  env-mode failed for $agentName, retrying with title-id ($titleId)..." -ForegroundColor Yellow
+                $result = & atk uninstall --mode title-id --title-id $titleId --interactive false 2>&1
+                $output = ($result | Out-String).Trim()
+                if ($LASTEXITCODE -eq 0) {
+                    Write-Host "  ✅ Removed (title-id): $agentName" -ForegroundColor Green
+                    $removedCount++
+                    $successfulPaths += $agentPath
+                    $removed = $true
+                }
+            }
+            catch { }
+        }
+
+        # Attempt 3: --mode manifest-id (last resort using the Teams App GUID)
+        if (-not $removed -and $manifestId) {
+            try {
+                Write-Host "  ⚠️  title-id failed for $agentName, retrying with manifest-id ($manifestId)..." -ForegroundColor Yellow
+                $result = & atk uninstall --mode manifest-id --manifest-id $manifestId --options 'm365-app,app-registration' --interactive false 2>&1
+                $output = ($result | Out-String).Trim()
+                if ($LASTEXITCODE -eq 0) {
+                    Write-Host "  ✅ Removed (manifest-id): $agentName" -ForegroundColor Green
+                    $removedCount++
+                    $successfulPaths += $agentPath
+                    $removed = $true
+                }
+            }
+            catch { }
+        }
+
+        if (-not $removed) {
+            Write-Host "  ❌ Failed to remove: $agentName — all uninstall methods exhausted" -ForegroundColor Red
+            if (-not $titleId -and -not $manifestId) {
+                Write-Host "       No .env.$Environment file found with M365_TITLE_ID or TEAMS_APP_ID" -ForegroundColor DarkGray
+            }
             $failedCount++
         }
     }

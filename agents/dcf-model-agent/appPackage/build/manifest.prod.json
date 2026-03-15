@@ -1,8 +1,8 @@
 {
     "$schema": "https://developer.microsoft.com/json-schemas/teams/vDevPreview/MicrosoftTeams.schema.json",
     "manifestVersion": "devPreview",
-    "version": "1.0.0",
-    "id": "cb9d53f9-e46b-4dfe-8e9b-62a5fb91dfed",
+    "version": "1.1.0",
+    "id": "9ee18805-d81a-46c1-b01a-f5095db3394d",
     "developer": {
         "name": "Financial Services",
         "websiteUrl": "https://example.com",
@@ -14,8 +14,8 @@
         "full": "Discounted Cash Flow Model Agent"
     },
     "description": {
-        "short": "Builds DCF models with WACC, scenario analysis, and sensitivity.",
-        "full": "Builds discounted cash flow models with WACC calculation, multi-scenario analysis, sensitivity tables, and Monte Carlo simulations."
+        "short": "Builds DCF models with WACC, scenario analysis, and sensitivity. (v1.1.0)",
+        "full": "Builds discounted cash flow models with WACC calculation, multi-scenario analysis, sensitivity tables, and Monte Carlo simulations. Version 1.1.0"
     },
     "icons": {
         "outline": "outline.png",
